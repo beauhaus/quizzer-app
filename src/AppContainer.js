@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import Styled from "styled-components";
 
 import QuizHeader from "./QuizHeader";
-import QuizBtns from "./QuizBtnContainer";
+import QuizBtns from "./Landing/QuizBtnContainer";
 import LSModal from "./modals/LSModal";
 import QuizModal from "./modals/QuizModal";
 
@@ -71,24 +71,16 @@ class AppContainer extends Component {
 
   //THIS FUNCTION ALSO DISPLAYS MODAL
   handleLoadDefQ1() {
-    //Place onto state
+    let qName = Object.keys(localStorage);
+    let store = localStorage.getItem(qName);
+    let storeArr = JSON.parse(store);
+    console.log("storeArrlength: ", storeArr.length);
+
     this.setState({
       showQuizModal: true,
-      quizName: "ICONQUIZ",
-      quizModalPayload: [
-        {
-          id: "100",
-          question: "nerd",
-          options: ["💩", "😅", "😜", "🤓"],
-          answer: "🤓"
-        },
-        {
-          id: "101",
-          question: "crying",
-          options: ["🤭", "😭", "🙄", "😳"],
-          answer: "😭"
-        }
-      ]
+      quizName: qName,
+      qLength: storeArr.length,
+      quizModalPayload: this.props.lsStatus
     });
   }
 
@@ -104,23 +96,15 @@ class AppContainer extends Component {
     });
   }
 
-  /*
-  handleLoadDefQ2() {
-    console.log("handleLoadDefQ2");
-  }
-  handleCustomQ() {
-    console.log("handleCustom");
-  }
-  */
-
   render() {
+    // {console.log("p>AppC: ", this.props.lsStatus)}
     return (
       <StyledAppContainer className="app-container">
         <QuizHeader
           getStored={this.handleGetLSClick}
           loadInStorage={this.handleLoadToLStorage}
           delStored={this.handleDelClick}
-          reset={this.props.reset}
+          resetDB={this.props.initDB}
         />
         <h1>What do you want to learn?</h1>
         <QuizBtns
@@ -149,6 +133,7 @@ class AppContainer extends Component {
           showQuizModal={this.state.showQuizModal}
           payload={this.state.quizModalPayload}
           quizName={this.state.quizName}
+          qLength={this.state.qLength}
         />
       </StyledAppContainer>
     );

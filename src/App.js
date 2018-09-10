@@ -14,6 +14,9 @@ class Root extends Component {
     super(props);
     this.state = { iconsDBParsed: [] };
     this.initLSInsert = this.initLSInsert.bind(this);
+    this.state = {
+      init: ""
+    };
   }
   initLSInsert() {
     //Feed into LS
@@ -24,7 +27,7 @@ class Root extends Component {
     let iconsDBParsed = JSON.parse(gottenIconsDB);
     //Place onto state
     this.setState(() => {
-      return { intialDB: iconsDBParsed };
+      return { initDB: iconsDBParsed };
     });
   }
 
@@ -32,7 +35,9 @@ class Root extends Component {
     this.initLSInsert(); // auto-load into LS
   }
   render() {
-    return <AppContainer reset={this.initLSInsert} />;
+    return (
+      <AppContainer initDB={this.initLSInsert} lsStatus={this.state.initDB} />
+    );
   }
 }
 render(<Root />, document.getElementById("root"));

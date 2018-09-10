@@ -60,3 +60,4 @@ typings/
 misc_exercises/
 .DS_Store
 .pages
+.cache

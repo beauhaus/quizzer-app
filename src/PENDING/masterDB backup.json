@@ -1,0 +1,80 @@
+[
+  {
+    "fruit": [
+      {
+        "id": "100",
+        "name": "poop",
+        "img": "💩"
+      },
+      {
+        "id": "101",
+        "name": "Green Apple",
+        "img": "🍏"
+      },
+      {
+        "id": "102",
+        "name": "Red Apple",
+        "img": "🍎"
+      },
+      {
+        "id": "103",
+        "name": "Pear",
+        "img": "🍐"
+      },
+      {
+        "id": "104",
+        "name": "Orange",
+        "img": "🍊"
+      },
+      {
+        "id": "105",
+        "name": "Lemon",
+        "img": "🍋"
+      },
+      {
+        "id": "106",
+        "name": "Watermelon",
+        "img": "🍉"
+      }
+    ]
+  },
+  {
+    "faces": [
+      {
+        "id": "200",
+        "name": "cool",
+        "img": "😎"
+      },
+      {
+        "id": "201",
+        "name": "fuming",
+        "img": "😤"
+      },
+      {
+        "id": "202",
+        "name": "worried",
+        "img": "😰"
+      },
+      {
+        "id": "203",
+        "name": "sneeze",
+        "img": "🤧"
+      },
+      {
+        "id": "204",
+        "name": "thinking",
+        "img": "🤔"
+      },
+      {
+        "id": "205",
+        "name": "omg",
+        "img": "😱"
+      },
+      {
+        "id": "206",
+        "name": "wacky",
+        "img": "🤪"
+      }
+    ]
+  }
+]

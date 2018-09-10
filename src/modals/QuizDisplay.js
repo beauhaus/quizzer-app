@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import Styled from "styled-components";
 
-import QAForm from "./QAForm";
+import MultiChoiceFormat from "./MultiChoiceFormat";
+
+//Contains wrapper for quizzes and quiz NAVIGATION
 
 const StyledQuizDisplay = Styled.div`
   width: 100vw;
@@ -99,20 +101,14 @@ class QuizDisplay extends Component {
     };
   }
   componentDidMount() {
+    let len = this.props.payload.length;
+    console.log("len@QD: ", len);
     this.setState({
-      arrayLen: this.props.payload.length
+      arrayLen: len
     });
-
-    console.log("P>Qdisplay: ", this.props.payload);
-    // console.log("Array Length is: ", this.state.arrayLen);
+    // console.log("P>Qdisplay: ", this.props.payload[0].options);
+    // console.log("Array Length is: ", this.props.payload.length);
   }
-  handleSubmit(e) {
-    e.preventDefault();
-
-    const inputID = e.target.elements.id.value.trim();
-    const inputNAME = e.target.elements.name.value.trim();
-  }
-  currentQuestionCheck() {}
 
   render() {
     const { arrayLen } = this.state;
@@ -122,12 +118,15 @@ class QuizDisplay extends Component {
         <div className="quiz-display-container">
           <h2 className="quiz-topic-title">{this.props.quizName}</h2>
           <h3 className="question-number">
-            Question 1/
-            {arrayLen}
+            Question {qCounter + 1}/{arrayLen}
           </h3>
           <div className="question-prompt-container">
-            <QAForm payload={payload[qCounter]} />
-            <nav>
+            <MultiChoiceFormat
+              payload={payload[qCounter]}
+              ansCheck={this.props.ansCheck}
+            />
+
+            <nav className="quiz-question-nav">
               <button
                 className="btn arrow-left"
                 onClick={this.props.decrementer}

@@ -26108,24 +26108,30 @@ var QuizHeader = function QuizHeader(props) {
     null,
     _react2.default.createElement(
       "button",
-      { onClick: props.getStored },
+      { onClick: function onClick() {
+          return props.getStored();
+        } },
       "Stored Quizzes"
     ),
     _react2.default.createElement(
       "button",
-      { onClick: props.reset },
+      { onClick: function onClick() {
+          return props.resetDB();
+        } },
       "Reset"
     ),
     _react2.default.createElement(
       "button",
-      { onClick: props.delStored },
+      { onClick: function onClick() {
+          return props.delStored();
+        } },
       "erase"
     )
   );
 };
 
 exports.default = QuizHeader;
-},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js"}],"QuizBtnContainer.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js"}],"Landing/QuizBtnContainer.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -26146,6 +26152,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
+//These are the LANDING PAGE NAV buttons
 var StyledQBtns = _styledComponents2.default.div(_templateObject);
 
 var QuizBtnContainer = function QuizBtnContainer(props) {
@@ -27621,14 +27628,14 @@ var LSMODAL = function (_Component) {
 }(_react.Component);
 
 exports.default = LSMODAL;
-},{"react":"../node_modules/react/index.js","react-modal":"../node_modules/react-modal/lib/index.js"}],"modals/QAForm.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-modal":"../node_modules/react-modal/lib/index.js"}],"modals/MultiChoiceFormat.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _templateObject = _taggedTemplateLiteral(["\n  grid-row: 1/4;\n  grid-column: 3;\n  height: 100%;\n  width: 100%;\n  display: grid;\n  grid-template-rows: 30vh 10vh 10vh;\n  grid-template-columns: 10vw 50vw 10vw;\n\nh2.question-prompt {\n  color: rgba(98, 77, 77, 0.5);\n  font-size: 4rem;\n  font-weight: 200;\n  grid-row: 1;\n  grid-column: 2;\n  text-align: center;\n}\n\nform {\n  grid-row: 2;\n  grid-column: 2/4;\n  display: grid;\n  grid-template-columns: 50vw 10vw;\n  grid-template-rows: auto;\n}\n\n.question-prompt-container form input {\n  box-shadow: inset 2px 2px 2px 2px rgba(0, 0, 0, 0.5);\n  text-align: center;\n  border: 1px solid #85f8d6;\n  color: #66bea4;\n  letter-spacing: 0.1rem;\n  font-size: 3rem;\n  font-weight: 200;\n  grid-column: 1;\n  grid-row: 1;\n  height: 100%;\n}\n\nform > button {\n  grid-column: 2;\n  grid-row: 1;\n}\n/*\n.question-input-commit {\n  font-size: 2.5rem;\n  font-weight: 300;\n  background: #90b9ad;\n  text-align: center;\n  box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.5);\n  height: 20px;\n}\n*/\n\n.question-input-commit:hover {\n  background: #4fbb9b;\n  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));\n}\n"], ["\n  grid-row: 1/4;\n  grid-column: 3;\n  height: 100%;\n  width: 100%;\n  display: grid;\n  grid-template-rows: 30vh 10vh 10vh;\n  grid-template-columns: 10vw 50vw 10vw;\n\nh2.question-prompt {\n  color: rgba(98, 77, 77, 0.5);\n  font-size: 4rem;\n  font-weight: 200;\n  grid-row: 1;\n  grid-column: 2;\n  text-align: center;\n}\n\nform {\n  grid-row: 2;\n  grid-column: 2/4;\n  display: grid;\n  grid-template-columns: 50vw 10vw;\n  grid-template-rows: auto;\n}\n\n.question-prompt-container form input {\n  box-shadow: inset 2px 2px 2px 2px rgba(0, 0, 0, 0.5);\n  text-align: center;\n  border: 1px solid #85f8d6;\n  color: #66bea4;\n  letter-spacing: 0.1rem;\n  font-size: 3rem;\n  font-weight: 200;\n  grid-column: 1;\n  grid-row: 1;\n  height: 100%;\n}\n\nform > button {\n  grid-column: 2;\n  grid-row: 1;\n}\n/*\n.question-input-commit {\n  font-size: 2.5rem;\n  font-weight: 300;\n  background: #90b9ad;\n  text-align: center;\n  box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.5);\n  height: 20px;\n}\n*/\n\n.question-input-commit:hover {\n  background: #4fbb9b;\n  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));\n}\n"]);
+var _templateObject = _taggedTemplateLiteral(["\n  grid-row: 1/4;\n  grid-column: 3;\n  height: 100%;\n  width: 100%;\n  display: grid;\n  grid-template-rows: 30vh 10vh 10vh;\n  grid-template-columns: 10vw 50vw 10vw;\n\nh2.question-prompt {\n  color: rgba(98, 77, 77, 0.5);\n  font-size: 4rem;\n  font-weight: 200;\n  grid-row: 1;\n  grid-column: 2;\n  text-align: center;\n}\n.mulit-choice-container {\n  grid-row: 2;\n  grid-column: 1/-1;\n  display: flex;\n  flex-direction: row;\n  align-items: space-around;\n  button {\n    background: #90b9ad;\n    border: 1px solid lightgreen;\n    flex-grow: 1;\n    flex-basis: 8rem;\n    margin: 0 0.5rem;\n    span {\n      font-size: 4rem;\n    }\n    &:hover {\n      background: #4fbb9b;\n      filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));\n    }\n  }\n}\n"], ["\n  grid-row: 1/4;\n  grid-column: 3;\n  height: 100%;\n  width: 100%;\n  display: grid;\n  grid-template-rows: 30vh 10vh 10vh;\n  grid-template-columns: 10vw 50vw 10vw;\n\nh2.question-prompt {\n  color: rgba(98, 77, 77, 0.5);\n  font-size: 4rem;\n  font-weight: 200;\n  grid-row: 1;\n  grid-column: 2;\n  text-align: center;\n}\n.mulit-choice-container {\n  grid-row: 2;\n  grid-column: 1/-1;\n  display: flex;\n  flex-direction: row;\n  align-items: space-around;\n  button {\n    background: #90b9ad;\n    border: 1px solid lightgreen;\n    flex-grow: 1;\n    flex-basis: 8rem;\n    margin: 0 0.5rem;\n    span {\n      font-size: 4rem;\n    }\n    &:hover {\n      background: #4fbb9b;\n      filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));\n    }\n  }\n}\n"]);
 
 var _react = require("react");
 
@@ -27644,7 +27651,11 @@ function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defi
 
 var StyledQA = _styledComponents2.default.section(_templateObject);
 
-var QAForm = function QAForm(props) {
+var MultiChoiceFormat = function MultiChoiceFormat(props) {
+  var _props$payload = props.payload,
+      options = _props$payload.options,
+      answer = _props$payload.answer;
+
   return _react2.default.createElement(
     StyledQA,
     null,
@@ -27654,19 +27665,31 @@ var QAForm = function QAForm(props) {
       props.payload.question
     ),
     _react2.default.createElement(
-      "form",
-      { action: "submit" },
-      _react2.default.createElement("input", { type: "text", name: "question-input-box", placeholder: "answer" }),
-      _react2.default.createElement(
-        "button",
-        { className: "question-input-commit" },
-        "\u221A"
-      )
+      "div",
+      { className: "mulit-choice-container" },
+      options.map(function (item, idx) {
+        return _react2.default.createElement(
+          "button",
+          {
+            id: item.id + idx,
+            key: idx,
+            answer: answer,
+            onClick: function onClick() {
+              return props.ansCheck(options[idx], answer);
+            }
+          },
+          _react2.default.createElement(
+            "span",
+            { role: "img", "aria-label": "quiz-option" },
+            item
+          )
+        );
+      })
     )
   );
 };
 
-exports.default = QAForm;
+exports.default = MultiChoiceFormat;
 },{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js"}],"modals/QuizDisplay.js":[function(require,module,exports) {
 "use strict";
 
@@ -27686,9 +27709,9 @@ var _styledComponents = require("styled-components");
 
 var _styledComponents2 = _interopRequireDefault(_styledComponents);
 
-var _QAForm = require("./QAForm");
+var _MultiChoiceFormat = require("./MultiChoiceFormat");
 
-var _QAForm2 = _interopRequireDefault(_QAForm);
+var _MultiChoiceFormat2 = _interopRequireDefault(_MultiChoiceFormat);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -27699,6 +27722,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+//Contains wrapper for quizzes and quiz NAVIGATION
 
 var StyledQuizDisplay = _styledComponents2.default.div(_templateObject);
 
@@ -27719,24 +27744,14 @@ var QuizDisplay = function (_Component) {
   _createClass(QuizDisplay, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      var len = this.props.payload.length;
+      console.log("len@QD: ", len);
       this.setState({
-        arrayLen: this.props.payload.length
+        arrayLen: len
       });
-
-      console.log("P>Qdisplay: ", this.props.payload);
-      // console.log("Array Length is: ", this.state.arrayLen);
+      // console.log("P>Qdisplay: ", this.props.payload[0].options);
+      // console.log("Array Length is: ", this.props.payload.length);
     }
-  }, {
-    key: "handleSubmit",
-    value: function handleSubmit(e) {
-      e.preventDefault();
-
-      var inputID = e.target.elements.id.value.trim();
-      var inputNAME = e.target.elements.name.value.trim();
-    }
-  }, {
-    key: "currentQuestionCheck",
-    value: function currentQuestionCheck() {}
   }, {
     key: "render",
     value: function render() {
@@ -27759,16 +27774,21 @@ var QuizDisplay = function (_Component) {
           _react2.default.createElement(
             "h3",
             { className: "question-number" },
-            "Question 1/",
+            "Question ",
+            qCounter + 1,
+            "/",
             arrayLen
           ),
           _react2.default.createElement(
             "div",
             { className: "question-prompt-container" },
-            _react2.default.createElement(_QAForm2.default, { payload: payload[qCounter] }),
+            _react2.default.createElement(_MultiChoiceFormat2.default, {
+              payload: payload[qCounter],
+              ansCheck: this.props.ansCheck
+            }),
             _react2.default.createElement(
               "nav",
-              null,
+              { className: "quiz-question-nav" },
               _react2.default.createElement("button", {
                 className: "btn arrow-left",
                 onClick: this.props.decrementer
@@ -27796,7 +27816,7 @@ var QuizDisplay = function (_Component) {
 }(_react.Component);
 
 exports.default = QuizDisplay;
-},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","./QAForm":"modals/QAForm.js"}],"modals/QuizModal.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","./MultiChoiceFormat":"modals/MultiChoiceFormat.js"}],"modals/QuizModal.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -27834,9 +27854,9 @@ var QuizModal = function (_Component) {
     var _this = _possibleConstructorReturn(this, (QuizModal.__proto__ || Object.getPrototypeOf(QuizModal)).call(this, props));
 
     _this.state = {
-      place: "holder",
-      quizArrayLen: 0,
-      qCounter: 0
+      qLength: props.qLength,
+      qCounter: 0,
+      currQNum: 1
     };
     _this.incrementer = _this.incrementer.bind(_this);
     _this.decrementer = _this.decrementer.bind(_this);
@@ -27844,10 +27864,14 @@ var QuizModal = function (_Component) {
   }
 
   _createClass(QuizModal, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      // let len = this.props.payload;
+    }
+  }, {
     key: "componentWillMount",
     value: function componentWillMount() {
       _reactModal2.default.setAppElement("body"); // a11y
-      // console.log(this.props.payload);
     }
   }, {
     key: "incrementer",
@@ -27870,9 +27894,17 @@ var QuizModal = function (_Component) {
       });
     }
   }, {
+    key: "answerChecker",
+    value: function answerChecker(qGuess, answer) {
+      console.log(qGuess, answer);
+      qGuess === answer ? console.log("You guessed " + qGuess + ", RIGHT!") : console.log("Aww... you guessed " + qGuess + ", but the answer was " + answer);
+    }
+  }, {
     key: "render",
     value: function render() {
       var qCounter = this.state.qCounter;
+      var qLength = this.props.qLength;
+      // console.log(qLength, "is length √");
 
       return _react2.default.createElement(
         _reactModal2.default,
@@ -27889,7 +27921,8 @@ var QuizModal = function (_Component) {
           qCounter: this.state.qCounter,
           quizName: this.props.quizName,
           incrementer: this.incrementer,
-          decrementer: this.decrementer
+          decrementer: this.decrementer,
+          ansCheck: this.answerChecker
         })
       );
     }
@@ -27922,7 +27955,7 @@ var _QuizHeader = require("./QuizHeader");
 
 var _QuizHeader2 = _interopRequireDefault(_QuizHeader);
 
-var _QuizBtnContainer = require("./QuizBtnContainer");
+var _QuizBtnContainer = require("./Landing/QuizBtnContainer");
 
 var _QuizBtnContainer2 = _interopRequireDefault(_QuizBtnContainer);
 
@@ -28000,21 +28033,16 @@ var AppContainer = function (_Component) {
   }, {
     key: "handleLoadDefQ1",
     value: function handleLoadDefQ1() {
-      //Place onto state
+      var qName = Object.keys(localStorage);
+      var store = localStorage.getItem(qName);
+      var storeArr = JSON.parse(store);
+      console.log("storeArrlength: ", storeArr.length);
+
       this.setState({
         showQuizModal: true,
-        quizName: "ICONQUIZ",
-        quizModalPayload: [{
-          id: "100",
-          question: "nerd",
-          options: ["💩", "😅", "😜", "🤓"],
-          answer: "🤓"
-        }, {
-          id: "101",
-          question: "crying",
-          options: ["🤭", "😭", "🙄", "😳"],
-          answer: "😭"
-        }]
+        quizName: qName,
+        qLength: storeArr.length,
+        quizModalPayload: this.props.lsStatus
       });
     }
   }, {
@@ -28031,21 +28059,12 @@ var AppContainer = function (_Component) {
         showQuizModal: false
       });
     }
-
-    /*
-    handleLoadDefQ2() {
-      console.log("handleLoadDefQ2");
-    }
-    handleCustomQ() {
-      console.log("handleCustom");
-    }
-    */
-
   }, {
     key: "render",
     value: function render() {
       var _this2 = this;
 
+      // {console.log("p>AppC: ", this.props.lsStatus)}
       return _react2.default.createElement(
         StyledAppContainer,
         { className: "app-container" },
@@ -28053,7 +28072,7 @@ var AppContainer = function (_Component) {
           getStored: this.handleGetLSClick,
           loadInStorage: this.handleLoadToLStorage,
           delStored: this.handleDelClick,
-          reset: this.props.reset
+          resetDB: this.props.initDB
         }),
         _react2.default.createElement(
           "h1",
@@ -28087,7 +28106,8 @@ var AppContainer = function (_Component) {
           },
           showQuizModal: this.state.showQuizModal,
           payload: this.state.quizModalPayload,
-          quizName: this.state.quizName
+          quizName: this.state.quizName,
+          qLength: this.state.qLength
         })
       );
     }
@@ -28097,7 +28117,7 @@ var AppContainer = function (_Component) {
 }(_react.Component);
 
 exports.default = AppContainer;
-},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","./QuizHeader":"QuizHeader.js","./QuizBtnContainer":"QuizBtnContainer.js","./modals/LSModal":"modals/LSModal.js","./modals/QuizModal":"modals/QuizModal.js"}],"App.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","./QuizHeader":"QuizHeader.js","./Landing/QuizBtnContainer":"Landing/QuizBtnContainer.js","./modals/LSModal":"modals/LSModal.js","./modals/QuizModal":"modals/QuizModal.js"}],"App.js":[function(require,module,exports) {
 "use strict";
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -28138,6 +28158,9 @@ var Root = function (_Component) {
 
     _this.state = { iconsDBParsed: [] };
     _this.initLSInsert = _this.initLSInsert.bind(_this);
+    _this.state = {
+      init: ""
+    };
     return _this;
   }
 
@@ -28152,7 +28175,7 @@ var Root = function (_Component) {
       var iconsDBParsed = JSON.parse(gottenIconsDB);
       //Place onto state
       this.setState(function () {
-        return { intialDB: iconsDBParsed };
+        return { initDB: iconsDBParsed };
       });
     }
   }, {
@@ -28163,7 +28186,7 @@ var Root = function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      return _react2.default.createElement(_AppContainer2.default, { reset: this.initLSInsert });
+      return _react2.default.createElement(_AppContainer2.default, { initDB: this.initLSInsert, lsStatus: this.state.initDB });
     }
   }]);
 
@@ -28200,7 +28223,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '59613' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '49301' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
