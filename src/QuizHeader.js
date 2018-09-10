@@ -11,7 +11,6 @@ const StyledQuizHeader = Styled.header`
     justify-content: space-between;
     margin-bottom: 20px;
     padding: 20px;
-    border: 1px solid #fff;
     width: 100%;
     height: 10vh;
      button {

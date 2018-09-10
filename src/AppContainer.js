@@ -16,7 +16,7 @@ const StyledAppContainer = Styled.div`
     font-size: 20px;
     background: linear-gradient(45deg, #ECEAEA 0%, #ddd 100%);
     width: 100vw;
-    height: 150vh;
+    height: 100vh;
     position: relative;
     text-align: center;
     .info-box {

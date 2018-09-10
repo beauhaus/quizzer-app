@@ -15,32 +15,38 @@ const StyledQuizDisplay = Styled.div`
     grid-template-columns: 5vw 15vw 60vw 15vw 5vw;
     grid-template-rows: 10vh 10vh 60vh;
     text-align: center;
-     border: 1px dashed black;
   }
   
   h2.quiz-topic-title {
     color: #e9e9e9;
     font-style: italic;
-    font-size: 4rem;
+    font-size: 4.5rem;
     height: 5vh;
     font-weight: 200;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
     grid-column: 3;
     grid-row: 1;
+    height: 100%;
   }
+
   .question-number {
     font-weight: 200;
-    font-size: 3rem;
+    font-size: 2rem;
     grid-column: 2;
     grid-row: 2;
     color: #aa9494;
-  }   
+    height: 100%;
+  }
+
   .question-prompt-container {
-    grid-column: 1/-1;
+    grid-column: 2/-2;
     grid-row: 3;
     color: #fff;
-    border: 1px solid blue;
-  }
+    display: grid;
+    grid-template-columns: 5vw 5vw 70vw 5vw 5vw;
+    grid-template-rows: 15vh 10vh 25vh 10vh;
+    }
+
   nav {
     grid-column: 2/-2;
     grid-row: 4;
@@ -108,14 +114,11 @@ class QuizDisplay extends Component {
         <div className="quiz-display-container">
           <h2 className="quiz-topic-title">{this.props.quizName}</h2>
           <h3 className="question-number">
-            Question #1/
+            Question 1/
             {arrayLen}
           </h3>
-
           <div className="question-prompt-container">
-            <div className="q-a-form">
-              <QAForm payload={payload} />
-            </div>
+            <QAForm payload={payload} />
             <nav>
               <button
                 className="btn arrow-left"
