@@ -4,8 +4,8 @@ import Styled from "styled-components";
 
 import QuizHeader from "./QuizHeader";
 import QuizBtns from "./QuizBtnContainer";
-import LSModal from "./LSModal";
-import QuizModal from "./QuizModal";
+import LSModal from "./modals/LSModal";
+import QuizModal from "./modals/QuizModal";
 
 // import DataForm from "./DataForm";
 // <DataForm />
@@ -26,7 +26,6 @@ const StyledAppContainer = Styled.div`
         text-align: center;
         font-weight: 200;
         width: 80vw;
-        border: 1px solid gold;
         margin: 0 auto;
       }
     }
@@ -70,12 +69,12 @@ class AppContainer extends Component {
     // console.log("deleted All");
   }
 
-  //THIS ALSO SHOWS MODAL
+  //THIS FUNCTION ALSO DISPLAYS MODAL
   handleLoadDefQ1() {
     //Place onto state
     this.setState({
       showQuizModal: true,
-      quizName: "ICONQUZ",
+      quizName: "ICONQUIZ",
       quizModalPayload: [
         {
           id: "100",

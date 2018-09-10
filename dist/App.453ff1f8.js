@@ -27541,7 +27541,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports.default = _Modal2.default;
 module.exports = exports["default"];
-},{"./components/Modal":"../node_modules/react-modal/lib/components/Modal.js"}],"LSModal.js":[function(require,module,exports) {
+},{"./components/Modal":"../node_modules/react-modal/lib/components/Modal.js"}],"modals/LSModal.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -27621,14 +27621,14 @@ var LSMODAL = function (_Component) {
 }(_react.Component);
 
 exports.default = LSMODAL;
-},{"react":"../node_modules/react/index.js","react-modal":"../node_modules/react-modal/lib/index.js"}],"QAForm.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-modal":"../node_modules/react-modal/lib/index.js"}],"modals/QAForm.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _templateObject = _taggedTemplateLiteral(["\n  opacity: 1;\n"], ["\n  opacity: 1;\n"]);
+var _templateObject = _taggedTemplateLiteral(["\n  grid-row: 1/4;\n  grid-column: 3;\n  height: 100%;\n  width: 100%;\n  display: grid;\n  grid-template-rows: 30vh 10vh 10vh;\n  grid-template-columns: 10vw 50vw 10vw;\n\nh2.question-prompt {\n  color: rgba(98, 77, 77, 0.5);\n  font-size: 4rem;\n  font-weight: 200;\n  grid-row: 1;\n  grid-column: 2;\n  text-align: center;\n}\n\nform {\n  grid-row: 2;\n  grid-column: 2/4;\n  display: grid;\n  grid-template-columns: 50vw 10vw;\n  grid-template-rows: auto;\n}\n\n.question-prompt-container form input {\n  box-shadow: inset 2px 2px 2px 2px rgba(0, 0, 0, 0.5);\n  text-align: center;\n  border: 1px solid #85f8d6;\n  color: #66bea4;\n  letter-spacing: 0.1rem;\n  font-size: 3rem;\n  font-weight: 200;\n  grid-column: 1;\n  grid-row: 1;\n  height: 100%;\n}\n\nform > button {\n  grid-column: 2;\n  grid-row: 1;\n}\n/*\n.question-input-commit {\n  font-size: 2.5rem;\n  font-weight: 300;\n  background: #90b9ad;\n  text-align: center;\n  box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.5);\n  height: 20px;\n}\n*/\n\n.question-input-commit:hover {\n  background: #4fbb9b;\n  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));\n}\n"], ["\n  grid-row: 1/4;\n  grid-column: 3;\n  height: 100%;\n  width: 100%;\n  display: grid;\n  grid-template-rows: 30vh 10vh 10vh;\n  grid-template-columns: 10vw 50vw 10vw;\n\nh2.question-prompt {\n  color: rgba(98, 77, 77, 0.5);\n  font-size: 4rem;\n  font-weight: 200;\n  grid-row: 1;\n  grid-column: 2;\n  text-align: center;\n}\n\nform {\n  grid-row: 2;\n  grid-column: 2/4;\n  display: grid;\n  grid-template-columns: 50vw 10vw;\n  grid-template-rows: auto;\n}\n\n.question-prompt-container form input {\n  box-shadow: inset 2px 2px 2px 2px rgba(0, 0, 0, 0.5);\n  text-align: center;\n  border: 1px solid #85f8d6;\n  color: #66bea4;\n  letter-spacing: 0.1rem;\n  font-size: 3rem;\n  font-weight: 200;\n  grid-column: 1;\n  grid-row: 1;\n  height: 100%;\n}\n\nform > button {\n  grid-column: 2;\n  grid-row: 1;\n}\n/*\n.question-input-commit {\n  font-size: 2.5rem;\n  font-weight: 300;\n  background: #90b9ad;\n  text-align: center;\n  box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.5);\n  height: 20px;\n}\n*/\n\n.question-input-commit:hover {\n  background: #4fbb9b;\n  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));\n}\n"]);
 
 var _react = require("react");
 
@@ -27645,30 +27645,29 @@ function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defi
 var StyledQA = _styledComponents2.default.section(_templateObject);
 
 var QAForm = function QAForm(props) {
-  // console.log("P> QAForm: ", props.payload);
   return _react2.default.createElement(
     StyledQA,
     null,
     _react2.default.createElement(
       "h2",
       { className: "question-prompt" },
-      "Fear, Doubt & uncertainty?"
+      props.payload.question
     ),
     _react2.default.createElement(
       "form",
       { action: "submit" },
-      _react2.default.createElement("input", { type: "text", name: "question-input-box", placeholder: "answer" })
-    ),
-    _react2.default.createElement(
-      "button",
-      { className: "question-input-commit" },
-      "\u221A"
+      _react2.default.createElement("input", { type: "text", name: "question-input-box", placeholder: "answer" }),
+      _react2.default.createElement(
+        "button",
+        { className: "question-input-commit" },
+        "\u221A"
+      )
     )
   );
 };
 
 exports.default = QAForm;
-},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js"}],"QuizDisplay.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js"}],"modals/QuizDisplay.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -27724,13 +27723,27 @@ var QuizDisplay = function (_Component) {
         arrayLen: this.props.payload.length
       });
 
-      console.log("Array Length is: ", this.state.arrayLen);
+      console.log("P>Qdisplay: ", this.props.payload);
+      // console.log("Array Length is: ", this.state.arrayLen);
     }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      e.preventDefault();
+
+      var inputID = e.target.elements.id.value.trim();
+      var inputNAME = e.target.elements.name.value.trim();
+    }
+  }, {
+    key: "currentQuestionCheck",
+    value: function currentQuestionCheck() {}
   }, {
     key: "render",
     value: function render() {
       var arrayLen = this.state.arrayLen;
-      var payload = this.props.payload;
+      var _props = this.props,
+          payload = _props.payload,
+          qCounter = _props.qCounter;
 
       return _react2.default.createElement(
         StyledQuizDisplay,
@@ -27752,7 +27765,7 @@ var QuizDisplay = function (_Component) {
           _react2.default.createElement(
             "div",
             { className: "question-prompt-container" },
-            _react2.default.createElement(_QAForm2.default, { payload: payload }),
+            _react2.default.createElement(_QAForm2.default, { payload: payload[qCounter] }),
             _react2.default.createElement(
               "nav",
               null,
@@ -27783,7 +27796,7 @@ var QuizDisplay = function (_Component) {
 }(_react.Component);
 
 exports.default = QuizDisplay;
-},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","./QAForm":"QAForm.js"}],"QuizModal.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","./QAForm":"modals/QAForm.js"}],"modals/QuizModal.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -27825,6 +27838,8 @@ var QuizModal = function (_Component) {
       quizArrayLen: 0,
       qCounter: 0
     };
+    _this.incrementer = _this.incrementer.bind(_this);
+    _this.decrementer = _this.decrementer.bind(_this);
     return _this;
   }
 
@@ -27857,6 +27872,8 @@ var QuizModal = function (_Component) {
   }, {
     key: "render",
     value: function render() {
+      var qCounter = this.state.qCounter;
+
       return _react2.default.createElement(
         _reactModal2.default,
         {
@@ -27869,6 +27886,7 @@ var QuizModal = function (_Component) {
         _react2.default.createElement(_QuizDisplay2.default, {
           quizModalClose: this.props.quizModalClose,
           payload: this.props.payload,
+          qCounter: this.state.qCounter,
           quizName: this.props.quizName,
           incrementer: this.incrementer,
           decrementer: this.decrementer
@@ -27881,7 +27899,7 @@ var QuizModal = function (_Component) {
 }(_react.Component);
 
 exports.default = QuizModal;
-},{"react":"../node_modules/react/index.js","react-modal":"../node_modules/react-modal/lib/index.js","./QuizDisplay":"QuizDisplay.js"}],"AppContainer.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-modal":"../node_modules/react-modal/lib/index.js","./QuizDisplay":"modals/QuizDisplay.js"}],"AppContainer.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -27890,7 +27908,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _templateObject = _taggedTemplateLiteral(["\n    font-family: \"Lato\", sans-serif;\n    font-weight: 100;\n    font-size: 20px;\n    background: linear-gradient(45deg, #ECEAEA 0%, #ddd 100%);\n    width: 100vw;\n    height: 100vh;\n    position: relative;\n    text-align: center;\n    .info-box {\n      width: 100vw;\n      height: 20vh;\n      & p {\n        text-align: center;\n        font-weight: 200;\n        width: 80vw;\n        border: 1px solid gold;\n        margin: 0 auto;\n      }\n    }\n\n    h1 {\n      font-weight: 100;\n    }\n    \n"], ["\n    font-family: \"Lato\", sans-serif;\n    font-weight: 100;\n    font-size: 20px;\n    background: linear-gradient(45deg, #ECEAEA 0%, #ddd 100%);\n    width: 100vw;\n    height: 100vh;\n    position: relative;\n    text-align: center;\n    .info-box {\n      width: 100vw;\n      height: 20vh;\n      & p {\n        text-align: center;\n        font-weight: 200;\n        width: 80vw;\n        border: 1px solid gold;\n        margin: 0 auto;\n      }\n    }\n\n    h1 {\n      font-weight: 100;\n    }\n    \n"]);
+var _templateObject = _taggedTemplateLiteral(["\n    font-family: \"Lato\", sans-serif;\n    font-weight: 100;\n    font-size: 20px;\n    background: linear-gradient(45deg, #ECEAEA 0%, #ddd 100%);\n    width: 100vw;\n    height: 100vh;\n    position: relative;\n    text-align: center;\n    .info-box {\n      width: 100vw;\n      height: 20vh;\n      & p {\n        text-align: center;\n        font-weight: 200;\n        width: 80vw;\n        margin: 0 auto;\n      }\n    }\n\n    h1 {\n      font-weight: 100;\n    }\n    \n"], ["\n    font-family: \"Lato\", sans-serif;\n    font-weight: 100;\n    font-size: 20px;\n    background: linear-gradient(45deg, #ECEAEA 0%, #ddd 100%);\n    width: 100vw;\n    height: 100vh;\n    position: relative;\n    text-align: center;\n    .info-box {\n      width: 100vw;\n      height: 20vh;\n      & p {\n        text-align: center;\n        font-weight: 200;\n        width: 80vw;\n        margin: 0 auto;\n      }\n    }\n\n    h1 {\n      font-weight: 100;\n    }\n    \n"]);
 
 var _react = require("react");
 
@@ -27908,11 +27926,11 @@ var _QuizBtnContainer = require("./QuizBtnContainer");
 
 var _QuizBtnContainer2 = _interopRequireDefault(_QuizBtnContainer);
 
-var _LSModal = require("./LSModal");
+var _LSModal = require("./modals/LSModal");
 
 var _LSModal2 = _interopRequireDefault(_LSModal);
 
-var _QuizModal = require("./QuizModal");
+var _QuizModal = require("./modals/QuizModal");
 
 var _QuizModal2 = _interopRequireDefault(_QuizModal);
 
@@ -27977,7 +27995,7 @@ var AppContainer = function (_Component) {
       // console.log("deleted All");
     }
 
-    //THIS ALSO SHOWS MODAL
+    //THIS FUNCTION ALSO DISPLAYS MODAL
 
   }, {
     key: "handleLoadDefQ1",
@@ -27985,7 +28003,7 @@ var AppContainer = function (_Component) {
       //Place onto state
       this.setState({
         showQuizModal: true,
-        quizName: "ICONQUZ",
+        quizName: "ICONQUIZ",
         quizModalPayload: [{
           id: "100",
           question: "nerd",
@@ -28079,7 +28097,7 @@ var AppContainer = function (_Component) {
 }(_react.Component);
 
 exports.default = AppContainer;
-},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","./QuizHeader":"QuizHeader.js","./QuizBtnContainer":"QuizBtnContainer.js","./LSModal":"LSModal.js","./QuizModal":"QuizModal.js"}],"App.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","./QuizHeader":"QuizHeader.js","./QuizBtnContainer":"QuizBtnContainer.js","./modals/LSModal":"modals/LSModal.js","./modals/QuizModal":"modals/QuizModal.js"}],"App.js":[function(require,module,exports) {
 "use strict";
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -28182,7 +28200,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '64301' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '59613' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 

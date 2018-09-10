@@ -103,12 +103,20 @@ class QuizDisplay extends Component {
       arrayLen: this.props.payload.length
     });
 
-    console.log("Array Length is: ", this.state.arrayLen);
+    console.log("P>Qdisplay: ", this.props.payload);
+    // console.log("Array Length is: ", this.state.arrayLen);
   }
+  handleSubmit(e) {
+    e.preventDefault();
+
+    const inputID = e.target.elements.id.value.trim();
+    const inputNAME = e.target.elements.name.value.trim();
+  }
+  currentQuestionCheck() {}
 
   render() {
     const { arrayLen } = this.state;
-    const { payload } = this.props;
+    const { payload, qCounter } = this.props;
     return (
       <StyledQuizDisplay>
         <div className="quiz-display-container">
@@ -118,7 +126,7 @@ class QuizDisplay extends Component {
             {arrayLen}
           </h3>
           <div className="question-prompt-container">
-            <QAForm payload={payload} />
+            <QAForm payload={payload[qCounter]} />
             <nav>
               <button
                 className="btn arrow-left"

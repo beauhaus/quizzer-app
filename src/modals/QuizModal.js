@@ -11,6 +11,8 @@ class QuizModal extends Component {
       quizArrayLen: 0,
       qCounter: 0
     };
+    this.incrementer = this.incrementer.bind(this);
+    this.decrementer = this.decrementer.bind(this);
   }
   componentWillMount() {
     Modal.setAppElement("body"); // a11y
@@ -29,6 +31,7 @@ class QuizModal extends Component {
     }));
   }
   render() {
+    const { qCounter } = this.state;
     return (
       <Modal
         className="modal quiz-modal"
@@ -40,6 +43,7 @@ class QuizModal extends Component {
         <QuizDisplay
           quizModalClose={this.props.quizModalClose}
           payload={this.props.payload}
+          qCounter={this.state.qCounter}
           quizName={this.props.quizName}
           incrementer={this.incrementer}
           decrementer={this.decrementer}
