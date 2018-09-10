@@ -1,0 +1,270 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500");
+
+* {
+  box-sizing: border-box;
+  color: #333;
+}
+
+html {
+  font-size: 62.5%;
+}
+body {
+  font-size: 1.6rem;
+  background-color: #e9e9e9;
+  margin: 0;
+  font-family: "Montserrat", Tahoma, Geneva, Verdana, sans-serif;
+  position: relative;
+}
+
+/* #root {
+  width: 100vw;
+  height: 100vh;
+} */
+
+/*
+.search,
+.details,
+.search-params {
+  background-color: #E49696;
+  width: 95%;
+  margin: 0 auto;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.pet {
+  width: 100%;
+  height: 100px;
+  display: block;
+  overflow: hidden;
+  margin: 15px 0;
+}
+
+.pet img {
+  width: 100px;
+  min-height: 100px;
+}
+
+.info {
+  float: left;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+} 
+.image-container {
+  clip-path: circle(50% at 50% 50%);
+  width: 100px;
+  height: 100px;
+  float: left;
+  margin-right: 20px;
+} 
+.pet h1 {
+  white-space: nowrap;
+  font-weight: normal;
+  font-size: 30px;
+  width: 100%;
+  overflow: hidden;
+  margin: 0;
+} 
+ 
+.pet h2 {
+  white-space: nowrap;
+  font-weight: normal;
+  font-size: 20px;
+  margin: 0 2vw;
+} 
+ header a {
+  color: #f2af29;
+  font-size: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  display: block;
+}
+
+header {
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding: 20px;
+} 
+.details p {
+  line-height: 2;
+}
+
+.details h1,
+.details h2 {
+  text-align: center;
+} 
+
+.carousel {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 400px;
+}
+
+.carousel > img {
+  max-width: 45%;
+  max-height: 400px;
+}
+
+.carousel-smaller {
+  width: 50%;
+}
+
+.carousel-smaller > img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 15px;
+  cursor: pointer;
+  border: 2px solid #333;
+}
+
+.carousel-smaller > img.active {
+  border-color: #ad343e;
+  opacity: 0.6;
+}
+
+.search-params label {
+  display: block;
+  width: 60px;
+}
+
+.search-params input,
+.search-params select {
+  margin-bottom: 30px;
+  font-size: 18px;
+  height: 30px;
+  width: 325px;
+}
+
+.search-params button,
+#modal button,
+.details button {
+  padding: 5px 25px;
+
+  font-size: 18px;
+  border: #333 1px solid;
+  border-radius: 5px;
+  display: block;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+.search-params button:hover {
+  background-color: #c36b72;
+}
+
+.search-params button:active {
+  background-color: #5f1d22;
+}
+
+.search-params button:focus {
+  border: 1px solid cornflowerblue;
+}
+
+#modal {
+  background-color: rgba(0, 0, 0, 0.9);
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#modal:empty {
+  display: none;
+}
+
+#modal > div {
+  background-color: white;
+  max-width: 500px;
+  padding: 15px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+#modal .buttons button {
+  display: inline-block;
+  margin-right: 15px;
+}
+*/
+
+/***********FOR TESTING (TO BE DELETED)**************/
+
+/* .quiz-display-container {
+  padding: 0%;
+  display: grid;
+  height: 80vh;
+  grid-template-columns: 5vw 15vw 60vw 15vw 5vw;
+  grid-template-rows: 10vh 10vh 60vh;
+  text-align: center;
+  border: 1px solid green;
+}
+
+h2.quiz-topic-title {
+  color: #e9e9e9;
+  font-style: italic;
+  font-size: 3.5rem;
+  height: 5vh;
+  font-weight: 200;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  grid-column: 3;
+  grid-row: 1;
+  border: 1px solid grey;
+}
+.question-number {
+  font-weight: 200;
+  font-size: 3rem;
+  grid-column: 2;
+  grid-row: 2;
+  color: #aa9494;
+} */
+
+/* .info-box {
+  background: white;
+} */
+
+.ReactModalPortal > div {
+  opacity: 0;
+}
+
+.ReactModalPortal .ReactModal__Overlay {
+  transition: opacity 200ms ease-in-out;
+}
+
+.ReactModalPortal .ReactModal__Overlay--after-open {
+  opacity: 1;
+  position: relative;
+  z-index: 10;
+}
+
+.ReactModalPortal .ReactModal__Overlay--before-close {
+  opacity: 0;
+}
+
+.modal__button--close {
+  margin-bottom: 0;
+}
+
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  overflow: hidden;
+}
+
+.ls-modal li {
+  list-style: none;
+}
