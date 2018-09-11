@@ -7,44 +7,26 @@ class QuizModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      qLength: props.qLength,
-      qCounter: 0,
-      currQNum: 1
+      init: ""
     };
-    this.incrementer = this.incrementer.bind(this);
-    this.decrementer = this.decrementer.bind(this);
+
+    // this.answerClickHandler = this.answerClickHandler.bind(this);
   }
   componentDidMount() {
-    // let len = this.props.payload;
+    console.log("QM mounted");
   }
   componentWillMount() {
     Modal.setAppElement("body"); // a11y
   }
+  componentWillUnmount() {
+    console.log("unmount");
+  }
+  // answerClickHandler(qGuess, answer) {
 
-  incrementer() {
-    console.log("inc!");
-    this.setState(prevState => ({
-      qCounter: prevState.qCounter + 1
-    }));
-  }
-  decrementer() {
-    console.log("DEC!");
-    this.setState(prevState => ({
-      qCounter: prevState.qCounter - 1
-    }));
-  }
-  answerChecker(qGuess, answer) {
-    console.log(qGuess, answer);
-    qGuess === answer
-      ? console.log(`You guessed ${qGuess}, RIGHT!`)
-      : console.log(
-          `Aww... you guessed ${qGuess}, but the answer was ${answer}`
-        );
-  }
+  //   // this.incrementer();
+  //   console.log("INCREMENT HERE!");
+  // }
   render() {
-    const { qCounter } = this.state;
-    const { qLength } = this.props;
-    // console.log(qLength, "is length √");
     return (
       <Modal
         className="modal quiz-modal"
@@ -56,11 +38,8 @@ class QuizModal extends Component {
         <QuizDisplay
           quizModalClose={this.props.quizModalClose}
           payload={this.props.payload}
-          qCounter={this.state.qCounter}
           quizName={this.props.quizName}
-          incrementer={this.incrementer}
-          decrementer={this.decrementer}
-          ansCheck={this.answerChecker}
+          resultsRecord={this.props.resultsRecord}
         />
       </Modal>
     );

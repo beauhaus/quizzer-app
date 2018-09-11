@@ -97,50 +97,96 @@ class QuizDisplay extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      quizLen: 0
+      quizLen: 0,
+      optionsLen: 0,
+      qCounter: 0,
+      correctAns: 0,
+      incorrectAns: 0
     };
+    this.incrementer = this.incrementer.bind(this);
+    this.decrementer = this.decrementer.bind(this);
+    this.quizResults = this.quizResults.bind(this);
+    this.answerHandler = this.answerHandler.bind(this);
   }
   componentDidMount() {
     let len = this.props.payload.length;
-    console.log("len@QD: ", len);
+    let qName = this.props.quizName;
     this.setState({
-      arrayLen: len
+      quizLen: len,
+      quizName: qName
     });
-    // console.log("P>Qdisplay: ", this.props.payload[0].options);
-    // console.log("Array Length is: ", this.props.payload.length);
+  }
+  componentWillUnmount() {
+    // resets incrementer upon unmount
+    console.log("QUIZ unmounted and reset");
+    this.setState(() => ({
+      qCounter: 0
+    }));
+  }
+  incrementer() {
+    // // conditions at completion of quiz...
+    // if (this.state.qCounter + 1 === this.props.qLength) {
+    //   this.counterReset();
+    //   this.props.quizModalClose();
+    //   this.props.qCompleteCall();
+    // }
+    this.setState(prevState => ({
+      qCounter: prevState.qCounter + 1
+    }));
+  }
+  decrementer() {
+    this.setState(prevState => ({
+      qCounter: prevState.qCounter - 1
+    }));
+  }
+
+  quizResults() {
+    this.props.resultsRecord();
+  }
+
+  storeQuizResults() {
+    console.log("results Stored");
+  }
+
+  //Performs Checking of progress and creates user quiz results
+  answerHandler(qGuess, answer) {
+    this.quizResults();
+    // qGuess === answer
+    //   ? console.log(`You guessed ${qGuess}, RIGHT!`)
+    //   : console.log(
+    //       `Aww... you guessed ${qGuess}, but the answer was ${answer}`
+    //     );
+    // console.log("name: ", quizName);
   }
 
   render() {
-    const { arrayLen } = this.state;
-    const { payload, qCounter } = this.props;
+    const { quizLen, qCounter } = this.state;
+    const { payload } = this.props;
+
     return (
       <StyledQuizDisplay>
         <div className="quiz-display-container">
-          <h2 className="quiz-topic-title">{this.props.quizName}</h2>
+          <h2 className="quiz-topic-title">{this.state.quizName}</h2>
           <h3 className="question-number">
-            Question {qCounter + 1}/{arrayLen}
+            Question {this.state.qCounter + 1}/{quizLen}
           </h3>
           <div className="question-prompt-container">
-            <MultiChoiceFormat
-              payload={payload[qCounter]}
-              ansCheck={this.props.ansCheck}
-            />
+            {quizLen != qCounter && (
+              <MultiChoiceFormat
+                payload={payload[qCounter]}
+                answerHandler={this.answerHandler}
+              />
+            )}
 
             <nav className="quiz-question-nav">
-              <button
-                className="btn arrow-left"
-                onClick={this.props.decrementer}
-              />
+              <button className="btn arrow-left" onClick={this.decrementer} />
               <button
                 className="home modal__btn--done"
                 onClick={this.props.quizModalClose}
               >
                 home
               </button>
-              <button
-                className="btn arrow-right"
-                onClick={this.props.incrementer}
-              />
+              <button className="btn arrow-right" onClick={this.incrementer} />
             </nav>
           </div>
         </div>

@@ -37,30 +37,41 @@ h2.question-prompt {
       background: #4fbb9b;
       filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
     }
+    animation: fadein 2s;
+  }
+  @keyframes fadein {
+      from { opacity: 0; }
+      to   { opacity: 1; }
   }
 }
 `;
 
+// "payload" is an item in the questions array (A SINGLE question)
+// "options" is a nested array (i.e. multiple choices)
+
 const MultiChoiceFormat = props => {
-  const { options, answer } = props.payload;
+  const { answer, options, question } = props.payload;
+  console.log("payload", props.payload);
+  console.log("options", props.payload.options);
+
   return (
     <StyledQA>
-      <h2 className="question-prompt">{props.payload.question}</h2>
+      <h2 className="question-prompt">{question}</h2>
       <div className="mulit-choice-container">
-        {options.map((item, idx) => {
-          return (
-            <button
-              id={item.id + idx}
-              key={idx}
-              answer={answer}
-              onClick={() => props.ansCheck(options[idx], answer)}
-            >
-              <span role="img" aria-label="quiz-option">
-                {item}
-              </span>
-            </button>
-          );
-        })}
+        {true &&
+          options.map((item, idx) => {
+            return (
+              <button
+                key={idx}
+                answer={answer}
+                onClick={() => props.answerHandler(options[idx], answer)}
+              >
+                <span role="img" aria-label="quiz-option">
+                  {item}
+                </span>
+              </button>
+            );
+          })}
       </div>
     </StyledQA>
   );

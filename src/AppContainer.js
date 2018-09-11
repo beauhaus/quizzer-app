@@ -2,10 +2,11 @@ import React, { Component } from "react";
 // import { render } from "react-dom";
 import Styled from "styled-components";
 
-import QuizHeader from "./QuizHeader";
+import QuizHeader from "./Landing/QuizHeader";
 import QuizBtns from "./Landing/QuizBtnContainer";
 import LSModal from "./modals/LSModal";
 import QuizModal from "./modals/QuizModal";
+import QComplete from "./modals/QCompleteModal";
 
 // import DataForm from "./DataForm";
 // <DataForm />
@@ -44,12 +45,14 @@ class AppContainer extends Component {
       showLSModal: false,
       showQuizModal: false,
       showDefQ1Modal: false,
-      showDefQ2Modal: false,
-      itemToPush: "",
-      newDBCategory: ""
+      showQCompleteModal: false
     };
     this.handleGetLSClick = this.handleGetLSClick.bind(this);
     this.handleLoadDefQ1 = this.handleLoadDefQ1.bind(this);
+    this.quizModalCloser = this.quizModalCloser.bind(this);
+    this.qCompleteModalCall = this.qCompleteModalCall.bind(this);
+    this.qCompleteModalCloser = this.qCompleteModalCloser.bind(this);
+    this.resultsRecord = this.resultsRecord.bind(this);
   }
 
   // GOTO this spot for a list of LS keys (topics)
@@ -96,6 +99,20 @@ class AppContainer extends Component {
     });
   }
 
+  qCompleteModalCall() {
+    this.setState({
+      showQCompleteModal: true
+    });
+  }
+  qCompleteModalCloser() {
+    this.setState({
+      showQCompleteModal: false
+    });
+  }
+  resultsRecord() {
+    console.log("recordQResults");
+  }
+
   render() {
     // {console.log("p>AppC: ", this.props.lsStatus)}
     return (
@@ -129,11 +146,18 @@ class AppContainer extends Component {
           currentLS={this.state.lsModalPayload}
         />
         <QuizModal
-          quizModalClose={() => this.quizModalCloser()}
+          quizModalClose={this.quizModalCloser}
           showQuizModal={this.state.showQuizModal}
           payload={this.state.quizModalPayload}
           quizName={this.state.quizName}
           qLength={this.state.qLength}
+          qCompleteCall={this.qCompleteModalCall}
+          resultsRecord={() => this.resultsRecord()}
+        />
+        <QComplete
+          qCompleteModalClose={this.qCompleteModalCloser}
+          showQCompleteModal={this.state.showQCompleteModal}
+          quizName={this.state.quizName}
         />
       </StyledAppContainer>
     );
