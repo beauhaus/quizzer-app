@@ -1,13 +1,13 @@
 [
   {
     "id": "100",
-    "question": "4 + 7 = ?",
+    "qPrompt": "4 + 7 = ?",
     "options": ["6", "2", "34", "11"],
     "answer": "11"
   },
   {
     "id": "101",
-    "question": "crying",
+    "qPrompt": "crying",
     "options": ["🤭", "😭", "🙄", "😳"],
     "answer": "😭"
   }

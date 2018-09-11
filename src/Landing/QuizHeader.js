@@ -24,9 +24,9 @@ const StyledQuizHeader = Styled.header`
 const QuizHeader = props => {
   return (
     <StyledQuizHeader>
-      <button onClick={() => props.getStored()}>Stored Quizzes</button>
-      <button onClick={() => props.resetDB()}>Reset</button>
-      <button onClick={() => props.delStored()}>erase</button>
+      <button onClick={() => props.getStored()}>Show Stored Quizzes</button>
+      <button onClick={() => props.resetDB()}>Reload Default Quiz</button>
+      <button onClick={() => props.delStored()}>erase localStorage</button>
     </StyledQuizHeader>
   );
 };

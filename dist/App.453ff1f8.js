@@ -20937,12 +20937,12 @@ if ('development' === 'production') {
 },{"./cjs/react-dom.development.js":"../node_modules/react-dom/cjs/react-dom.development.js"}],"data/icons.json":[function(require,module,exports) {
 module.exports = [{
   "id": "100",
-  "question": "nerd",
+  "qPrompt": "nerd",
   "options": ["💩", "😅", "😜", "🤓"],
   "answer": "🤓"
 }, {
   "id": "101",
-  "question": "crying",
+  "qPrompt": "crying",
   "options": ["🤭", "😭", "🙄", "😳"],
   "answer": "😭"
 }];
@@ -26111,21 +26111,21 @@ var QuizHeader = function QuizHeader(props) {
       { onClick: function onClick() {
           return props.getStored();
         } },
-      "Stored Quizzes"
+      "Show Stored Quizzes"
     ),
     _react2.default.createElement(
       "button",
       { onClick: function onClick() {
           return props.resetDB();
         } },
-      "Reset"
+      "Reload Default Quiz"
     ),
     _react2.default.createElement(
       "button",
       { onClick: function onClick() {
           return props.delStored();
         } },
-      "erase"
+      "erase localStorage"
     )
   );
 };
@@ -27628,14 +27628,36 @@ var LSMODAL = function (_Component) {
 }(_react.Component);
 
 exports.default = LSMODAL;
-},{"react":"../node_modules/react/index.js","react-modal":"../node_modules/react-modal/lib/index.js"}],"modals/MultiChoiceFormat.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-modal":"../node_modules/react-modal/lib/index.js"}],"utils.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var objArrMaker = exports.objArrMaker = function objArrMaker(qName) {
+  var arr = [];
+  var counter;
+  //   const gradedQName = `graded ${qName}`;
+  return function (qPrompt, boolGrade) {
+    counter = counter + 1;
+    console.log("count: ", counter);
+    var obj = { qPrompt: qPrompt, grade: boolGrade };
+    arr.push(obj);
+    console.log(arr);
+
+    // localStorage.setItem(gradedQName, JSON.stringify(arr));
+  };
+};
+
+// export default objArrMaker;
+},{}],"modals/MultiChoiceFormat.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _templateObject = _taggedTemplateLiteral(["\n  grid-row: 1/4;\n  grid-column: 3;\n  height: 100%;\n  width: 100%;\n  display: grid;\n  grid-template-rows: 30vh 10vh 10vh;\n  grid-template-columns: 10vw 50vw 10vw;\n\nh2.question-prompt {\n  color: rgba(98, 77, 77, 0.5);\n  font-size: 4rem;\n  font-weight: 200;\n  grid-row: 1;\n  grid-column: 2;\n  text-align: center;\n}\n.mulit-choice-container {\n  grid-row: 2;\n  grid-column: 1/-1;\n  display: flex;\n  flex-direction: row;\n  align-items: space-around;\n  button {\n    background: #90b9ad;\n    border: 1px solid lightgreen;\n    flex-grow: 1;\n    flex-basis: 8rem;\n    margin: 0 0.5rem;\n    span {\n      font-size: 4rem;\n    }\n    &:hover {\n      background: #4fbb9b;\n      filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));\n    }\n    animation: fadein 2s;\n  }\n  @keyframes fadein {\n      from { opacity: 0; }\n      to   { opacity: 1; }\n  }\n}\n"], ["\n  grid-row: 1/4;\n  grid-column: 3;\n  height: 100%;\n  width: 100%;\n  display: grid;\n  grid-template-rows: 30vh 10vh 10vh;\n  grid-template-columns: 10vw 50vw 10vw;\n\nh2.question-prompt {\n  color: rgba(98, 77, 77, 0.5);\n  font-size: 4rem;\n  font-weight: 200;\n  grid-row: 1;\n  grid-column: 2;\n  text-align: center;\n}\n.mulit-choice-container {\n  grid-row: 2;\n  grid-column: 1/-1;\n  display: flex;\n  flex-direction: row;\n  align-items: space-around;\n  button {\n    background: #90b9ad;\n    border: 1px solid lightgreen;\n    flex-grow: 1;\n    flex-basis: 8rem;\n    margin: 0 0.5rem;\n    span {\n      font-size: 4rem;\n    }\n    &:hover {\n      background: #4fbb9b;\n      filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));\n    }\n    animation: fadein 2s;\n  }\n  @keyframes fadein {\n      from { opacity: 0; }\n      to   { opacity: 1; }\n  }\n}\n"]);
+var _templateObject = _taggedTemplateLiteral(["\n  grid-row: 1/4;\n  grid-column: 3;\n  height: 100%;\n  width: 100%;\n  display: grid;\n  grid-template-rows: 30vh 10vh 9vh 1vh;\n  grid-template-columns: 10vw 50vw 10vw;\n  \nh2.qPrompt {\n  color: rgba(98, 77, 77, 0.5);\n  font-size: 4rem;\n  font-weight: 200;\n  grid-row: 1;\n  grid-column: 2;\n  text-align: center;\n}\n.multi-choice-container {\n  grid-row: 2;\n  grid-column: 1/-1;\n  display: flex;\n  flex-direction: row;\n  align-items: space-around;\n  button {\n    background: #90b9ad;\n    border: 1px solid lightgreen;\n    flex-grow: 1;\n    flex-basis: 8rem;\n    margin: 0 0.5rem;\n    span {\n      font-size: 4rem;\n    }\n    &:hover {\n      background: #4fbb9b;\n      filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));\n    }\n    animation: fadein 2s;\n  }\n  @keyframes fadein {\n      from { opacity: 0; }\n      to   { opacity: 1; }\n  }\n}\n\n"], ["\n  grid-row: 1/4;\n  grid-column: 3;\n  height: 100%;\n  width: 100%;\n  display: grid;\n  grid-template-rows: 30vh 10vh 9vh 1vh;\n  grid-template-columns: 10vw 50vw 10vw;\n  \nh2.qPrompt {\n  color: rgba(98, 77, 77, 0.5);\n  font-size: 4rem;\n  font-weight: 200;\n  grid-row: 1;\n  grid-column: 2;\n  text-align: center;\n}\n.multi-choice-container {\n  grid-row: 2;\n  grid-column: 1/-1;\n  display: flex;\n  flex-direction: row;\n  align-items: space-around;\n  button {\n    background: #90b9ad;\n    border: 1px solid lightgreen;\n    flex-grow: 1;\n    flex-basis: 8rem;\n    margin: 0 0.5rem;\n    span {\n      font-size: 4rem;\n    }\n    &:hover {\n      background: #4fbb9b;\n      filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));\n    }\n    animation: fadein 2s;\n  }\n  @keyframes fadein {\n      from { opacity: 0; }\n      to   { opacity: 1; }\n  }\n}\n\n"]);
 
 var _react = require("react");
 
@@ -27651,34 +27673,31 @@ function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defi
 
 var StyledQA = _styledComponents2.default.section(_templateObject);
 
-// "payload" is an item in the questions array (A SINGLE question)
+// "payload" is an item in the qPrompts array (A SINGLE qPrompt)
 // "options" is a nested array (i.e. multiple choices)
 
 var MultiChoiceFormat = function MultiChoiceFormat(props) {
   var _props$payload = props.payload,
       answer = _props$payload.answer,
       options = _props$payload.options,
-      question = _props$payload.question;
-
-  console.log("payload", props.payload);
-  console.log("options", props.payload.options);
+      qPrompt = _props$payload.qPrompt;
 
   return _react2.default.createElement(
     StyledQA,
     null,
     _react2.default.createElement(
       "h2",
-      { className: "question-prompt" },
-      question
+      { className: "qPrompt" },
+      qPrompt
     ),
     _react2.default.createElement(
       "div",
-      { className: "mulit-choice-container" },
+      { className: "multi-choice-container" },
       true && options.map(function (item, idx) {
         return _react2.default.createElement(
           "button",
           {
-            key: idx,
+            key: options[idx],
             answer: answer,
             onClick: function onClick() {
               return props.answerHandler(options[idx], answer);
@@ -27705,7 +27724,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _templateObject = _taggedTemplateLiteral(["\n  width: 100vw;\n  height: 100vh;\n  background: linear-gradient(45deg, #ECEAEA 0%, #DAD4D4 100%);\n  font-family: 'Montserrat', Tahoma, Geneva, Verdana, sans-serif;\n  .quiz-display-container {\n    padding: 0%;\n    height: 100vh;\n    display: grid;\n    grid-template-columns: 5vw 15vw 60vw 15vw 5vw;\n    grid-template-rows: 10vh 10vh 60vh;\n    text-align: center;\n  }\n  \n  h2.quiz-topic-title {\n    color: #e9e9e9;\n    font-style: italic;\n    font-size: 4.5rem;\n    height: 5vh;\n    font-weight: 200;\n    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);\n    grid-column: 3;\n    grid-row: 1;\n    height: 100%;\n  }\n\n  .question-number {\n    font-weight: 200;\n    font-size: 2rem;\n    grid-column: 2;\n    grid-row: 2;\n    color: #aa9494;\n    height: 100%;\n  }\n\n  .question-prompt-container {\n    grid-column: 2/-2;\n    grid-row: 3;\n    color: #fff;\n    display: grid;\n    grid-template-columns: 5vw 5vw 70vw 5vw 5vw;\n    grid-template-rows: 15vh 10vh 25vh 10vh;\n    }\n\n  nav {\n    grid-column: 2/-2;\n    grid-row: 4;\n    text-align: center;\n    display: flex;\n    justify-content: space-between;\n  }\n  nav button {\n    filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.5));\n  }\n  nav button:hover {\n    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));\n  }\n  button.arrow-right {\n    width: 0;\n    height: 0;\n    border-right: 0px solid transparent;\n    border-top: 4.5vh solid transparent;\n    border-bottom: 4.5vh solid transparent;\n    border-left: 5vw solid #ded9d9;\n    background: transparent;\n  }\n  \n  button.arrow-left {\n    background: transparent;\n    width: 0;\n    height: 0;\n    border-top: 4.5vh solid transparent;\n    border-bottom: 4.5vh solid transparent;\n    border-right: 5vw solid #ded9d9;\n    border-left: 0px solid transparent;\n  }\n  \n  button.home {\n    width: 15vw;\n    height: 80%;\n    margin: 1% auto;\n    background: #a6cfca;\n    color: #fff;\n    font-weight: 100;\n    font-size: 3.5rem;\n  }\n"], ["\n  width: 100vw;\n  height: 100vh;\n  background: linear-gradient(45deg, #ECEAEA 0%, #DAD4D4 100%);\n  font-family: 'Montserrat', Tahoma, Geneva, Verdana, sans-serif;\n  .quiz-display-container {\n    padding: 0%;\n    height: 100vh;\n    display: grid;\n    grid-template-columns: 5vw 15vw 60vw 15vw 5vw;\n    grid-template-rows: 10vh 10vh 60vh;\n    text-align: center;\n  }\n  \n  h2.quiz-topic-title {\n    color: #e9e9e9;\n    font-style: italic;\n    font-size: 4.5rem;\n    height: 5vh;\n    font-weight: 200;\n    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);\n    grid-column: 3;\n    grid-row: 1;\n    height: 100%;\n  }\n\n  .question-number {\n    font-weight: 200;\n    font-size: 2rem;\n    grid-column: 2;\n    grid-row: 2;\n    color: #aa9494;\n    height: 100%;\n  }\n\n  .question-prompt-container {\n    grid-column: 2/-2;\n    grid-row: 3;\n    color: #fff;\n    display: grid;\n    grid-template-columns: 5vw 5vw 70vw 5vw 5vw;\n    grid-template-rows: 15vh 10vh 25vh 10vh;\n    }\n\n  nav {\n    grid-column: 2/-2;\n    grid-row: 4;\n    text-align: center;\n    display: flex;\n    justify-content: space-between;\n  }\n  nav button {\n    filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.5));\n  }\n  nav button:hover {\n    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));\n  }\n  button.arrow-right {\n    width: 0;\n    height: 0;\n    border-right: 0px solid transparent;\n    border-top: 4.5vh solid transparent;\n    border-bottom: 4.5vh solid transparent;\n    border-left: 5vw solid #ded9d9;\n    background: transparent;\n  }\n  \n  button.arrow-left {\n    background: transparent;\n    width: 0;\n    height: 0;\n    border-top: 4.5vh solid transparent;\n    border-bottom: 4.5vh solid transparent;\n    border-right: 5vw solid #ded9d9;\n    border-left: 0px solid transparent;\n  }\n  \n  button.home {\n    width: 15vw;\n    height: 80%;\n    margin: 1% auto;\n    background: #a6cfca;\n    color: #fff;\n    font-weight: 100;\n    font-size: 3.5rem;\n  }\n"]);
+var _templateObject = _taggedTemplateLiteral(["\n  width: 100vw;\n  height: 100vh;\n  background: linear-gradient(45deg, #ECEAEA 0%, #DAD4D4 100%);\n  font-family: 'Montserrat', Tahoma, Geneva, Verdana, sans-serif;\n  .quiz-display-container {\n    padding: 0%;\n    height: 100vh;\n    display: grid;\n    grid-template-columns: 5vw 15vw 60vw 15vw 5vw;\n    grid-template-rows: 10vh 10vh 60vh;\n    text-align: center;\n  }\n  \n  h2.quiz-topic-title {\n    color: #e9e9e9;\n    font-style: italic;\n    font-size: 4.5rem;\n    height: 5vh;\n    font-weight: 200;\n    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);\n    grid-column: 3;\n    grid-row: 1;\n    height: 100%;\n  }\n \n  .qPrompt-number {\n    font-weight: 200;\n    font-size: 2rem;\n    grid-column: 2;\n    grid-row: 2;\n    color: #aa9494;\n    height: 100%;\n  }\n\n  .qPrompt-container {\n    grid-column: 2/-2;\n    grid-row: 3;\n    color: #fff;\n    display: grid;\n    grid-template-columns: 5vw 5vw 70vw 5vw 5vw;\n    grid-template-rows: 15vh 10vh 25vh 10vh;\n    }\n\n  nav {\n    grid-column: 2/-2;\n    grid-row: 4;\n    text-align: center;\n    display: flex;\n    justify-content: space-between;\n  }\n  nav button {\n    filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.5));\n  }\n  nav button:hover {\n    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));\n  }\n  button.arrow-right {\n    width: 0;\n    height: 0;\n    border-right: 0px solid transparent;\n    border-top: 4.5vh solid transparent;\n    border-bottom: 4.5vh solid transparent;\n    border-left: 5vw solid #ded9d9;\n    background: transparent;\n  }\n  \n  button.arrow-left {\n    background: transparent;\n    width: 0;\n    height: 0;\n    border-top: 4.5vh solid transparent;\n    border-bottom: 4.5vh solid transparent;\n    border-right: 5vw solid #ded9d9;\n    border-left: 0px solid transparent;\n  }\n  \n  button.home {\n    width: 15vw;\n    height: 80%;\n    margin: 1% auto;\n    background: #a6cfca;\n    color: #fff;\n    font-weight: 100;\n    font-size: 3.5rem;\n  }\n"], ["\n  width: 100vw;\n  height: 100vh;\n  background: linear-gradient(45deg, #ECEAEA 0%, #DAD4D4 100%);\n  font-family: 'Montserrat', Tahoma, Geneva, Verdana, sans-serif;\n  .quiz-display-container {\n    padding: 0%;\n    height: 100vh;\n    display: grid;\n    grid-template-columns: 5vw 15vw 60vw 15vw 5vw;\n    grid-template-rows: 10vh 10vh 60vh;\n    text-align: center;\n  }\n  \n  h2.quiz-topic-title {\n    color: #e9e9e9;\n    font-style: italic;\n    font-size: 4.5rem;\n    height: 5vh;\n    font-weight: 200;\n    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);\n    grid-column: 3;\n    grid-row: 1;\n    height: 100%;\n  }\n \n  .qPrompt-number {\n    font-weight: 200;\n    font-size: 2rem;\n    grid-column: 2;\n    grid-row: 2;\n    color: #aa9494;\n    height: 100%;\n  }\n\n  .qPrompt-container {\n    grid-column: 2/-2;\n    grid-row: 3;\n    color: #fff;\n    display: grid;\n    grid-template-columns: 5vw 5vw 70vw 5vw 5vw;\n    grid-template-rows: 15vh 10vh 25vh 10vh;\n    }\n\n  nav {\n    grid-column: 2/-2;\n    grid-row: 4;\n    text-align: center;\n    display: flex;\n    justify-content: space-between;\n  }\n  nav button {\n    filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.5));\n  }\n  nav button:hover {\n    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));\n  }\n  button.arrow-right {\n    width: 0;\n    height: 0;\n    border-right: 0px solid transparent;\n    border-top: 4.5vh solid transparent;\n    border-bottom: 4.5vh solid transparent;\n    border-left: 5vw solid #ded9d9;\n    background: transparent;\n  }\n  \n  button.arrow-left {\n    background: transparent;\n    width: 0;\n    height: 0;\n    border-top: 4.5vh solid transparent;\n    border-bottom: 4.5vh solid transparent;\n    border-right: 5vw solid #ded9d9;\n    border-left: 0px solid transparent;\n  }\n  \n  button.home {\n    width: 15vw;\n    height: 80%;\n    margin: 1% auto;\n    background: #a6cfca;\n    color: #fff;\n    font-weight: 100;\n    font-size: 3.5rem;\n  }\n"]);
 
 var _react = require("react");
 
@@ -27752,6 +27771,8 @@ var QuizDisplay = function (_Component) {
     _this.decrementer = _this.decrementer.bind(_this);
     _this.quizResults = _this.quizResults.bind(_this);
     _this.answerHandler = _this.answerHandler.bind(_this);
+    _this.sendGradedRecord = _this.sendGradedRecord.bind(_this);
+    _this.resultsRecord = _this.resultsRecord.bind(_this);
     return _this;
   }
 
@@ -27762,14 +27783,37 @@ var QuizDisplay = function (_Component) {
       var qName = this.props.quizName;
       this.setState({
         quizLen: len,
-        quizName: qName
+        quizName: qName,
+        currentQName: qName,
+        gradedArr: []
+      });
+    }
+  }, {
+    key: "sendGradedRecord",
+    value: function sendGradedRecord(key, val) {
+      // console.log(this.state.currentQName);
+      // console.log(this.state.gradedArr);
+      localStorage.setItem(key, JSON.stringify(val));
+    }
+  }, {
+    key: "resultsRecord",
+    value: function resultsRecord(qName, qPrompt, boolGrade) {
+      var obj = { qPrompt: qPrompt, grade: boolGrade };
+      this.setState(function (prevState) {
+        return {
+          currentQName: qName,
+          gradedArr: prevState.gradedArr.concat(obj)
+        };
       });
     }
   }, {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
       // resets incrementer upon unmount
-      console.log("QUIZ unmounted and reset");
+      console.log("QUIZDisplay unmounted and reset");
+      var key = this.state.currentQName + "-test";
+      var val = this.state.gradedArr;
+      this.sendGradedRecord(key, val);
       this.setState(function () {
         return {
           qCounter: 0
@@ -27779,12 +27823,13 @@ var QuizDisplay = function (_Component) {
   }, {
     key: "incrementer",
     value: function incrementer() {
-      // // conditions at completion of quiz...
-      // if (this.state.qCounter + 1 === this.props.qLength) {
-      //   this.counterReset();
-      //   this.props.quizModalClose();
-      //   this.props.qCompleteCall();
-      // }
+      // conditions at completion of quiz...
+      if (this.state.qCounter + 1 === this.props.qLength) {
+        alert("done");
+        //   this.counterReset();
+        //   this.props.quizModalClose();
+        //   this.props.qCompleteCall();
+      }
       this.setState(function (prevState) {
         return {
           qCounter: prevState.qCounter + 1
@@ -27802,8 +27847,8 @@ var QuizDisplay = function (_Component) {
     }
   }, {
     key: "quizResults",
-    value: function quizResults() {
-      this.props.resultsRecord();
+    value: function quizResults(quizName, qPrompt, qAnswer) {
+      this.resultsRecord(quizName, qPrompt, qAnswer);
     }
   }, {
     key: "storeQuizResults",
@@ -27815,21 +27860,29 @@ var QuizDisplay = function (_Component) {
 
   }, {
     key: "answerHandler",
-    value: function answerHandler(qGuess, answer) {
-      this.quizResults();
-      // qGuess === answer
-      //   ? console.log(`You guessed ${qGuess}, RIGHT!`)
-      //   : console.log(
-      //       `Aww... you guessed ${qGuess}, but the answer was ${answer}`
-      //     );
-      // console.log("name: ", quizName);
+    value: function answerHandler(guess, answer) {
+      var payload = this.props.payload;
+      var _state = this.state,
+          quizName = _state.quizName,
+          qCounter = _state.qCounter,
+          quizLen = _state.quizLen;
+
+      var qPrompt = payload[qCounter].qPrompt;
+      if (qCounter + 1 === quizLen) {
+        console.log("Done!");
+      }
+
+      var qAnswer = guess === answer;
+      // console.log("qCounter: ", qCounter);
+      this.quizResults(quizName, qPrompt, qAnswer);
     }
   }, {
     key: "render",
     value: function render() {
-      var _state = this.state,
-          quizLen = _state.quizLen,
-          qCounter = _state.qCounter;
+      var _state2 = this.state,
+          quizLen = _state2.quizLen,
+          qCounter = _state2.qCounter,
+          quizName = _state2.quizName;
       var payload = this.props.payload;
 
 
@@ -27842,26 +27895,26 @@ var QuizDisplay = function (_Component) {
           _react2.default.createElement(
             "h2",
             { className: "quiz-topic-title" },
-            this.state.quizName
+            quizName
           ),
           _react2.default.createElement(
             "h3",
-            { className: "question-number" },
+            { className: "qPrompt-number" },
             "Question ",
-            this.state.qCounter + 1,
+            qCounter + 1,
             "/",
             quizLen
           ),
           _react2.default.createElement(
             "div",
-            { className: "question-prompt-container" },
+            { className: "qPrompt-container" },
             quizLen != qCounter && _react2.default.createElement(_MultiChoiceFormat2.default, {
               payload: payload[qCounter],
               answerHandler: this.answerHandler
             }),
             _react2.default.createElement(
               "nav",
-              { className: "quiz-question-nav" },
+              { className: "quiz-qPrompt-nav" },
               _react2.default.createElement("button", { className: "btn arrow-left", onClick: this.decrementer }),
               _react2.default.createElement(
                 "button",
@@ -27900,6 +27953,8 @@ var _reactModal = require("react-modal");
 
 var _reactModal2 = _interopRequireDefault(_reactModal);
 
+var _utils = require("../utils");
+
 var _QuizDisplay = require("./QuizDisplay");
 
 var _QuizDisplay2 = _interopRequireDefault(_QuizDisplay);
@@ -27921,9 +27976,12 @@ var QuizModal = function (_Component) {
     var _this = _possibleConstructorReturn(this, (QuizModal.__proto__ || Object.getPrototypeOf(QuizModal)).call(this, props));
 
     _this.state = {
-      init: ""
+      init: "",
+      gradedArr: []
     };
-
+    _this.resultsRecord = _this.resultsRecord.bind(_this);
+    _this.quizModalCloseHandler = _this.quizModalCloseHandler.bind(_this);
+    // this.sendGradedRecord = this.sendGradedRecord.bind(this);
     // this.answerClickHandler = this.answerClickHandler.bind(this);
     return _this;
   }
@@ -27939,16 +27997,30 @@ var QuizModal = function (_Component) {
       _reactModal2.default.setAppElement("body"); // a11y
     }
   }, {
+    key: "quizModalCloseHandler",
+    value: function quizModalCloseHandler() {
+      console.log("QM Modal closeHandler");
+      this.props.quizModalClose();
+      this.resultsRecord();
+    }
+  }, {
+    key: "resultsRecord",
+    value: function resultsRecord(qName, qPrompt, boolGrade) {
+      var obj = { qPrompt: qPrompt, grade: boolGrade };
+      this.setState(function (prevState) {
+        return {
+          currentQName: qName,
+          gradedArr: prevState.gradedArr.concat(obj)
+        };
+      });
+    }
+  }, {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
-      console.log("unmount");
+      console.log("QM Unmounted");
+
+      // localStorage.setItem(JSON.stringify(this.state.currentQName));
     }
-    // answerClickHandler(qGuess, answer) {
-
-    //   // this.incrementer();
-    //   console.log("INCREMENT HERE!");
-    // }
-
   }, {
     key: "render",
     value: function render() {
@@ -27962,10 +28034,12 @@ var QuizModal = function (_Component) {
           closeTimeoutMS: 2000
         },
         _react2.default.createElement(_QuizDisplay2.default, {
-          quizModalClose: this.props.quizModalClose,
+          quizModalClose: this.quizModalCloseHandler,
           payload: this.props.payload,
-          quizName: this.props.quizName,
-          resultsRecord: this.props.resultsRecord
+          quizName: this.props.quizName
+          // resultsRecord={this.resultsRecord}
+          , answerHandler: this.answerHandler
+          // sendGradedRecord={this.sendGradedRecord}
         })
       );
     }
@@ -27975,7 +28049,7 @@ var QuizModal = function (_Component) {
 }(_react.Component);
 
 exports.default = QuizModal;
-},{"react":"../node_modules/react/index.js","react-modal":"../node_modules/react-modal/lib/index.js","./QuizDisplay":"modals/QuizDisplay.js"}],"modals/QCompleteModal.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-modal":"../node_modules/react-modal/lib/index.js","../utils":"utils.js","./QuizDisplay":"modals/QuizDisplay.js"}],"modals/QCompleteModal.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -28019,7 +28093,7 @@ var QCompleteModal = function QCompleteModal(props) {
       null,
       _react2.default.createElement(
         "h2",
-        { className: "question-prompt" },
+        { className: "qPrompt" },
         "TEST"
       ),
       _react2.default.createElement(
@@ -28120,7 +28194,6 @@ var AppContainer = function (_Component) {
     _this.quizModalCloser = _this.quizModalCloser.bind(_this);
     _this.qCompleteModalCall = _this.qCompleteModalCall.bind(_this);
     _this.qCompleteModalCloser = _this.qCompleteModalCloser.bind(_this);
-    _this.resultsRecord = _this.resultsRecord.bind(_this);
     return _this;
   }
 
@@ -28154,7 +28227,7 @@ var AppContainer = function (_Component) {
       var qName = Object.keys(localStorage);
       var store = localStorage.getItem(qName);
       var storeArr = JSON.parse(store);
-      console.log("storeArrlength: ", storeArr.length);
+      // console.log("storeArrlength: ", storeArr.length);
 
       this.setState({
         showQuizModal: true,
@@ -28190,11 +28263,6 @@ var AppContainer = function (_Component) {
       this.setState({
         showQCompleteModal: false
       });
-    }
-  }, {
-    key: "resultsRecord",
-    value: function resultsRecord() {
-      console.log("recordQResults");
     }
   }, {
     key: "render",
@@ -28243,10 +28311,8 @@ var AppContainer = function (_Component) {
           payload: this.state.quizModalPayload,
           quizName: this.state.quizName,
           qLength: this.state.qLength,
-          qCompleteCall: this.qCompleteModalCall,
-          resultsRecord: function resultsRecord() {
-            return _this2.resultsRecord();
-          }
+          qCompleteCall: this.qCompleteModalCall
+          // resultsRecord={() => this.resultsRecord()}
         }),
         _react2.default.createElement(_QCompleteModal2.default, {
           qCompleteModalClose: this.qCompleteModalCloser,
@@ -28367,7 +28433,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '59390' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '50010' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 

@@ -43,7 +43,7 @@ const QCompleteModal = props => {
       closeTimeoutMS={2000}
     >
       <StyledCompleteMsg>
-        <h2 className="question-prompt">TEST</h2>
+        <h2 className="qPrompt">TEST</h2>
         <div className="mulit-choice-container">
           <h1>Nice!</h1>
         </div>

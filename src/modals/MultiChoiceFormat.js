@@ -7,10 +7,10 @@ const StyledQA = Styled.section`
   height: 100%;
   width: 100%;
   display: grid;
-  grid-template-rows: 30vh 10vh 10vh;
+  grid-template-rows: 30vh 10vh 9vh 1vh;
   grid-template-columns: 10vw 50vw 10vw;
-
-h2.question-prompt {
+  
+h2.qPrompt {
   color: rgba(98, 77, 77, 0.5);
   font-size: 4rem;
   font-weight: 200;
@@ -18,7 +18,7 @@ h2.question-prompt {
   grid-column: 2;
   text-align: center;
 }
-.mulit-choice-container {
+.multi-choice-container {
   grid-row: 2;
   grid-column: 1/-1;
   display: flex;
@@ -44,25 +44,23 @@ h2.question-prompt {
       to   { opacity: 1; }
   }
 }
+
 `;
 
-// "payload" is an item in the questions array (A SINGLE question)
+// "payload" is an item in the qPrompts array (A SINGLE qPrompt)
 // "options" is a nested array (i.e. multiple choices)
 
 const MultiChoiceFormat = props => {
-  const { answer, options, question } = props.payload;
-  console.log("payload", props.payload);
-  console.log("options", props.payload.options);
-
+  const { answer, options, qPrompt } = props.payload;
   return (
     <StyledQA>
-      <h2 className="question-prompt">{question}</h2>
-      <div className="mulit-choice-container">
+      <h2 className="qPrompt">{qPrompt}</h2>
+      <div className="multi-choice-container">
         {true &&
           options.map((item, idx) => {
             return (
               <button
-                key={idx}
+                key={options[idx]}
                 answer={answer}
                 onClick={() => props.answerHandler(options[idx], answer)}
               >

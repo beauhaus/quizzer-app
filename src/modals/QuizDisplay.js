@@ -30,8 +30,8 @@ const StyledQuizDisplay = Styled.div`
     grid-row: 1;
     height: 100%;
   }
-
-  .question-number {
+ 
+  .qPrompt-number {
     font-weight: 200;
     font-size: 2rem;
     grid-column: 2;
@@ -40,7 +40,7 @@ const StyledQuizDisplay = Styled.div`
     height: 100%;
   }
 
-  .question-prompt-container {
+  .qPrompt-container {
     grid-column: 2/-2;
     grid-row: 3;
     color: #fff;
@@ -107,29 +107,53 @@ class QuizDisplay extends Component {
     this.decrementer = this.decrementer.bind(this);
     this.quizResults = this.quizResults.bind(this);
     this.answerHandler = this.answerHandler.bind(this);
+    this.sendGradedRecord = this.sendGradedRecord.bind(this);
+    this.resultsRecord = this.resultsRecord.bind(this);
   }
   componentDidMount() {
     let len = this.props.payload.length;
     let qName = this.props.quizName;
     this.setState({
       quizLen: len,
-      quizName: qName
+      quizName: qName,
+      currentQName: qName,
+      gradedArr: []
+    });
+  }
+
+  sendGradedRecord(key, val) {
+    // console.log(this.state.currentQName);
+    // console.log(this.state.gradedArr);
+    localStorage.setItem(key, JSON.stringify(val));
+  }
+
+  resultsRecord(qName, qPrompt, boolGrade) {
+    let obj = { qPrompt: qPrompt, grade: boolGrade };
+    this.setState(prevState => {
+      return {
+        currentQName: qName,
+        gradedArr: prevState.gradedArr.concat(obj)
+      };
     });
   }
   componentWillUnmount() {
     // resets incrementer upon unmount
-    console.log("QUIZ unmounted and reset");
+    console.log("QUIZDisplay unmounted and reset");
+    let key = `${this.state.currentQName}-test`;
+    let val = this.state.gradedArr;
+    this.sendGradedRecord(key, val);
     this.setState(() => ({
       qCounter: 0
     }));
   }
   incrementer() {
-    // // conditions at completion of quiz...
-    // if (this.state.qCounter + 1 === this.props.qLength) {
-    //   this.counterReset();
-    //   this.props.quizModalClose();
-    //   this.props.qCompleteCall();
-    // }
+    // conditions at completion of quiz...
+    if (this.state.qCounter + 1 === this.props.qLength) {
+      alert("done");
+      //   this.counterReset();
+      //   this.props.quizModalClose();
+      //   this.props.qCompleteCall();
+    }
     this.setState(prevState => ({
       qCounter: prevState.qCounter + 1
     }));
@@ -140,8 +164,8 @@ class QuizDisplay extends Component {
     }));
   }
 
-  quizResults() {
-    this.props.resultsRecord();
+  quizResults(quizName, qPrompt, qAnswer) {
+    this.resultsRecord(quizName, qPrompt, qAnswer);
   }
 
   storeQuizResults() {
@@ -149,28 +173,31 @@ class QuizDisplay extends Component {
   }
 
   //Performs Checking of progress and creates user quiz results
-  answerHandler(qGuess, answer) {
-    this.quizResults();
-    // qGuess === answer
-    //   ? console.log(`You guessed ${qGuess}, RIGHT!`)
-    //   : console.log(
-    //       `Aww... you guessed ${qGuess}, but the answer was ${answer}`
-    //     );
-    // console.log("name: ", quizName);
+  answerHandler(guess, answer) {
+    const { payload } = this.props;
+    const { quizName, qCounter, quizLen } = this.state;
+    let qPrompt = payload[qCounter].qPrompt;
+    if (qCounter + 1 === quizLen) {
+      console.log("Done!");
+    }
+
+    const qAnswer = guess === answer;
+    // console.log("qCounter: ", qCounter);
+    this.quizResults(quizName, qPrompt, qAnswer);
   }
 
   render() {
-    const { quizLen, qCounter } = this.state;
+    const { quizLen, qCounter, quizName } = this.state;
     const { payload } = this.props;
 
     return (
       <StyledQuizDisplay>
         <div className="quiz-display-container">
-          <h2 className="quiz-topic-title">{this.state.quizName}</h2>
-          <h3 className="question-number">
-            Question {this.state.qCounter + 1}/{quizLen}
+          <h2 className="quiz-topic-title">{quizName}</h2>
+          <h3 className="qPrompt-number">
+            Question {qCounter + 1}/{quizLen}
           </h3>
-          <div className="question-prompt-container">
+          <div className="qPrompt-container">
             {quizLen != qCounter && (
               <MultiChoiceFormat
                 payload={payload[qCounter]}
@@ -178,7 +205,7 @@ class QuizDisplay extends Component {
               />
             )}
 
-            <nav className="quiz-question-nav">
+            <nav className="quiz-qPrompt-nav">
               <button className="btn arrow-left" onClick={this.decrementer} />
               <button
                 className="home modal__btn--done"

@@ -1,13 +1,13 @@
 [
   {
     "id": "100",
-    "question": "nerd",
+    "qPrompt": "nerd",
     "options": ["💩", "😅", "😜", "🤓"],
     "answer": "🤓"
   },
   {
     "id": "101",
-    "question": "crying",
+    "qPrompt": "crying",
     "options": ["🤭", "😭", "🙄", "😳"],
     "answer": "😭"
   }

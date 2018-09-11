@@ -52,7 +52,6 @@ class AppContainer extends Component {
     this.quizModalCloser = this.quizModalCloser.bind(this);
     this.qCompleteModalCall = this.qCompleteModalCall.bind(this);
     this.qCompleteModalCloser = this.qCompleteModalCloser.bind(this);
-    this.resultsRecord = this.resultsRecord.bind(this);
   }
 
   // GOTO this spot for a list of LS keys (topics)
@@ -77,7 +76,7 @@ class AppContainer extends Component {
     let qName = Object.keys(localStorage);
     let store = localStorage.getItem(qName);
     let storeArr = JSON.parse(store);
-    console.log("storeArrlength: ", storeArr.length);
+    // console.log("storeArrlength: ", storeArr.length);
 
     this.setState({
       showQuizModal: true,
@@ -108,9 +107,6 @@ class AppContainer extends Component {
     this.setState({
       showQCompleteModal: false
     });
-  }
-  resultsRecord() {
-    console.log("recordQResults");
   }
 
   render() {
@@ -152,7 +148,7 @@ class AppContainer extends Component {
           quizName={this.state.quizName}
           qLength={this.state.qLength}
           qCompleteCall={this.qCompleteModalCall}
-          resultsRecord={() => this.resultsRecord()}
+          // resultsRecord={() => this.resultsRecord()}
         />
         <QComplete
           qCompleteModalClose={this.qCompleteModalCloser}

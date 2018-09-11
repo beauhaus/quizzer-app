@@ -10,7 +10,7 @@ const StyledQA = Styled.section`
   grid-template-rows: 30vh 10vh 10vh;
   grid-template-columns: 10vw 50vw 10vw;
 
-h2.question-prompt {
+h2.qPrompt {
   color: rgba(98, 77, 77, 0.5);
   font-size: 4rem;
   font-weight: 200;
@@ -30,7 +30,7 @@ const QCompleteMsg = props => {
   // console.log(props.qLength);
   return (
     <StyledQA>
-      <h2 className="question-prompt">TEST</h2>
+      <h2 className="qPrompt">TEST</h2>
       <div className="mulit-choice-container">
         <h1>Nice!</h1>
       </div>

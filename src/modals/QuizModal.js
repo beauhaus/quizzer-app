@@ -1,15 +1,20 @@
 import React, { Component } from "react";
 import Modal from "react-modal";
 
+import { objArrMaker } from "../utils";
+
 import QuizDisplay from "./QuizDisplay";
 
 class QuizModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      init: ""
+      init: "",
+      gradedArr: []
     };
-
+    this.resultsRecord = this.resultsRecord.bind(this);
+    this.quizModalCloseHandler = this.quizModalCloseHandler.bind(this);
+    // this.sendGradedRecord = this.sendGradedRecord.bind(this);
     // this.answerClickHandler = this.answerClickHandler.bind(this);
   }
   componentDidMount() {
@@ -18,14 +23,25 @@ class QuizModal extends Component {
   componentWillMount() {
     Modal.setAppElement("body"); // a11y
   }
-  componentWillUnmount() {
-    console.log("unmount");
+  quizModalCloseHandler() {
+    console.log("QM Modal closeHandler");
+    this.props.quizModalClose();
+    this.resultsRecord();
   }
-  // answerClickHandler(qGuess, answer) {
+  resultsRecord(qName, qPrompt, boolGrade) {
+    let obj = { qPrompt: qPrompt, grade: boolGrade };
+    this.setState(prevState => {
+      return {
+        currentQName: qName,
+        gradedArr: prevState.gradedArr.concat(obj)
+      };
+    });
+  }
+  componentWillUnmount() {
+    console.log("QM Unmounted");
 
-  //   // this.incrementer();
-  //   console.log("INCREMENT HERE!");
-  // }
+    // localStorage.setItem(JSON.stringify(this.state.currentQName));
+  }
   render() {
     return (
       <Modal
@@ -36,10 +52,12 @@ class QuizModal extends Component {
         closeTimeoutMS={2000}
       >
         <QuizDisplay
-          quizModalClose={this.props.quizModalClose}
+          quizModalClose={this.quizModalCloseHandler}
           payload={this.props.payload}
           quizName={this.props.quizName}
-          resultsRecord={this.props.resultsRecord}
+          // resultsRecord={this.resultsRecord}
+          answerHandler={this.answerHandler}
+          // sendGradedRecord={this.sendGradedRecord}
         />
       </Modal>
     );
