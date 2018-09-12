@@ -44,11 +44,11 @@ class AppContainer extends Component {
       db: [],
       showLSModal: false,
       showQuizModal: false,
-      showDefQ1Modal: false,
+      showDefQModal: false,
       showQCompleteModal: false
     };
     this.handleGetLSClick = this.handleGetLSClick.bind(this);
-    this.handleLoadDefQ1 = this.handleLoadDefQ1.bind(this);
+    this.handleLoadDefQ = this.handleLoadDefQ.bind(this);
     this.quizModalCloser = this.quizModalCloser.bind(this);
     this.qCompleteModalCall = this.qCompleteModalCall.bind(this);
     this.qCompleteModalCloser = this.qCompleteModalCloser.bind(this);
@@ -72,7 +72,7 @@ class AppContainer extends Component {
   }
 
   //THIS FUNCTION ALSO DISPLAYS MODAL
-  handleLoadDefQ1() {
+  handleLoadDefQ() {
     let qName = Object.keys(localStorage);
     let store = localStorage.getItem(qName);
     let storeArr = JSON.parse(store);
@@ -117,12 +117,11 @@ class AppContainer extends Component {
           getStored={this.handleGetLSClick}
           loadInStorage={this.handleLoadToLStorage}
           delStored={this.handleDelClick}
-          resetDB={this.props.defaultQuiz}
+          resetDB={this.props.loadDefaultQuiz}
         />
         <h1>What do you want to learn?</h1>
         <QuizBtns
-          defaultQ1={this.handleLoadDefQ1}
-          defaultQ2={this.handleLoadDefQ2}
+          defaultQ1={this.handleLoadDefQ}
           customQ={this.handleCustomQ}
         />
         <div className="info-box">
@@ -135,26 +134,27 @@ class AppContainer extends Component {
             tenetur ex omnis eius soluta nulla, reiciendis minima itaque fugiat.
           </p>
         </div>
-
-        <LSModal
-          LSModalClose={() => this.LSModalCloser()}
-          showLSModal={this.state.showLSModal}
-          currentLS={this.state.lsModalPayload}
-        />
-        <QuizModal
-          quizModalClose={this.quizModalCloser}
-          showQuizModal={this.state.showQuizModal}
-          payload={this.state.quizModalPayload}
-          quizName={this.state.quizName}
-          qLength={this.state.qLength}
-          qCompleteCall={this.qCompleteModalCall}
-          // resultsRecord={() => this.resultsRecord()}
-        />
-        <QComplete
-          qCompleteModalClose={this.qCompleteModalCloser}
-          showQCompleteModal={this.state.showQCompleteModal}
-          quizName={this.state.quizName}
-        />
+        {/*
+  <LSModal
+  LSModalClose={() => this.LSModalCloser()}
+  showLSModal={this.state.showLSModal}
+  currentLS={this.state.lsModalPayload}
+  />
+  <QuizModal
+  quizModalClose={this.quizModalCloser}
+  showQuizModal={this.state.showQuizModal}
+  payload={this.state.quizModalPayload}
+  quizName={this.state.quizName}
+  qLength={this.state.qLength}
+  qCompleteCall={this.qCompleteModalCall}
+  // resultsRecord={() => this.resultsRecord()}
+  />
+  <QComplete
+  qCompleteModalClose={this.qCompleteModalCloser}
+  showQCompleteModal={this.state.showQCompleteModal}
+  quizName={this.state.quizName}
+  />
+*/}
       </StyledAppContainer>
     );
   }

@@ -36,7 +36,11 @@ class Root extends Component {
   }
   render() {
     return (
-      <AppContainer initDB={this.initLSInsert} lsStatus={this.state.initDB} />
+      <AppContainer
+        initDB={this.initLSInsert}
+        lsStatus={this.state.initDB}
+        loadDefaultQuiz={this.loadDefQ}
+      />
     );
   }
 }
