@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
 
-import iconsDB from "./data/icons.json";
+import defaultQuiz from "./data/icons.json";
 // import mathDB from "./data/math.json";
 
 import AppContainer from "./AppContainer";
@@ -12,7 +12,7 @@ import AppContainer from "./AppContainer";
 class Root extends Component {
   constructor(props) {
     super(props);
-    this.state = { iconsDBParsed: [] };
+    this.state = { init: "" };
     this.initLSInsert = this.initLSInsert.bind(this);
     this.state = {
       init: ""
@@ -20,7 +20,7 @@ class Root extends Component {
   }
   initLSInsert() {
     //Feed into LS
-    let stringedIconsDB = JSON.stringify(iconsDB);
+    let stringedIconsDB = JSON.stringify(defaultQuiz);
     localStorage.setItem("iconsDB", stringedIconsDB);
     //Load From LS onto variable
     let gottenIconsDB = localStorage.getItem("iconsDB");

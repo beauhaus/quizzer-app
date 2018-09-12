@@ -117,7 +117,7 @@ class AppContainer extends Component {
           getStored={this.handleGetLSClick}
           loadInStorage={this.handleLoadToLStorage}
           delStored={this.handleDelClick}
-          resetDB={this.props.initDB}
+          resetDB={this.props.defaultQuiz}
         />
         <h1>What do you want to learn?</h1>
         <QuizBtns
