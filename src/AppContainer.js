@@ -48,7 +48,7 @@ class AppContainer extends Component {
       showQCompleteModal: false
     };
     this.handleGetAllLSClick = this.handleGetAllLSClick.bind(this);
-    this.handleLoadDefaultQuiz = this.handleLoadDefaultQuiz.bind(this);
+    this.handleDisplayDefQuizClick = this.handleDisplayDefQuizClick.bind(this);
     this.quizModalCloser = this.quizModalCloser.bind(this);
     this.qCompleteModalCall = this.qCompleteModalCall.bind(this);
     this.qCompleteModalCloser = this.qCompleteModalCloser.bind(this);
@@ -74,7 +74,8 @@ class AppContainer extends Component {
   }
 
   //THIS FUNCTION ALSO DISPLAYS MODAL
-  handleLoadDefaultQuiz() {
+  handleDisplayDefQuizClick() {
+    console.log("HandleDisplayDefQ Click: ");
     // let qName = Object.keys(localStorage);
     // let store = localStorage.getItem(qName);
     // let storeArr = JSON.parse(store);
@@ -122,7 +123,7 @@ class AppContainer extends Component {
         />
         <h1>What do you want to learn?</h1>
         <QuizBtns
-          loadDefaultQuiz={this.handleLoadDefaultQuiz}
+          loadDefaultQuiz={this.handleDisplayDefQuizClick}
           customQ={this.handleCustomQ}
         />
         <div className="info-box">
@@ -137,16 +138,16 @@ class AppContainer extends Component {
           showLSModal={this.state.showLSModal}
           allLSQuizNames={this.state.allLSQuizNames}
         />
+        <QuizModal
+          quizModalClose={this.quizModalCloser}
+          showQuizModal={this.state.showQuizModal}
+          payload={this.state.quizModalPayload}
+          quizName={this.state.quizName}
+          qLength={this.state.qLength}
+          // qCompleteCall={this.qCompleteModalCall}
+          // resultsRecord={() => this.resultsRecord()}
+        />
         {/*
-  <QuizModal
-  quizModalClose={this.quizModalCloser}
-  showQuizModal={this.state.showQuizModal}
-  payload={this.state.quizModalPayload}
-  quizName={this.state.quizName}
-  qLength={this.state.qLength}
-  qCompleteCall={this.qCompleteModalCall}
-  // resultsRecord={() => this.resultsRecord()}
-  />
   <QComplete
   qCompleteModalClose={this.qCompleteModalCloser}
   showQCompleteModal={this.state.showQCompleteModal}

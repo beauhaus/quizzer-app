@@ -12,6 +12,7 @@ class QuizModal extends Component {
       init: "",
       gradedArr: []
     };
+
     this.resultsRecord = this.resultsRecord.bind(this);
     this.quizModalCloseHandler = this.quizModalCloseHandler.bind(this);
     // this.sendGradedRecord = this.sendGradedRecord.bind(this);

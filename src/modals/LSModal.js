@@ -3,8 +3,8 @@ import Modal from "react-modal";
 import Styled from "styled-components";
 
 const StyledLSModal = Styled.div`
-  background: wheat;
-  color: maroon;
+background: wheat;
+color: maroon;
   font-family: "Montserrat", sans-serif;
   font-weight: 100;
   text-align: center;

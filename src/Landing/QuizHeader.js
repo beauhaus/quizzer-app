@@ -10,13 +10,19 @@ const StyledQuizHeader = Styled.header`
     align-content: center;
     justify-content: space-between;
     margin-bottom: 20px;
-    padding: 20px;
+    padding: 1rem;
     width: 100%;
-    height: 10vh;
+    height: 6vh;
      button {
-      height: 4vh;
-      width: auto;
-      color: red;
+      height: 80%;
+      width: 25vw;
+      background: wheat;
+      color: brown;
+      cursor: pointer;
+      &:hover {
+        background: brown;
+        color: wheat;
+      }
     }
     box-shadow: 0px 5px 14px 0px rgba(0,0,0,0.5);
 `;

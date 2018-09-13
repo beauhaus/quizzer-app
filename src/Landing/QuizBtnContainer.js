@@ -14,28 +14,38 @@ padding: 2vw;
 
 
 button {
-  background: #E49696;
   color: #ddd;
-  font-size: 15px;
+  font-size: 3.5vw;
   box-shadow: 2px 2px 10px 0px rgba(0,0,0,0.2);
   border: 1px solid maroon;
+  border-radius: 7px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 100;
   &:hover {
     background: #cc7878;
+    filter: opacity(.7);
+    -webkit-filter: opacity(.7);
+   text-shadow: -1px -1px 0px #000;  
   }
  }
  .default-quiz-1 {
   grid-column: 1;
   grid-row: 1;
+  
+  background: #7c9769;
  }
- 
- default-quiz-2 {
-  grid-column: 2;
-  grid-row: 1;
- }
-
- #custom-quiz-create { 
+ .default-quiz-2 {
+   grid-column: 2;
+   grid-row: 1;
+  
+   background: #826692;
+  }
+}
+#custom-quiz-create { 
   grid-column: 1/-1;
   grid-row: 2;
+  
+  background: #637d8f;
  }
 `;
 
@@ -43,13 +53,13 @@ const QuizBtnContainer = props => {
   return (
     <StyledQBtns className="quiz-btn-container">
       <button className="default-quiz-1" onClick={props.defaultQ1}>
-        Take Icons Quiz
+        Icons Quiz
       </button>
       <button className="default-quiz-2" onClick={props.defaultQ2}>
-        Take Math Quiz
+        Math Quiz
       </button>
       <button id="custom-quiz-create" onClick={props.customQ}>
-        Create Custom Quiz
+        Custom Quiz
       </button>
     </StyledQBtns>
   );
