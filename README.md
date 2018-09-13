@@ -21,6 +21,6 @@ A Customizable CRUD quiz app using LocalStorage
 
 -----------------
 ## Project Objectives:
-1. parcel used instead of webpack
-2. reach-router
-3. redux
+1. Loads default quiz questions into local storage from a JSON file.
+2. Admin buttons in header (show all storage, delete, reload);
+3. 

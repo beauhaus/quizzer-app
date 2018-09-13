@@ -1,47 +1,51 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
 
-import defaultQuiz from "./data/icons.json";
-// import mathDB from "./data/math.json";
-
 import AppContainer from "./AppContainer";
 
-// Auto-load a quiz example into LocalStorage
-// We then retrieve it & place it on state
+import defaultQuizDB from "./data/defaultQuiz.json";
+
+/*Root's class methods are to primarily deal with
+ *the default quiz loading & display
+ */
 
 class Root extends Component {
   constructor(props) {
     super(props);
     this.state = { init: "" };
-    this.initLSInsert = this.initLSInsert.bind(this);
-    this.state = {
-      init: ""
-    };
+    this.defaultQuizLSInsert = this.defaultQuizLSInsert.bind(this);
   }
-  initLSInsert() {
+  // On Pageload, a default example loads into LocalStorage
+  // This method,then, retrieves it & places it onto state.
+
+  defaultQuizLSInsert() {
     //Feed into LS
-    let stringedIconsDB = JSON.stringify(defaultQuiz);
-    localStorage.setItem("iconsDB", stringedIconsDB);
+    let stringedIconsDB = JSON.stringify(defaultQuizDB);
+    let quizStrName = "Default Quiz";
+    localStorage.setItem(quizStrName, stringedIconsDB);
+
     //Load From LS onto variable
-    let gottenIconsDB = localStorage.getItem("iconsDB");
-    let iconsDBParsed = JSON.parse(gottenIconsDB);
+    let retrievedDefQuiz = localStorage.getItem(quizStrName);
+    let defQuizParsed = JSON.parse(retrievedDefQuiz);
+
     //Place onto state
-    this.setState(() => {
-      return { initDB: iconsDBParsed };
-    });
+    // this.setState(() => {
+    //   return { initDB: defQuizParsed };
+    // });
   }
 
   componentDidMount() {
-    this.initLSInsert(); // auto-load into LS
+    this.defaultQuizLSInsert();
   }
+
   render() {
     return (
       <AppContainer
-        initDB={this.initLSInsert}
-        lsStatus={this.state.initDB}
-        loadDefaultQuiz={this.loadDefQ}
+        defaultQuizLSInsert={this.defaultQuizLSInsert}
+        // lSContents={this.state.initDB}
       />
     );
   }
 }
+
 render(<Root />, document.getElementById("root"));
