@@ -24,3 +24,7 @@ A Customizable CRUD quiz app using LocalStorage
 1. Loads default quiz questions into local storage from a JSON file.
 2. Admin buttons in header (show all storage, delete, reload);
 3. 
+
+
+  // A spot for a list of LS keys (topics)
+  // https://stackoverflow.com/questions/17745292/how-to-retrieve-all-localstorage-items-without-knowing-the-keys-in-advance

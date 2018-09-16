@@ -42,22 +42,21 @@ class AppContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showAllLS: [], //{Object.keys(localStorage)
+      showAllLS: [], //{Object.keys(localStorage),
       showLSModal: false,
       showQuizModal: false,
       showDefQModal: false,
       showQCompleteModal: false
     };
     this.handleGetAllLSClick = this.handleGetAllLSClick.bind(this);
-    this.handleDisplayDefQuizClick = this.handleDisplayDefQuizClick.bind(this);
+    this.handleShowDefaultQuizClick = this.handleShowDefaultQuizClick.bind(
+      this
+    );
     this.quizModalCloser = this.quizModalCloser.bind(this);
     this.qCompleteModalCall = this.qCompleteModalCall.bind(this);
     this.qCompleteModalCloser = this.qCompleteModalCloser.bind(this);
     this.handleLSResetClick = this.handleLSResetClick.bind(this);
   }
-
-  // GOTO this spot for a list of LS keys (topics)
-  // https://stackoverflow.com/questions/17745292/how-to-retrieve-all-localstorage-items-without-knowing-the-keys-in-advance
 
   //THIS SHOWS MODAL and FEEDS CONTENTS TO MODAL
   handleGetAllLSClick() {
@@ -75,19 +74,16 @@ class AppContainer extends Component {
     this.props.defaultQInsert();
   }
 
-  //THIS FUNCTION ALSO DISPLAYS MODAL
-  handleDisplayDefQuizClick() {
-    console.log("HandleDisplayDefQ Click: ");
-    // let qName = Object.keys(localStorage);
-    // let store = localStorage.getItem(qName);
-    // let storeArr = JSON.parse(store);
-    // console.log("storeArrlength: ", storeArr.length);
-
+  //DISPLAYS Default Quiz Modal
+  handleShowDefaultQuizClick() {
+    const { defaultQuizArray, defaultQuizName } = this.props;
+    const defaultQuizLength = defaultQuizArray.length;
     this.setState({
       showQuizModal: true,
-      // quizName: qName,
-      // qLength: storeArr.length,
-      quizModalPayload: this.props.lSContents
+      quizArray: defaultQuizArray,
+      quizName: defaultQuizName,
+      quizLength: defaultQuizLength
+      //   quizModalPayload: this.props.lSContents
     });
   }
 
@@ -115,17 +111,20 @@ class AppContainer extends Component {
   }
 
   render() {
-    // {console.log("p>AppC: ", this.props.lsStatus)}
+    {
+      console.log("p>quizArray: ", this.state.quizArray);
+      console.log("p>quizLength: ", this.state.quizLength);
+      console.log("p>Name: ", this.state.quizName);
+    }
     return (
       <StyledAppContainer className="app-container">
         <QuizHeader
           getAllLSQuizNames={this.handleGetAllLSClick}
           lsReset={this.handleLSResetClick}
-          defaultQuizLSInsert={this.props.defaultQInsert}
         />
         <h1>What do you want to learn?</h1>
         <QuizBtns
-          loadDefaultQuiz={this.handleDisplayDefQuizClick}
+          showDefaultQuiz={this.handleShowDefaultQuizClick}
           customQ={this.handleCustomQ}
         />
         <div className="info-box">
@@ -143,11 +142,11 @@ class AppContainer extends Component {
         <QuizModal
           quizModalClose={this.quizModalCloser}
           showQuizModal={this.state.showQuizModal}
-          payload={this.state.quizModalPayload}
+          payload={this.state.quizArray}
           quizName={this.state.quizName}
           qLength={this.state.qLength}
+          resultsArchiver={() => this.resultsArchiverHandler()}
           // qCompleteCall={this.qCompleteModalCall}
-          // resultsRecord={() => this.resultsRecord()}
         />
         {/*
   <QComplete

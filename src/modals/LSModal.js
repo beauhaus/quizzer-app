@@ -41,7 +41,6 @@ class LSMODAL extends Component {
   }
   render() {
     const { LSModalClose, showLSModal, allLSQuizNames } = this.props;
-    console.log("t.s.qizNames: ", allLSQuizNames);
     return (
       <Modal
         className="modal ls-modal"
