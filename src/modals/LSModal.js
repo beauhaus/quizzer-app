@@ -55,13 +55,18 @@ class LSMODAL extends Component {
           <button className="modal__btn--done" onClick={LSModalClose}>
             X
           </button>
+          {/*test for empty array*/}
           <ul>
-            {allLSQuizNames &&
+            {typeof allLSQuizNames !== "undefined" &&
+            allLSQuizNames.length > 0 ? (
               allLSQuizNames.map((topic, idx) => (
                 <li key={topic}>
                   {idx + 1}. {topic}
                 </li>
-              ))}
+              ))
+            ) : (
+              <li>You are Empty</li>
+            )}
           </ul>
         </StyledLSModal>
       </Modal>

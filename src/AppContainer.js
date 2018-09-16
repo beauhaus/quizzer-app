@@ -2,11 +2,12 @@ import React, { Component } from "react";
 // import { render } from "react-dom";
 import Styled from "styled-components";
 
-import QuizHeader from "./Landing/QuizHeader";
-import QuizBtns from "./Landing/QuizBtnContainer";
+import QuizHeader from "./landing/QuizHeader";
+import QuizBtns from "./landing/QuizBtnContainer";
 import LSModal from "./modals/LSModal";
 import QuizModal from "./modals/QuizModal";
-import QComplete from "./modals/QCompleteModal";
+
+// import QComplete from "./modals/QCompleteModal";
 
 // import DataForm from "./DataForm";
 // <DataForm />
@@ -52,6 +53,7 @@ class AppContainer extends Component {
     this.quizModalCloser = this.quizModalCloser.bind(this);
     this.qCompleteModalCall = this.qCompleteModalCall.bind(this);
     this.qCompleteModalCloser = this.qCompleteModalCloser.bind(this);
+    this.handleLSResetClick = this.handleLSResetClick.bind(this);
   }
 
   // GOTO this spot for a list of LS keys (topics)
@@ -68,9 +70,9 @@ class AppContainer extends Component {
     });
   }
 
-  handleDelClick() {
+  handleLSResetClick() {
     localStorage.clear();
-    console.log("deleted All");
+    this.props.defaultQInsert();
   }
 
   //THIS FUNCTION ALSO DISPLAYS MODAL
@@ -118,8 +120,8 @@ class AppContainer extends Component {
       <StyledAppContainer className="app-container">
         <QuizHeader
           getAllLSQuizNames={this.handleGetAllLSClick}
-          delStored={this.handleDelClick}
-          defaultQuizLSInsert={this.props.defaultQuizLSInsert}
+          lsReset={this.handleLSResetClick}
+          defaultQuizLSInsert={this.props.defaultQInsert}
         />
         <h1>What do you want to learn?</h1>
         <QuizBtns

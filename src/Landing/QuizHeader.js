@@ -33,10 +33,7 @@ const QuizHeader = props => {
       <button onClick={() => props.getAllLSQuizNames()}>
         Show Stored Quizzes
       </button>
-      <button onClick={() => props.defaultQuizLSInsert()}>
-        Reload Default Quiz
-      </button>
-      <button onClick={() => props.delStored()}>erase All Storage</button>
+      <button onClick={() => props.lsReset()}>Reset All Storage</button>
     </StyledQuizHeader>
   );
 };
