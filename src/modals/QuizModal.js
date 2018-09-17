@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Modal from "react-modal";
 
-import { objArrMaker } from "../utils";
+// import { objArrMaker } from "../utils";
 
 import QuizDisplay from "./QuizDisplay";
 
@@ -19,13 +19,13 @@ class QuizModal extends Component {
     // this.answerClickHandler = this.answerClickHandler.bind(this);
   }
   componentDidMount() {
-    console.log("QM mounted");
+    // console.log("QM mounted");
   }
   componentWillMount() {
     Modal.setAppElement("body"); // a11y
   }
   quizModalCloseHandler() {
-    console.log("QM Modal closeHandler");
+    // console.log("QM Modal closeHandler");
     this.props.quizModalClose();
     this.resultsRecord();
   }
@@ -39,8 +39,7 @@ class QuizModal extends Component {
     });
   }
   componentWillUnmount() {
-    console.log("QM Unmounted");
-
+    // console.log("QM Unmounted");
     // localStorage.setItem(JSON.stringify(this.state.currentQName));
   }
   render() {
@@ -56,8 +55,8 @@ class QuizModal extends Component {
           quizModalClose={this.quizModalCloseHandler}
           quizArray={this.props.quizArray}
           quizName={this.props.quizName}
-          // resultsRecord={this.resultsRecord}
           answerHandler={this.answerHandler}
+          // resultsRecord={this.resultsRecord}
           // sendGradedRecord={this.sendGradedRecord}
         />
       </Modal>

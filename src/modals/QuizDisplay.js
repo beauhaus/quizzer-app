@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Styled from "styled-components";
-import MultiChoiceFormat from "./MultiChoiceFormat";
+import MultiChoiceContent from "./MultiChoiceContent";
 
 //Contains wrapper for quizzes and quiz NAVIGATION
 
@@ -77,7 +77,7 @@ class QuizDisplay extends Component {
     this.state = {
       quizLen: 0,
       optionsLen: 0,
-      qCounter: 0,
+      questCounter: 0,
       correctAns: 0,
       incorrectAns: 0
     };
@@ -88,38 +88,39 @@ class QuizDisplay extends Component {
   }
   componentDidMount() {
     let len = this.props.quizArray.length;
-    let qName = this.props.quizName;
+    let quizName = this.props.quizName;
     this.setState({
       quizLen: len,
-      quizName: qName,
-      currentQName: qName,
+      quizName: quizName,
       gradedArr: []
     });
   }
 
   sendGradedRecord(key, val) {
-    // console.log(this.state.currentQName);
+    // console.log(quizName);
     // console.log(this.state.gradedArr);
-    localStorage.setItem(key, JSON.stringify(val));
+    // localStorage.setItem(key, JSON.stringify(val));
   }
 
-  resultsRecord(qName, qPrompt, boolGrade) {
+  resultsRecord(quizName, qPrompt, boolGrade) {
     let obj = { qPrompt: qPrompt, grade: boolGrade };
     this.setState(prevState => {
       return {
-        currentQName: qName,
+        quizName,
         gradedArr: prevState.gradedArr.concat(obj)
       };
     });
   }
   componentWillUnmount() {
     // resets incrementer upon unmount
-    console.log("QUIZDisplay unmounted and reset");
-    let key = `${this.state.currentQName}-test`;
-    let val = this.state.gradedArr;
+    // console.log("QUIZDisplay unmounted and reset");
+    const { quizName, gradedArr } = this.state;
+    let key = `${quizName}-test`;
+    let val = gradedArr;
     this.sendGradedRecord(key, val);
+    // reset?
     this.setState(() => ({
-      qCounter: 0
+      questCounter: 0
     }));
   }
 
@@ -128,38 +129,52 @@ class QuizDisplay extends Component {
   }
 
   storeQuizResults() {
-    console.log("results Stored");
+    // console.log("results Stored");
   }
 
-  //Performs Checking of progress and creates user quiz results
-  answerHandler(guess, answer) {
-    const { quizArray } = this.props;
-    const { quizName, qCounter, quizLen } = this.state;
-    let qPrompt = quizArray[qCounter].qPrompt;
-    if (qCounter + 1 === quizLen) {
-      console.log("Done!");
-    }
+  counterReset() {
+    this.setState({ questCounter: 0 });
+  }
 
-    const qAnswer = guess === answer;
-    // console.log("qCounter: ", qCounter);
-    this.quizResults(quizName, qPrompt, qAnswer);
+  incrementer() {
+    // conditions at completion of quiz...
+    const { quizLen, questCounter } = this.state;
+    if (questCounter + 1 === quizLen) {
+      this.counterReset();
+    }
+    this.setState(prevState => {
+      return { questCounter: prevState.questCounter + 1 };
+    });
+  }
+  // Performs Checking of progress and creates user quiz results
+  // calls to incrementer
+  answerHandler(guess, answer) {
+    this.incrementer();
+    // const { quizArray } = this.props;
+    // const { quizName, questCounter, quizLen } = this.state;
+    // let qPrompt = quizArray[questCounter].qPrompt;
+    // if (questCounter + 1 === quizLen) {
+    //   // console.log("Done!");
+    // }
+    // const qAnswer = guess === answer;
+    // // console.log("questCounter: ", questCounter);
+    // this.quizResults(quizName, qPrompt, qAnswer);
   }
 
   render() {
-    const { quizLen, qCounter, quizName } = this.state;
+    const { quizLen, questCounter, quizName } = this.state;
     const { quizArray } = this.props;
-
     return (
       <StyledQuizDisplay>
         <div className="quiz-display-container">
           <h2 className="quiz-topic-title">{quizName}</h2>
           <h3 className="qPrompt-number">
-            Question {qCounter + 1}/{quizLen}
+            Question {questCounter}/{quizLen}
           </h3>
           <div className="qPrompt-container">
-            {quizLen != qCounter && (
-              <MultiChoiceFormat
-                quizArray={quizArray[qCounter]}
+            {quizLen != questCounter && (
+              <MultiChoiceContent
+                quizArray={quizArray[questCounter]}
                 answerHandler={this.answerHandler}
               />
             )}
@@ -177,3 +192,23 @@ class QuizDisplay extends Component {
 }
 
 export default QuizDisplay;
+
+/*
+
+
+  incrementer() {
+    // conditions at completion of quiz...
+    if (this.state.qCounter + 1 === this.props.qLength) {
+      alert("done");
+      //   this.counterReset();
+    }
+    this.setState(prevState => ({
+      qCounter: prevState.qCounter + 1
+    }));
+  }
+  decrementer() {
+    this.setState(prevState => ({
+      qCounter: prevState.qCounter - 1
+    }));
+  }
+  */

@@ -110,9 +110,9 @@ class AppContainer extends Component {
 
   render() {
     {
-      console.log("p>quizArray: ", this.state.quizArray);
+      // console.log("p>quizArray: ", this.state.quizArray);
       // // console.log("p>quizLength: ", this.state.quizLength);
-      console.log("p>Name: ", this.state.quizName);
+      // console.log("p>Name: ", this.state.quizName);
     }
     return (
       <StyledAppContainer className="app-container">

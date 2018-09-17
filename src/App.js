@@ -20,7 +20,6 @@ class Root extends Component {
   // It is also fired by user onClick of "reset" button.
   defaultQuizLSInsert() {
     // Feed into LS
-    console.log("DEFAULTQUIZ INSERT!");
     let stringedIconsDB = JSON.stringify(defaultQuizDB);
     let defaultQuizName = "Default Quiz";
     localStorage.setItem(defaultQuizName, stringedIconsDB);
