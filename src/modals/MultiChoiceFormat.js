@@ -44,14 +44,13 @@ h2.qPrompt {
       to   { opacity: 1; }
   }
 }
-
 `;
 
-// "payload" is an item in the qPrompts array (A SINGLE qPrompt)
+// "quizArray" is an item in the qPrompts array (A SINGLE quizPrompt)
 // "options" is a nested array (i.e. multiple choices)
 
 const MultiChoiceFormat = props => {
-  const { answer, options, qPrompt } = props.payload;
+  const { answer, options, qPrompt } = props.quizArray;
   return (
     <StyledQA>
       <h2 className="qPrompt">{qPrompt}</h2>

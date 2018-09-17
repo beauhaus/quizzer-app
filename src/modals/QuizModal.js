@@ -54,7 +54,7 @@ class QuizModal extends Component {
       >
         <QuizDisplay
           quizModalClose={this.quizModalCloseHandler}
-          payload={this.props.payload}
+          quizArray={this.props.quizArray}
           quizName={this.props.quizName}
           // resultsRecord={this.resultsRecord}
           answerHandler={this.answerHandler}

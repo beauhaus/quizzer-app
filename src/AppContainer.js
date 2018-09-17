@@ -77,13 +77,11 @@ class AppContainer extends Component {
   //DISPLAYS Default Quiz Modal
   handleShowDefaultQuizClick() {
     const { defaultQuizArray, defaultQuizName } = this.props;
-    const defaultQuizLength = defaultQuizArray.length;
+
     this.setState({
       showQuizModal: true,
       quizArray: defaultQuizArray,
-      quizName: defaultQuizName,
-      quizLength: defaultQuizLength
-      //   quizModalPayload: this.props.lSContents
+      quizName: defaultQuizName
     });
   }
 
@@ -113,7 +111,7 @@ class AppContainer extends Component {
   render() {
     {
       console.log("p>quizArray: ", this.state.quizArray);
-      console.log("p>quizLength: ", this.state.quizLength);
+      // // console.log("p>quizLength: ", this.state.quizLength);
       console.log("p>Name: ", this.state.quizName);
     }
     return (
@@ -142,9 +140,8 @@ class AppContainer extends Component {
         <QuizModal
           quizModalClose={this.quizModalCloser}
           showQuizModal={this.state.showQuizModal}
-          payload={this.state.quizArray}
+          quizArray={this.state.quizArray}
           quizName={this.state.quizName}
-          qLength={this.state.qLength}
           resultsArchiver={() => this.resultsArchiverHandler()}
           // qCompleteCall={this.qCompleteModalCall}
         />

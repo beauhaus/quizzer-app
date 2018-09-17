@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Styled from "styled-components";
-
 import MultiChoiceFormat from "./MultiChoiceFormat";
 
 //Contains wrapper for quizzes and quiz NAVIGATION
@@ -47,49 +46,28 @@ const StyledQuizDisplay = Styled.div`
     display: grid;
     grid-template-columns: 5vw 5vw 70vw 5vw 5vw;
     grid-template-rows: 15vh 10vh 25vh 10vh;
+    font-family: "Montserrat", sans-serif;
+    & button.home {
+      background: #607570;
+      color: #fff;
+      grid-column: 3;
+      grid-row: 4;
+      width: 12vw;
+      display: flex;
+      justify-content: space-around;
+      font-size: 3.5vw;
+      border-radius: 0.7rem;
+      box-shadow: 2px 2px 10px 0px rgba(0,0,0,0.2);
+      border: 1px solid maroon;
+      font-weight: 100;
+      margin: 0 auto;
+      &:hover {
+        background: #61c0c3;
+        filter: opacity(.7);
+        -webkit-filter: opacity(.7);
+        text-shadow: -1px -1px 0px #000;  
+      }
     }
-
-  nav {
-    grid-column: 2/-2;
-    grid-row: 4;
-    text-align: center;
-    display: flex;
-    justify-content: space-between;
-  }
-  nav button {
-    filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.5));
-  }
-  nav button:hover {
-    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
-  }
-  button.arrow-right {
-    width: 0;
-    height: 0;
-    border-right: 0px solid transparent;
-    border-top: 4.5vh solid transparent;
-    border-bottom: 4.5vh solid transparent;
-    border-left: 5vw solid #ded9d9;
-    background: transparent;
-  }
-  
-  button.arrow-left {
-    background: transparent;
-    width: 0;
-    height: 0;
-    border-top: 4.5vh solid transparent;
-    border-bottom: 4.5vh solid transparent;
-    border-right: 5vw solid #ded9d9;
-    border-left: 0px solid transparent;
-  }
-  
-  button.home {
-    width: 15vw;
-    height: 80%;
-    margin: 1% auto;
-    background: #a6cfca;
-    color: #fff;
-    font-weight: 100;
-    font-size: 3.5rem;
   }
 `;
 
@@ -103,15 +81,13 @@ class QuizDisplay extends Component {
       correctAns: 0,
       incorrectAns: 0
     };
-    this.incrementer = this.incrementer.bind(this);
-    this.decrementer = this.decrementer.bind(this);
     this.quizResults = this.quizResults.bind(this);
     this.answerHandler = this.answerHandler.bind(this);
     this.sendGradedRecord = this.sendGradedRecord.bind(this);
     this.resultsRecord = this.resultsRecord.bind(this);
   }
   componentDidMount() {
-    let len = this.props.payload.length;
+    let len = this.props.quizArray.length;
     let qName = this.props.quizName;
     this.setState({
       quizLen: len,
@@ -146,23 +122,6 @@ class QuizDisplay extends Component {
       qCounter: 0
     }));
   }
-  incrementer() {
-    // conditions at completion of quiz...
-    if (this.state.qCounter + 1 === this.props.qLength) {
-      alert("done");
-      //   this.counterReset();
-      //   this.props.quizModalClose();
-      //   this.props.qCompleteCall();
-    }
-    this.setState(prevState => ({
-      qCounter: prevState.qCounter + 1
-    }));
-  }
-  decrementer() {
-    this.setState(prevState => ({
-      qCounter: prevState.qCounter - 1
-    }));
-  }
 
   quizResults(quizName, qPrompt, qAnswer) {
     this.resultsRecord(quizName, qPrompt, qAnswer);
@@ -174,9 +133,9 @@ class QuizDisplay extends Component {
 
   //Performs Checking of progress and creates user quiz results
   answerHandler(guess, answer) {
-    const { payload } = this.props;
+    const { quizArray } = this.props;
     const { quizName, qCounter, quizLen } = this.state;
-    let qPrompt = payload[qCounter].qPrompt;
+    let qPrompt = quizArray[qCounter].qPrompt;
     if (qCounter + 1 === quizLen) {
       console.log("Done!");
     }
@@ -188,7 +147,7 @@ class QuizDisplay extends Component {
 
   render() {
     const { quizLen, qCounter, quizName } = this.state;
-    const { payload } = this.props;
+    const { quizArray } = this.props;
 
     return (
       <StyledQuizDisplay>
@@ -200,21 +159,16 @@ class QuizDisplay extends Component {
           <div className="qPrompt-container">
             {quizLen != qCounter && (
               <MultiChoiceFormat
-                payload={payload[qCounter]}
+                quizArray={quizArray[qCounter]}
                 answerHandler={this.answerHandler}
               />
             )}
-
-            <nav className="quiz-qPrompt-nav">
-              <button className="btn arrow-left" onClick={this.decrementer} />
-              <button
-                className="home modal__btn--done"
-                onClick={this.props.quizModalClose}
-              >
-                home
-              </button>
-              <button className="btn arrow-right" onClick={this.incrementer} />
-            </nav>
+            <button
+              className="home modal__btn--done"
+              onClick={this.props.quizModalClose}
+            >
+              home
+            </button>
           </div>
         </div>
       </StyledQuizDisplay>

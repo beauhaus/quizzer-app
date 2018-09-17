@@ -11,8 +11,6 @@ grid-template-columns: repeat(2, 1fr);
 grid-template-rows: repeat(2,1fr);
 grid-gap: 8vw;
 padding: 2vw;
-
-
 button {
   color: #ddd;
   font-size: 3.5vw;
@@ -31,20 +29,17 @@ button {
  .default-quiz-1 {
   grid-column: 1;
   grid-row: 1;
-  
   background: #7c9769;
  }
  .default-quiz-2 {
    grid-column: 2;
    grid-row: 1;
-  
    background: #826692;
   }
 }
 #custom-quiz-create { 
   grid-column: 1/-1;
   grid-row: 2;
-  
   background: #637d8f;
  }
 `;
