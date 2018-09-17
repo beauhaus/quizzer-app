@@ -79,14 +79,25 @@ class QuizDisplay extends Component {
       optionsLen: 0,
       questCounter: 0,
       correctAns: 0,
-      incorrectAns: 0
+      incorrectAns: 0,
+      tStamp: ""
     };
-    this.quizResults = this.quizResults.bind(this);
+    // this.quizResults = this.quizResults.bind(this);
     this.answerHandler = this.answerHandler.bind(this);
-    this.sendGradedRecord = this.sendGradedRecord.bind(this);
-    this.resultsRecord = this.resultsRecord.bind(this);
+    // this.sendGradedRecord = this.sendGradedRecord.bind(this);
+    // this.resultsRecord = this.resultsRecord.bind(this);
   }
+  timeStamp() {
+    const now = new Date();
+    const nowFormatted = `${now.getMonth()}/${now.getDay()} ${now.getHours()}:${now.getMinutes()}`;
+    this.setState({
+      tStamp: nowFormatted
+    });
+  }
+
+  //upon mounting create Tstamp once (to be appended to LS record name)
   componentDidMount() {
+    this.timeStamp();
     let len = this.props.quizArray.length;
     let quizName = this.props.quizName;
     this.setState({
@@ -96,41 +107,37 @@ class QuizDisplay extends Component {
     });
   }
 
-  sendGradedRecord(key, val) {
-    // console.log(quizName);
-    // console.log(this.state.gradedArr);
-    // localStorage.setItem(key, JSON.stringify(val));
-  }
+  // sendGradedRecord(key, val) {
+  // console.log(quizName);
+  // console.log(this.state.gradedArr);
+  // localStorage.setItem(key, JSON.stringify(val));
+  // }
 
-  resultsRecord(quizName, qPrompt, boolGrade) {
-    let obj = { qPrompt: qPrompt, grade: boolGrade };
-    this.setState(prevState => {
-      return {
-        quizName,
-        gradedArr: prevState.gradedArr.concat(obj)
-      };
-    });
-  }
+  // resultsRecord(quizName, qPrompt, boolGrade) {
+  //   let obj = { qPrompt: qPrompt, grade: boolGrade };
+  //   this.setState(prevState => {
+  //     return {
+  //       quizName,
+  //       gradedArr: prevState.gradedArr.concat(obj)
+  //     };
+  //   });
+  // }
+
   componentWillUnmount() {
-    // resets incrementer upon unmount
-    // console.log("QUIZDisplay unmounted and reset");
-    const { quizName, gradedArr } = this.state;
-    let key = `${quizName}-test`;
-    let val = gradedArr;
-    this.sendGradedRecord(key, val);
-    // reset?
-    this.setState(() => ({
-      questCounter: 0
-    }));
+    console.log("QUIZDisplay unmounted and reset");
+    // const { quizName, gradedArr } = this.state;
+    // let key = `${quizName}-test`;
+    // let val = gradedArr;
+    // this.sendGradedRecord(key, val);
   }
 
-  quizResults(quizName, qPrompt, qAnswer) {
-    this.resultsRecord(quizName, qPrompt, qAnswer);
-  }
+  // quizResults(quizName, qPrompt, qAnswer) {
+  //   this.resultsRecord(quizName, qPrompt, qAnswer);
+  // }
 
-  storeQuizResults() {
-    // console.log("results Stored");
-  }
+  // storeQuizResults() {
+  // console.log("results Stored");
+  // }
 
   counterReset() {
     this.setState({ questCounter: 0 });
@@ -141,24 +148,28 @@ class QuizDisplay extends Component {
     const { quizLen, questCounter } = this.state;
     if (questCounter + 1 === quizLen) {
       this.counterReset();
+      this.props.quizModalClose();
     }
     this.setState(prevState => {
       return { questCounter: prevState.questCounter + 1 };
     });
   }
-  // Performs Checking of progress and creates user quiz results
+
+  questionChecker(guess, ans) {
+    // console.log("Guess & Answer", guess, ans);
+    const answerCheck = guess === ans;
+    const { quizArray } = this.props;
+    const { quizName, questCounter, quizLen } = this.state;
+    let qPrompt = quizArray[questCounter].qPrompt;
+  }
+
+  // calls to Qchecker
   // calls to incrementer
-  answerHandler(guess, answer) {
-    this.incrementer();
-    // const { quizArray } = this.props;
-    // const { quizName, questCounter, quizLen } = this.state;
-    // let qPrompt = quizArray[questCounter].qPrompt;
-    // if (questCounter + 1 === quizLen) {
-    //   // console.log("Done!");
-    // }
-    // const qAnswer = guess === answer;
+  answerHandler(guess, ans) {
     // // console.log("questCounter: ", questCounter);
     // this.quizResults(quizName, qPrompt, qAnswer);
+    this.questionChecker(guess, ans);
+    this.incrementer();
   }
 
   render() {
@@ -192,23 +203,3 @@ class QuizDisplay extends Component {
 }
 
 export default QuizDisplay;
-
-/*
-
-
-  incrementer() {
-    // conditions at completion of quiz...
-    if (this.state.qCounter + 1 === this.props.qLength) {
-      alert("done");
-      //   this.counterReset();
-    }
-    this.setState(prevState => ({
-      qCounter: prevState.qCounter + 1
-    }));
-  }
-  decrementer() {
-    this.setState(prevState => ({
-      qCounter: prevState.qCounter - 1
-    }));
-  }
-  */
