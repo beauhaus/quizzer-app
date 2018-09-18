@@ -61,7 +61,9 @@ const MultiChoiceFormat = props => {
               <button
                 key={options[idx]}
                 answer={answer}
-                onClick={() => props.answerHandler(options[idx], answer)}
+                onClick={() =>
+                  props.answerClickHandler(qPrompt, options[idx], answer)
+                }
               >
                 <span role="img" aria-label="quiz-option">
                   {item}

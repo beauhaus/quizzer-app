@@ -58,7 +58,7 @@ class AppContainer extends Component {
     this.handleLSResetClick = this.handleLSResetClick.bind(this);
   }
 
-  //THIS SHOWS MODAL and FEEDS CONTENTS TO MODAL
+  //THIS SHOWS LSMODAL and FEEDS CONTENTS TO LSMODAL
   handleGetAllLSClick() {
     // console.log("handleGetAllLSClick");
     const allLSQuizNames = Object.keys(localStorage);

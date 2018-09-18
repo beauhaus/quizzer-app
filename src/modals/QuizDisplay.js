@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Styled from "styled-components";
 import MultiChoiceContent from "./MultiChoiceContent";
 
+import { QRecordKeeper } from "../ArchiverUtil";
+
 //Contains wrapper for quizzes and quiz NAVIGATION
 
 const StyledQuizDisplay = Styled.div`
@@ -76,28 +78,14 @@ class QuizDisplay extends Component {
     super(props);
     this.state = {
       quizLen: 0,
-      optionsLen: 0,
       questCounter: 0,
-      correctAns: 0,
-      incorrectAns: 0,
       tStamp: ""
     };
-    // this.quizResults = this.quizResults.bind(this);
-    this.answerHandler = this.answerHandler.bind(this);
-    // this.sendGradedRecord = this.sendGradedRecord.bind(this);
-    // this.resultsRecord = this.resultsRecord.bind(this);
-  }
-  timeStamp() {
-    const now = new Date();
-    const nowFormatted = `${now.getMonth()}/${now.getDay()} ${now.getHours()}:${now.getMinutes()}`;
-    this.setState({
-      tStamp: nowFormatted
-    });
+    this.answerClickHandler = this.answerClickHandler.bind(this);
   }
 
   //upon mounting create Tstamp once (to be appended to LS record name)
   componentDidMount() {
-    this.timeStamp();
     let len = this.props.quizArray.length;
     let quizName = this.props.quizName;
     this.setState({
@@ -107,37 +95,11 @@ class QuizDisplay extends Component {
     });
   }
 
-  // sendGradedRecord(key, val) {
-  // console.log(quizName);
-  // console.log(this.state.gradedArr);
-  // localStorage.setItem(key, JSON.stringify(val));
-  // }
-
-  // resultsRecord(quizName, qPrompt, boolGrade) {
-  //   let obj = { qPrompt: qPrompt, grade: boolGrade };
-  //   this.setState(prevState => {
-  //     return {
-  //       quizName,
-  //       gradedArr: prevState.gradedArr.concat(obj)
-  //     };
-  //   });
-  // }
-
   componentWillUnmount() {
     console.log("QUIZDisplay unmounted and reset");
-    // const { quizName, gradedArr } = this.state;
-    // let key = `${quizName}-test`;
-    // let val = gradedArr;
-    // this.sendGradedRecord(key, val);
+    const { quizName, gradedArr } = this.state;
+    QRecordKeeper(quizName, gradedArr);
   }
-
-  // quizResults(quizName, qPrompt, qAnswer) {
-  //   this.resultsRecord(quizName, qPrompt, qAnswer);
-  // }
-
-  // storeQuizResults() {
-  // console.log("results Stored");
-  // }
 
   counterReset() {
     this.setState({ questCounter: 0 });
@@ -145,32 +107,34 @@ class QuizDisplay extends Component {
 
   incrementer() {
     // conditions at completion of quiz...
+    console.log("test from inc. gradedArr: ", this.state.gradedArr);
     const { quizLen, questCounter } = this.state;
     if (questCounter + 1 === quizLen) {
       this.counterReset();
       this.props.quizModalClose();
+      // this.quizEndHandler();
     }
     this.setState(prevState => {
       return { questCounter: prevState.questCounter + 1 };
     });
   }
 
-  questionChecker(guess, ans) {
-    // console.log("Guess & Answer", guess, ans);
-    const answerCheck = guess === ans;
-    const { quizArray } = this.props;
-    const { quizName, questCounter, quizLen } = this.state;
-    let qPrompt = quizArray[questCounter].qPrompt;
-  }
-
   // calls to Qchecker
   // calls to incrementer
-  answerHandler(guess, ans) {
-    // // console.log("questCounter: ", questCounter);
-    // this.quizResults(quizName, qPrompt, qAnswer);
-    this.questionChecker(guess, ans);
+  answerClickHandler(qPrompt, guess, ans) {
+    const answerBoolean = guess === ans;
+    const guessObj = { qPrompt: qPrompt, grade: answerBoolean };
+    this.setState(prevState => {
+      return {
+        gradedArr: prevState.gradedArr.concat(guessObj)
+      };
+    });
     this.incrementer();
   }
+  // quizEndHandler() {
+  //   const { quizName, gradedArr } = this.state;
+  //   QRecordKeeper(quizName, gradedArr);
+  // }
 
   render() {
     const { quizLen, questCounter, quizName } = this.state;
@@ -182,11 +146,14 @@ class QuizDisplay extends Component {
           <h3 className="qPrompt-number">
             Question {questCounter}/{quizLen}
           </h3>
+          {/*
+            {console.log("gradedArr ", this.state.gradedArr)}
+          */}
           <div className="qPrompt-container">
             {quizLen != questCounter && (
               <MultiChoiceContent
                 quizArray={quizArray[questCounter]}
-                answerHandler={this.answerHandler}
+                answerClickHandler={this.answerClickHandler}
               />
             )}
             <button
@@ -203,3 +170,17 @@ class QuizDisplay extends Component {
 }
 
 export default QuizDisplay;
+
+/*
+
+  // resultsRecord(qName, qPrompt, boolGrade) {
+  //   console.log("results Record run");
+  //   let obj = { qPrompt: qPrompt, grade: boolGrade };
+  //   this.setState(prevState => {
+  //     return {
+  //       currentQName: qName,
+  //       gradedArr: prevState.gradedArr.concat(obj)
+  //     };
+  //   }, QRecordKeeper(this.state.currentQName, this.state.gradedArr));
+  // }
+*/
