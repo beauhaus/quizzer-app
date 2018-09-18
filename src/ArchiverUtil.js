@@ -1,22 +1,31 @@
+/*
+ *  UPON UNMOUNT of <QuizDisplay/>...
+ *  QRECORDKEEPER receives quizName and user quiz performance (gradedArr)
+ *  It creates a timestamp appended to a new archive name as a key
+ *  gradedArr is the value to that key
+ *  This key/val is then 'set' to local storage
+ *  (this file is only run upon completion of each quiz)
+ */
+
 export const timeStamper = () => {
   var d = new Date();
   const monthArr = [
-    "JAN",
-    "FEB",
-    "MAR",
-    "APR",
-    "MAY",
-    "JUN",
-    "JUL",
-    "AUG",
-    "SEP",
-    "OCT",
-    "NOV",
-    "DEC"
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec"
   ];
-  const dayArr = ["sun", "mon", "tue", "wed", "thur", "fri", "sat", "sun"];
+  const dayArr = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"];
 
-  var monthName = `${monthArr[d.getMonth()].toLowerCase()}`;
+  var monthName = `${monthArr[d.getMonth()]}`;
   var weekday = dayArr[d.getDay()];
   var monthDay = d.getDate();
   var hr = d.getHours();
@@ -26,22 +35,13 @@ export const timeStamper = () => {
   return timeStamp;
 };
 
-// export const questionChecker = (guess, ans) => {
-// const answerCheck = guess === ans;
-// console.log("questionChecker", answerCheck);
-// const { quizArray } = this.props;
-// const { quizName, questCounter, quizLen } = this.state;
-// let qPrompt = quizArray[questCounter].qPrompt;
-// return console.log(qPrompt, answerCheck);
-// };
-
 export const QRecordKeeper = (quizName, gradedArr) => {
   // console.log("record keeper RUN!");
-  console.log("gradedArr is: ", gradedArr);
-  console.log("quizName is: ", quizName);
+  console.log("gradedArr is: ", gradedArr, "type", typeof gradedArr);
+  console.log("quizName is: ", quizName, "type", typeof quizName);
 
-  // const tStamp = timeStamper();
-  // console.log(tStamp);
+  const tStamp = timeStamper();
+  const recordName = `Graded: ${tStamp}–${quizName}`;
+  console.log(recordName);
+  localStorage.setItem(recordName, JSON.stringify(gradedArr));
 };
-
-// export default objArrMaker;

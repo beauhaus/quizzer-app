@@ -32,7 +32,7 @@ class QuizModal extends Component {
         isOpen={this.props.showQuizModal}
         onRequestClose={this.props.quizModalClose}
         contentLabel="Quiz Modal"
-        closeTimeoutMS={2000}
+        closeTimeoutMS={1000}
       >
         <QuizDisplay
           quizModalClose={this.quizModalCloseHandler}

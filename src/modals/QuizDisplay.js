@@ -78,13 +78,11 @@ class QuizDisplay extends Component {
     super(props);
     this.state = {
       quizLen: 0,
-      questCounter: 0,
-      tStamp: ""
+      questCounter: 0
     };
     this.answerClickHandler = this.answerClickHandler.bind(this);
   }
 
-  //upon mounting create Tstamp once (to be appended to LS record name)
   componentDidMount() {
     let len = this.props.quizArray.length;
     let quizName = this.props.quizName;
@@ -95,6 +93,7 @@ class QuizDisplay extends Component {
     });
   }
 
+  //sends accumulated user answers (gradedArr) to QRecordKeeper
   componentWillUnmount() {
     console.log("QUIZDisplay unmounted and reset");
     const { quizName, gradedArr } = this.state;
@@ -107,20 +106,16 @@ class QuizDisplay extends Component {
 
   incrementer() {
     // conditions at completion of quiz...
-    console.log("test from inc. gradedArr: ", this.state.gradedArr);
     const { quizLen, questCounter } = this.state;
     if (questCounter + 1 === quizLen) {
       this.counterReset();
       this.props.quizModalClose();
-      // this.quizEndHandler();
     }
     this.setState(prevState => {
       return { questCounter: prevState.questCounter + 1 };
     });
   }
 
-  // calls to Qchecker
-  // calls to incrementer
   answerClickHandler(qPrompt, guess, ans) {
     const answerBoolean = guess === ans;
     const guessObj = { qPrompt: qPrompt, grade: answerBoolean };
@@ -131,10 +126,6 @@ class QuizDisplay extends Component {
     });
     this.incrementer();
   }
-  // quizEndHandler() {
-  //   const { quizName, gradedArr } = this.state;
-  //   QRecordKeeper(quizName, gradedArr);
-  // }
 
   render() {
     const { quizLen, questCounter, quizName } = this.state;
