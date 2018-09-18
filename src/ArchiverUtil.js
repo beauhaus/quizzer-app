@@ -36,12 +36,8 @@ export const timeStamper = () => {
 };
 
 export const QRecordKeeper = (quizName, gradedArr) => {
-  // console.log("record keeper RUN!");
-  console.log("gradedArr is: ", gradedArr, "type", typeof gradedArr);
-  console.log("quizName is: ", quizName, "type", typeof quizName);
-
+  console.log("recordKeeper run");
   const tStamp = timeStamper();
   const recordName = `Graded: ${tStamp}–${quizName}`;
-  console.log(recordName);
   localStorage.setItem(recordName, JSON.stringify(gradedArr));
 };

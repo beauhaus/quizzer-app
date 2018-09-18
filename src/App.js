@@ -21,7 +21,7 @@ class Root extends Component {
   defaultQuizLSInsert() {
     // Feed into LS
     let stringedIconsDB = JSON.stringify(defaultQuizDB);
-    let defaultQuizName = "Default Quiz";
+    let defaultQuizName = "Quiz-Default";
     localStorage.setItem(defaultQuizName, stringedIconsDB);
 
     //Load (Parsed quizDB) From LS onto variable

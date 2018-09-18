@@ -9,7 +9,6 @@ class QuizModal extends Component {
     this.state = {
       init: ""
     };
-
     this.quizModalCloseHandler = this.quizModalCloseHandler.bind(this);
   }
   componentDidMount() {

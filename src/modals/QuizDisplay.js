@@ -95,7 +95,7 @@ class QuizDisplay extends Component {
 
   //sends accumulated user answers (gradedArr) to QRecordKeeper
   componentWillUnmount() {
-    console.log("QUIZDisplay unmounted and reset");
+    // console.log("QUIZDisplay unmounted and reset");
     const { quizName, gradedArr } = this.state;
     QRecordKeeper(quizName, gradedArr);
   }

@@ -3,34 +3,7 @@ import Modal from "react-modal";
 import Styled from "styled-components";
 
 const StyledLSModal = Styled.div`
-background: wheat;
-color: maroon;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 100;
-  text-align: center;
-  position: relative;
-  button {
-    font-family: "Montserrat", sans-serif;
-    cursor: pointer;
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 12vw;
-    height: 8vh;
-    border: 1px solid #000;
-    background: wheat;
-    color: #000;
-    font-size: 3rem;
-  }
-  h1 {
-    font-weight: 100;
-  }
-  ul {
-    margin: 0 auto;
-    width: 80vw;
-    height: 80vh;
-    text-align: left;
-  }
+
 `;
 class LSMODAL extends Component {
   constructor(props) {
@@ -40,7 +13,12 @@ class LSMODAL extends Component {
     Modal.setAppElement("body"); // a11y
   }
   render() {
-    const { LSModalClose, showLSModal, allLSQuizNames } = this.props;
+    const {
+      LSModalClose,
+      showLSModal,
+      allLSQuizNames,
+      gradedLSQuizzes
+    } = this.props;
     return (
       <Modal
         className="modal ls-modal"
@@ -49,24 +27,27 @@ class LSMODAL extends Component {
         contentLabel="LocalStorage Items"
         closeTimeoutMS={2000}
       >
-        <StyledLSModal>
-          <h1>Available Quizzes</h1>
+        <StyledLSModal className="styled-LS-modal">
+          <h1>Available Stored Items</h1>
           <button className="modal__btn--done" onClick={LSModalClose}>
             X
           </button>
-          {/*test for empty array*/}
-          <ul>
+          <ol className="quiz-list">
             {typeof allLSQuizNames !== "undefined" &&
             allLSQuizNames.length > 0 ? (
-              allLSQuizNames.map((topic, idx) => (
-                <li key={topic}>
-                  {idx + 1}. {topic}
-                </li>
-              ))
+              allLSQuizNames.map(name => <li key={name}>{name}</li>)
             ) : (
               <li>You are Empty</li>
             )}
-          </ul>
+          </ol>
+          <ol className="graded-list">
+            {typeof gradedLSQuizzes !== "undefined" &&
+            gradedLSQuizzes.length > 0 ? (
+              gradedLSQuizzes.map((name, idx) => <li key={idx}>{name}</li>)
+            ) : (
+              <li>You are Empty</li>
+            )}
+          </ol>
         </StyledLSModal>
       </Modal>
     );

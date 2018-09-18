@@ -61,13 +61,24 @@ class AppContainer extends Component {
   //THIS SHOWS LSMODAL and FEEDS CONTENTS TO LSMODAL
   handleGetAllLSClick() {
     // console.log("handleGetAllLSClick");
-    const allLSQuizNames = Object.keys(localStorage);
+    const allStoredItems = Object.keys(localStorage);
+    // console.log("allstored: ", allStoredNames);
 
-    this.setState({
-      showLSModal: true,
-      allLSQuizNames
+    var allLSQuizNames = allStoredItems.filter(item => item.startsWith("Quiz"));
+    var gradedLSQuizzes = allStoredItems.filter(item =>
+      item.startsWith("Graded")
+    );
+    console.log("G:", gradedLSQuizzes);
+
+    this.setState(prevState => {
+      return {
+        showLSModal: true,
+        allLSQuizNames,
+        gradedLSQuizzes: [prevState.gradedLSQuizzes, ...gradedLSQuizzes]
+      };
     });
   }
+  // gradedLSQuizzes: prevState.gradedLSQuizzes.concat(gradedLSQuizzes)
 
   handleLSResetClick() {
     localStorage.clear();
@@ -136,6 +147,7 @@ class AppContainer extends Component {
           LSModalClose={() => this.LSModalCloser()}
           showLSModal={this.state.showLSModal}
           allLSQuizNames={this.state.allLSQuizNames}
+          gradedLSQuizzes={this.state.gradedLSQuizzes}
         />
         <QuizModal
           quizModalClose={this.quizModalCloser}
