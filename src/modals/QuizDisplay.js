@@ -135,10 +135,10 @@ class QuizDisplay extends Component {
         <div className="quiz-display-container">
           <h2 className="quiz-topic-title">{quizName}</h2>
           <h3 className="qPrompt-number">
-            Question {questCounter}/{quizLen}
+            Question {`${questCounter + 1}`}/{quizLen}
           </h3>
           {/*
-            {console.log("gradedArr ", this.state.gradedArr)}
+            {console.log("quizArray ", quizArray)}
           */}
           <div className="qPrompt-container">
             {quizLen != questCounter && (

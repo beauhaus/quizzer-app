@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Modal from "react-modal";
 import Styled from "styled-components";
+import GradedList from "./GradedList";
 
 const StyledLSModal = Styled.div`
 
@@ -8,10 +9,18 @@ const StyledLSModal = Styled.div`
 class LSMODAL extends Component {
   constructor(props) {
     super(props);
+    // this.LSModalClose = this.LSModalClose.bind(this);
+  }
+  componentDidMount() {
+    console.log("LS DIDMOUNT");
+    this.forceUpdate();
   }
   componentWillMount() {
     Modal.setAppElement("body"); // a11y
   }
+  // lsModalCloser() {
+  //   this.props.LSModalClose;
+  // }
   render() {
     const {
       LSModalClose,
@@ -40,14 +49,7 @@ class LSMODAL extends Component {
               <li>You are Empty</li>
             )}
           </ol>
-          <ol className="graded-list">
-            {typeof gradedLSQuizzes !== "undefined" &&
-            gradedLSQuizzes.length > 0 ? (
-              gradedLSQuizzes.map((name, idx) => <li key={idx}>{name}</li>)
-            ) : (
-              <li>You are Empty</li>
-            )}
-          </ol>
+          <GradedList gradedList={gradedLSQuizzes} />
         </StyledLSModal>
       </Modal>
     );

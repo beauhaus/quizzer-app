@@ -60,27 +60,26 @@ class AppContainer extends Component {
 
   //THIS SHOWS LSMODAL and FEEDS CONTENTS TO LSMODAL
   handleGetAllLSClick() {
-    // console.log("handleGetAllLSClick");
+    // console.log("APPC> handleGetAllLSClick");
     const allStoredItems = Object.keys(localStorage);
-    // console.log("allstored: ", allStoredNames);
-
     var allLSQuizNames = allStoredItems.filter(item => item.startsWith("Quiz"));
     var gradedLSQuizzes = allStoredItems.filter(item =>
       item.startsWith("Graded")
     );
-    console.log("G:", gradedLSQuizzes);
 
     this.setState(prevState => {
       return {
         showLSModal: true,
         allLSQuizNames,
-        gradedLSQuizzes: [prevState.gradedLSQuizzes, ...gradedLSQuizzes]
+        gradedLSQuizzes
       };
     });
   }
-  // gradedLSQuizzes: prevState.gradedLSQuizzes.concat(gradedLSQuizzes)
 
   handleLSResetClick() {
+    this.setState({
+      gradedLSQuizzes: []
+    });
     localStorage.clear();
     this.props.defaultQInsert();
   }
@@ -88,12 +87,21 @@ class AppContainer extends Component {
   //DISPLAYS Default Quiz Modal
   handleShowDefaultQuizClick() {
     const { defaultQuizArray, defaultQuizName } = this.props;
-
     this.setState({
       showQuizModal: true,
       quizArray: defaultQuizArray,
       quizName: defaultQuizName
     });
+  }
+
+  // handleShowCSVocabQuizClick
+  handleShowCSVocabQuizClick() {
+    // const { defaultQuizArray, defaultQuizName } = this.props;
+    // this.setState({
+    //   showQuizModal: true,
+    //   quizArray: defaultQuizArray,
+    //   quizName: defaultQuizName
+    // });
   }
 
   LSModalCloser() {
@@ -134,6 +142,7 @@ class AppContainer extends Component {
         <h1>What do you want to learn?</h1>
         <QuizBtns
           showDefaultQuiz={this.handleShowDefaultQuizClick}
+          showCSVocabQuiz={this.handleShowCSVocabQuizClick}
           customQ={this.handleCustomQ}
         />
         <div className="info-box">
@@ -157,16 +166,21 @@ class AppContainer extends Component {
           resultsArchiver={() => this.resultsArchiverHandler()}
           // qCompleteCall={this.qCompleteModalCall}
         />
-        {/*
-  <QComplete
-  qCompleteModalClose={this.qCompleteModalCloser}
-  showQCompleteModal={this.state.showQCompleteModal}
-  quizName={this.state.quizName}
-  />
-*/}
       </StyledAppContainer>
     );
   }
 }
 
 export default AppContainer;
+
+/*
+
+
+  <QComplete
+  qCompleteModalClose={this.qCompleteModalCloser}
+  showQCompleteModal={this.state.showQCompleteModal}
+  quizName={this.state.quizName}
+  />
+
+
+*/

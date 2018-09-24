@@ -28,3 +28,18 @@ A Customizable CRUD quiz app using LocalStorage
 
   // A spot for a list of LS keys (topics)
   // https://stackoverflow.com/questions/17745292/how-to-retrieve-all-localstorage-items-without-knowing-the-keys-in-advance
+
+
+
+<!-- 
+
+<details>
+  <summary>Show/Hide me</summary>
+  <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+</details> 
+
+
+// this.forceUpdate();
+
+May be useful...
+-->

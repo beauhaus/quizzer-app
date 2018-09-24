@@ -3,7 +3,8 @@ import { render } from "react-dom";
 
 import AppContainer from "./AppContainer";
 
-import defaultQuizDB from "./data/defaultQuiz.json";
+import defaultQuizDB from "./data/defaultQuiz_Flags.json";
+import cSVocabQuizDB from "./data/defaultQuiz_CSVocab.json";
 
 /*Root's class methods are to primarily handle
  *the default quiz loading & display
@@ -15,9 +16,11 @@ class Root extends Component {
     this.state = { defaultQuizLoad: "" };
     this.defaultQuizLSInsert = this.defaultQuizLSInsert.bind(this);
   }
-  // On Pageload,(via componentDidMount) a default example loads into LocalStorage
-  // This method, then, retrieves the store & places it onto state.
-  // It is also fired by user onClick of "reset" button.
+
+  /*  On Pageload,(via componentDidMount) a default example loads into LocalStorage
+  *  This method, then, retrieves the store & places it onto state.
+  *  Method below is ALSO fired by user onClick of "Reset All Storage" button.
+  */
   defaultQuizLSInsert() {
     // Feed into LS
     let stringedIconsDB = JSON.stringify(defaultQuizDB);
@@ -28,8 +31,6 @@ class Root extends Component {
     let retrievedDefQuiz = localStorage.getItem(defaultQuizName);
     // (parsed)
     let defaultQuizArray = JSON.parse(retrievedDefQuiz);
-
-    //Place onto state
     this.setState(() => {
       return { defaultQuizArray, defaultQuizName };
     });
@@ -39,7 +40,6 @@ class Root extends Component {
     this.defaultQuizLSInsert();
   }
 
-  //defaultQInsert --to be used onMount and for user ( is also called through props) in QuizHeader (from handleLSResetClick).
   render() {
     return (
       <AppContainer
