@@ -52,6 +52,7 @@ class AppContainer extends Component {
     this.handleShowDefaultQuizClick = this.handleShowDefaultQuizClick.bind(
       this
     );
+    this.handleshowVocabQuizClick = this.handleshowVocabQuizClick.bind(this);
     this.quizModalCloser = this.quizModalCloser.bind(this);
     this.qCompleteModalCall = this.qCompleteModalCall.bind(this);
     this.qCompleteModalCloser = this.qCompleteModalCloser.bind(this);
@@ -95,7 +96,8 @@ class AppContainer extends Component {
   }
 
   // handleShowCSVocabQuizClick
-  handleShowCSVocabQuizClick() {
+  handleshowVocabQuizClick() {
+    console.log("handleShowVocabQ");
     // const { defaultQuizArray, defaultQuizName } = this.props;
     // this.setState({
     //   showQuizModal: true,
@@ -142,7 +144,7 @@ class AppContainer extends Component {
         <h1>What do you want to learn?</h1>
         <QuizBtns
           showDefaultQuiz={this.handleShowDefaultQuizClick}
-          showCSVocabQuiz={this.handleShowCSVocabQuizClick}
+          showVocabQuiz={this.handleshowVocabQuizClick}
           customQ={this.handleCustomQ}
         />
         <div className="info-box">
@@ -152,6 +154,7 @@ class AppContainer extends Component {
             tenetur ex omnis eius soluta nulla, reiciendis minima itaque fugiat.
           </p>
         </div>
+
         <LSModal
           LSModalClose={() => this.LSModalCloser()}
           showLSModal={this.state.showLSModal}

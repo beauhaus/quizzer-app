@@ -50,8 +50,8 @@ const QuizBtnContainer = props => {
       <button className="default-quiz-1" onClick={props.showDefaultQuiz}>
         Icons Quiz
       </button>
-      <button className="default-quiz-2" onClick={props.defaultQ2}>
-        Math Quiz
+      <button className="default-quiz-2" onClick={props.showVocabQuiz}>
+        Vocab Quiz
       </button>
       <button id="custom-quiz-create" onClick={props.customQ}>
         Custom Quiz

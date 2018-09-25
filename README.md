@@ -22,8 +22,9 @@ A Customizable CRUD quiz app using LocalStorage
 -----------------
 ## Project Objectives:
 1. Loads default quiz questions into local storage from a JSON file.
-2. Admin buttons in header (show all storage, delete, reload);
-3. 
+2. Upon user completion of a given quiz, records of each quiz are archived & date-stamped
+3. Admin buttons in header (show all storage, delete, reload)
+4. 
 
 
   // A spot for a list of LS keys (topics)
