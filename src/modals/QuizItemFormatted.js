@@ -2,9 +2,42 @@ import React, { Component } from "react";
 import Styled from "styled-components";
 
 const StyledQuizItem = Styled.li`
-    font-family: 'Trebuchet MS', Verdana;
-    p {
-        font-size: 1.5rem;
+summary::-webkit-details-marker {
+  display: none
+}
+
+/* 
+*/
+.graded-quiz-title {
+  color: #777;
+  font-weight: bold;
+  text-align: left;
+}
+summary {
+  box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.5);
+  margin-bottom: 0vh;
+}
+    summary:after {
+      text-align: left;
+      background: #777; 
+      border-radius: 2px;
+      content: "+"; 
+      color: #fff; 
+      float: left;
+      font-size: 1.5em;
+      margin: 0rem 0.5rem 0 0; 
+      line-height: 2rem;
+      padding: 0%; 
+      height: 18px;
+      width: 18px;
+      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);  
+    }
+    details[open] summary:after {
+      content: "-";
+      font-size: 1.5em;
+      margin: 0rem 0.5rem 0 0; 
+      line-height: 1.5rem;
+      padding: 0%; 
     }
 `;
 
@@ -45,11 +78,12 @@ const QuizItem = props => {
 
   return (
     <StyledQuizItem className="styled-quiz-item">
-      {qName}
-      <br />
-      <p className="quiz-date">
-        {weekday}, {monthName} {date} {timeFormat}
-      </p>
+      <details>
+        <summary className="graded-quiz-title">{qName}</summary>
+        <p className="quiz-date">
+          {weekday}, {monthName} {date} {timeFormat}
+        </p>
+      </details>
     </StyledQuizItem>
   );
 };
@@ -57,12 +91,5 @@ const QuizItem = props => {
 export default QuizItem;
 
 /*
-// var gradedLSQuizzes = rawGradedLSQuizzes.map(item => {
-    //   const itemArr = item.split("");
-    //   const start = item.indexOf(":") + 1;
-    //   const end = item.indexOf("|");
-    //   const numStr = item.slice(start, end);
-    //   const gradedLSquizzes = parseInt(numStr);
-    //   return gradedLSquizzes;
-    // });
-    */
+
+*/

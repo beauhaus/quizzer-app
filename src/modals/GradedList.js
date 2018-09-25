@@ -3,24 +3,33 @@ import Styled from "styled-components";
 import QuizItemFormatted from "./QuizItemFormatted";
 
 const StyledList = Styled.ol`
-  border: 1px solid green;
-  width: 5vw;
-  height 2vvh;
+height: 100%;
+grid-column: 3/4;
+grid-row: 2;
+border: 1px solid blue;
+padding: 0;
 `;
 
 const GradedList = props => {
   return (
-    <StyledList className="graded-list">
+    <StyledList className="graded-quiz-list">
       {typeof props.gradedList !== "undefined" &&
       props.gradedList.length > 0 ? (
         props.gradedList.map(item => {
           return <QuizItemFormatted key={item} gradedItem={item} />;
         })
       ) : (
-        <li>You are Empty</li>
+        <span>You are Empty</span>
       )}
     </StyledList>
   );
 };
 
 export default GradedList;
+/*
+graded quiz list => <ol> --40vw column--
+
+
+
+
+*/

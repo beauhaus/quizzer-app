@@ -4,12 +4,48 @@ import Styled from "styled-components";
 import GradedList from "./GradedList";
 
 const StyledLSModal = Styled.div`
+  background: wheat;
+  color: maroon;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 100;
+  text-align: center;
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 10vw repeat(2, 40vw) 10vw;
+  grid-template-rows: 10vh 80vh 10vh;
 
+  h1 {
+    font-weight: 100;
+    grid-column: 2/4;
+    grid-row: 1;
+    height: 100%;
+    margin: 0;
+    padding: 0%;
+  }
+
+   .modal__btn--done {
+    grid-column: 4;
+    grid-row: 1;
+    background: red;
+    cursor: pointer;
+    background: wheat;
+    color: #000;
+    font-size: 3rem;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+    box-shadow: 2px 2px 10px 0px rgba(0,0,0,0.2);
+  }
+  .quiz-list {
+    grid-column: 2;
+    grid-row: 2;
+    border: 1px solid maroon;
+    color: purple;
+    height: 100%;
+  }
 `;
 class LSMODAL extends Component {
   constructor(props) {
     super(props);
-    // this.LSModalClose = this.LSModalClose.bind(this);
   }
   componentDidMount() {
     console.log("LS DIDMOUNT");
@@ -18,9 +54,7 @@ class LSMODAL extends Component {
   componentWillMount() {
     Modal.setAppElement("body"); // a11y
   }
-  // lsModalCloser() {
-  //   this.props.LSModalClose;
-  // }
+
   render() {
     const {
       LSModalClose,

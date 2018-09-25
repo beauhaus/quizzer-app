@@ -69,49 +69,16 @@ button:focus {
 }
 
 .styled-LS-modal {
-  background: wheat;
-  color: maroon;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 100;
-  text-align: center;
-  height: 100vh;
-  width: 100vw;
-  display: grid;
-  grid-template-columns: 10vw repeat(2, 40vw) 10vw;
-  grid-template-rows: 10vh 80vh 10vh;
 }
-.styled-LS-modal button {
-  cursor: pointer;
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 12vw;
-  height: 8vh;
-  border: 1px solid #000;
-  background: wheat;
-  color: #000;
-  font-size: 3rem;
-}
-.styled-LS-modal h1 {
-  font-weight: 100;
-  grid-column: 1/-1;
-  grid-row: 1;
-}
-.styled-LS-modal ol {
+.styled-LS-modal .styled-LS-modal .styled-LS-modal ol {
   margin: 0 auto;
   width: 100%;
   text-align: left;
   font-size: 2rem;
 }
-.styled-LS-modal .graded-list {
-  grid-column: 3;
-  grid-row: 2;
-  border: 1px solid red;
-  color: green;
-}
-.styled-LS-modal .quiz-list {
+/* .styled-LS-modal .styled-LS-modal .quiz-list {
   grid-column: 2;
   grid-row: 2;
   border: 1px solid maroon;
   color: purple;
-}
+} */
