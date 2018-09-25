@@ -62,6 +62,9 @@ class LSMODAL extends Component {
       allLSQuizNames,
       gradedLSQuizzes
     } = this.props;
+    {
+      console.log("p> LSModal: ", this.props);
+    }
     return (
       <Modal
         className="modal ls-modal"

@@ -27,8 +27,10 @@ const StyledQuizDisplay = Styled.div`
     height: 5vh;
     font-weight: 200;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+
     grid-column: 3;
     grid-row: 1;
+    
     height: 100%;
   }
  
@@ -39,6 +41,8 @@ const StyledQuizDisplay = Styled.div`
     grid-row: 2;
     color: #aa9494;
     height: 100%;
+    bord
+
   }
 
   .qPrompt-container {
@@ -46,9 +50,12 @@ const StyledQuizDisplay = Styled.div`
     grid-row: 3;
     color: #fff;
     display: grid;
+    
     grid-template-columns: 5vw 5vw 70vw 5vw 5vw;
     grid-template-rows: 15vh 10vh 25vh 10vh;
+
     font-family: "Montserrat", sans-serif;
+
     & button.home {
       background: #607570;
       color: #fff;
@@ -60,7 +67,7 @@ const StyledQuizDisplay = Styled.div`
       font-size: 3.5vw;
       border-radius: 0.7rem;
       box-shadow: 2px 2px 10px 0px rgba(0,0,0,0.2);
-      border: 1px solid maroon;
+
       font-weight: 100;
       margin: 0 auto;
       &:hover {
@@ -138,8 +145,9 @@ class QuizDisplay extends Component {
             Question {`${questCounter + 1}`}/{quizLen}
           </h3>
           {/*
-            {console.log("quizArray ", quizArray)}
+            {console.log("quizArray ", quizArray[questCounter].hint)}
           */}
+
           <div className="qPrompt-container">
             {quizLen != questCounter && (
               <MultiChoiceContent

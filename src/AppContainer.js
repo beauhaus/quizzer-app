@@ -42,7 +42,7 @@ class AppContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showAllLS: [], //{Object.keys(localStorage),
+      showAllLS: [],
       showLSModal: false,
       showQuizModal: false,
       showDefQModal: false,

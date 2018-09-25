@@ -26,10 +26,3 @@ const GradedList = props => {
 };
 
 export default GradedList;
-/*
-graded quiz list => <ol> --40vw column--
-
-
-
-
-*/

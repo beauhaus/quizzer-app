@@ -9,17 +9,36 @@ const StyledQA = Styled.section`
   display: grid;
   grid-template-rows: 30vh 10vh 9vh 1vh;
   grid-template-columns: 10vw 50vw 10vw;
-  
-h2.qPrompt {
-  color: rgba(98, 77, 77, 0.5);
-  font-size: 4rem;
-  font-weight: 200;
-  grid-row: 1;
-  grid-column: 2;
-  text-align: center;
-}
+  summary::-webkit-details-marker {
+    display: none
+  }
+  details {
+    color: rgba(98, 77, 77, 0.5);
+    font-size: 4rem;
+    font-weight: 200;
+    grid-row: 1/3;
+    grid-column: 2;
+    text-align: center;
+    display: grid;
+    grid-template-rows: 30vh 10vh;
+    grid-template-columns: 1fr;
+    summary {
+      grid-row: 1;
+      grid-column: 1;
+      height: 80%;
+    }
+    p.qHint {
+      color: #fff;
+      font-size: 2rem;
+      font-weight: 200;
+      text-align: center;
+      background: linear-gradient(90deg, transparent 0%, #aaa 50%, transparent 100%);
+      height: 20%;
+    }    
+  }
+
 .multi-choice-container {
-  grid-row: 2;
+  grid-row: 3;
   grid-column: 1/-1;
   display: flex;
   flex-direction: row;
@@ -50,10 +69,16 @@ h2.qPrompt {
 // "options" is a nested array (i.e. multiple choices)
 
 const MultiChoiceFormat = props => {
-  const { answer, options, qPrompt } = props.quizArray;
+  const { answer, options, qPrompt, hint } = props.quizArray;
   return (
     <StyledQA>
+      <details>
+        <summary className="qPrompt">{qPrompt}</summary>
+        <p className="qHint">{hint}</p>
+      </details>
+      {/*
       <h2 className="qPrompt">{qPrompt}</h2>
+    */}
       <div className="multi-choice-container">
         {true &&
           options.map((item, idx) => {
@@ -77,3 +102,9 @@ const MultiChoiceFormat = props => {
 };
 
 export default MultiChoiceFormat;
+/*
+<details>
+    <summary>What am I drinking?</summary>
+    <p>(rhymes with "Toffee")<p/>
+</details>
+*/

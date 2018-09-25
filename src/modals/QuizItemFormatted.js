@@ -6,8 +6,6 @@ summary::-webkit-details-marker {
   display: none
 }
 
-/* 
-*/
 .graded-quiz-title {
   color: #777;
   font-weight: bold;
