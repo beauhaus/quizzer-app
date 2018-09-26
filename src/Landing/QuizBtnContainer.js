@@ -48,7 +48,7 @@ const QuizBtnContainer = props => {
   return (
     <StyledQBtns className="quiz-btn-container">
       <button className="default-quiz-1" onClick={props.showDefaultQuiz}>
-        Icons Quiz
+        Flags Quiz
       </button>
       <button className="default-quiz-2" onClick={props.showVocabQuiz}>
         Vocab Quiz

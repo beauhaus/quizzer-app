@@ -9,64 +9,89 @@
   {
     "id": "101",
     "qPrompt": "A number used to tell how measurements for a group are spread out from the average (mean), or expected value",
-    "options": ["Mean", "variance", "skewness", "standard deviation"],
+    "options": ["mean", "variance", "skewness", "standard deviation"],
     "hint": "When this is low, it means that most numbers are close to the average.",
     "answer": "standard deviation"
   },
   {
     "id": "102",
-    "qPrompt": "Prompt3",
-    "options": ["🇬🇭", "🇺🇾", "🇸🇪", "🇰🇵"],
-    "hint": "It contains red.",
-    "answer": "🇰🇵"
+    "qPrompt": "a workaround or quick-and-dirty solution that is clumsy, inelegant, inefficient, difficlut to maintain.",
+    "options": ["Kludge", "Grock", "pirate", "transpile"],
+    "hint": "Often referred to as 'spaghetti code' and is often the result of hacking",
+    "answer": "Kludge"
   },
   {
     "id": "103",
-    "qPrompt": "Prompt4",
-    "options": ["🇬🇭", "🇹🇿", "🇸🇰", "🇵🇬"],
-    "hint": "It contains green.",
-    "answer": "🇹🇿"
+    "qPrompt": "This feature of React exploits the power of being able to write code that is rendered by both server and browser. This results in better indexing, more maintainable code and faster load times.",
+    "options": [
+      "tree-shaking",
+      "code-splitting",
+      "isomorphism",
+      "server-side rendering"
+    ],
+    "hint": "The first page load will be lightning fast since the rendering happened on the server with later partial DOM updates happen on the browser.",
+    "answer": "isomorphism"
   },
   {
     "id": "104",
-    "qPrompt": "Prompt5",
-    "options": ["🇧🇩", "🇧🇳", "🇳🇫", "🇦🇷"],
-    "hint": "It contains white.",
-    "answer": "🇦🇷"
+    "qPrompt": "A line of best fit in a scatter-plot that may describe/predict a relationship between two variables (ie education and salary).",
+    "options": [
+      "regression analysis",
+      "gap analysis",
+      "monkey testing",
+      "usability testing"
+    ],
+    "hint": "The 'residual term' is a variable unaccounted for in the regression model (i.e. gender, height, race, etc.)",
+    "answer": "regression analysis"
   },
   {
     "id": "105",
-    "qPrompt": "Prompt6",
-    "options": ["🇵🇦", "🇸🇴", "🇹🇹", "🇹🇬"],
-    "hint": "It contains red.",
-    "answer": "🇵🇦"
+    "qPrompt": "An undesirable situation that occurs when a device or system attempts to perform two or more operations at the same time, but because of the nature of the device or system, the operations must be done in the proper sequence to be done correctly.",
+    "options": [
+      "Concurrency",
+      "Second-System Effect",
+      "Tail-Call Optimization",
+      "Race Condition"
+    ],
+    "hint": "When multithreaded (or otherwise parallel) code that would access a shared resource could do so in such a way as to cause unexpected results.",
+    "answer": "Race Condition"
   },
   {
     "id": "106",
-    "qPrompt": "Prompt7",
-    "options": ["🇺🇿", "🇸🇿", "🇹🇴", "🇹🇰"],
-    "hint": "It contains stripes.",
-    "answer": "🇺🇿"
+    "qPrompt": "Data that can survive a shutdown (of computer, server, etc).",
+    "options": ["cache", "persistence layer", "hashing", "name collision"],
+    "hint": "The continuance of an effect after its cause is removed",
+    "answer": "persistence layer"
   },
   {
     "id": "107",
-    "qPrompt": "Prompt8",
-    "options": ["🇸🇷", "🇺🇦", "🇧🇱", "🇨🇭"],
-    "hint": "It contains red.",
-    "answer": "🇨🇭"
+    "qPrompt": "When the solution to a coding problem is described in terms of the end result--not by the steps required to get there. Instead of coding what 'should' happen this kind of programming lets us describe what we want.",
+    "options": [
+      "name collision",
+      "imperative programming",
+      "functional programming",
+      "declarative programming"
+    ],
+    "hint": "It's useful becasue it hides tasks that don't need to be re-written all the time...while surfacing logic that actually matters to an application. It's an approach to writing more concise, DRY code.",
+    "answer": "declarative programming"
   },
   {
     "id": "108",
-    "qPrompt": "Prompt9",
-    "options": ["🇺🇦", "🇮🇪", "🇻🇨", "🏴󠁧󠁢󠁳󠁣󠁴󠁿"],
-    "hint": "It contains green.",
-    "answer": "🇮🇪"
+    "qPrompt": "A measurement used as an indication of the responsiveness of a webserver or other network resource. TTFB measures the duration from the user or client making an HTTP request to the first byte of the page being received by the client's browser.",
+    "options": ["TTFB", "TTFL", "TGIF", "load time"],
+    "hint": "This can be slow if API requests are slow resulting in transfer of large amounts of data",
+    "answer": "TTFB"
   },
   {
     "id": "109",
-    "qPrompt": "Prompt10",
-    "options": ["🇨🇼", "🇫🇴", "🇺🇦", "🇬🇪"],
-    "hint": "It contains blue.",
-    "answer": "🇺🇦"
+    "qPrompt": "Re-running functional and non-functional tests to ensure that previously developed and tested software still performs after a change.",
+    "options": [
+      "integration testing",
+      "unit testing",
+      "regression testing",
+      "system testing"
+    ],
+    "hint": "This involves testing the application as a whole and often employs automation testing tools.",
+    "answer": "regression testing"
   }
 ]

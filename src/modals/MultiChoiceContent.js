@@ -9,8 +9,8 @@ const StyledQA = Styled.section`
   height: 100%;
   width: 100%;
   display: grid;
-  grid-template-rows: 30vh 10vh 9vh 1vh;
-  grid-template-columns: 10vw 50vw 10vw;
+  grid-template-rows: 30vh 10vh 1vh 9vh;
+  grid-template-columns: 5vw 60vw 5vw;
 
   & div.quiz-content-container {
     color: rgba(98, 77, 77, 0.5);
@@ -21,25 +21,35 @@ const StyledQA = Styled.section`
     text-align: center;
     display: grid;
     grid-template-rows: 30vh 10vh;
-    grid-template-columns: 1fr;
+    grid-template-columns: 50vw;
     
-    h2.qPrompt {
+    h2 {
       grid-row: 1;
       grid-column: 1;
-      height: auto;
+      margin: 0 auto;
       font-weight: 100;
     }
+    .qPrompt-lg {
+      font-size: 4rem;
+      color: blue;
+    }
+    .qPrompt-sm {
+      font-size: 2.4rem;
+      color: red;
+    }
     p.qHint {
-      color: #fff;
-      font-size: 2rem;
+      grid-row: 2;
+      grid-column: 1;
+      color: #000;
+      font-size: 1.5rem;
       font-weight: 200;
-      text-align: center;
-      height: auto;
+      text-align: left;
+      
     }    
   }
 
 .multi-choice-container {
-  grid-row: 3;
+  grid-row: 4;
   grid-column: 1/-1;
   display: flex;
   flex-direction: row;
@@ -50,8 +60,13 @@ const StyledQA = Styled.section`
     flex-grow: 1;
     flex-basis: 8rem;
     margin: 0 0.5rem;
-    span {
-      font-size: 4rem;
+    &.option-lg {
+      font-size: 2.5vw;
+      color: red;      
+    }
+    &.option-sm {
+      font-size: 2vw;
+      color: fuchsia;
     }
     &:hover {
       background: #4fbb9b;
@@ -71,29 +86,33 @@ const StyledQA = Styled.section`
 
 const MultiChoiceFormat = props => {
   const { answer, options, qPrompt, hint } = props.quizArray;
+  console.log("string length: ", qPrompt.length);
   return (
     <StyledQA>
       <div className="quiz-content-container">
-        <h2 className="qPrompt">{qPrompt}</h2>
+        {qPrompt.length > 24 ? (
+          <p className="qPrompt-sm">{qPrompt}</p>
+        ) : (
+          <h2 className="qPrompt-lg">{qPrompt}</h2>
+        )}
+
         <p className="qHint">{hint}</p>
       </div>
       <div className="multi-choice-container">
-        {true &&
-          options.map((item, idx) => {
-            return (
-              <button
-                key={options[idx]}
-                answer={answer}
-                onClick={() =>
-                  props.answerClickHandler(qPrompt, options[idx], answer)
-                }
-              >
-                <span role="img" aria-label="quiz-option">
-                  {item}
-                </span>
-              </button>
-            );
-          })}
+        {options.map((item, idx) => {
+          return (
+            <button
+              key={options[idx]}
+              answer={answer}
+              className={options[idx].length < 12 ? "option-lg" : "option-sm"}
+              onClick={() =>
+                props.answerClickHandler(qPrompt, options[idx], answer)
+              }
+            >
+              {item}
+            </button>
+          );
+        })}
       </div>
     </StyledQA>
   );
