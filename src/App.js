@@ -24,15 +24,30 @@ class Root extends Component {
   defaultQuizLSInsert() {
     // Feed into LS
     let stringedIconsDB = JSON.stringify(defaultQuizDB);
-    let defaultQuizName = "Quiz-Default";
+    let defaultQuizName = "Quiz-Default"; // Must begin with word "quiz"
     localStorage.setItem(defaultQuizName, stringedIconsDB);
 
     //Load (Parsed quizDB) From LS onto variable
     let retrievedDefQuiz = localStorage.getItem(defaultQuizName);
     // (parsed)
     let defaultQuizArray = JSON.parse(retrievedDefQuiz);
+
+    /*********************VOCAB QUIZ INSERT AND LOAD********** */
+    let stringedVocabDB = JSON.stringify(cSVocabQuizDB);
+    let vocabQuizName = "Quiz-Vocab"; // Must begin with word "quiz"
+    localStorage.setItem(vocabQuizName, stringedVocabDB);
+    //Load (Parsed quizDB) From LS onto variable
+    let retrievedVocabQuiz = localStorage.getItem(vocabQuizName);
+    // (parsed)
+    let vocabQuizArray = JSON.parse(retrievedVocabQuiz);
+
     this.setState(() => {
-      return { defaultQuizArray, defaultQuizName };
+      return {
+        defaultQuizArray,
+        defaultQuizName,
+        vocabQuizArray,
+        vocabQuizName
+      };
     });
   }
 
@@ -46,6 +61,8 @@ class Root extends Component {
         defaultQInsert={this.defaultQuizLSInsert}
         defaultQuizArray={this.state.defaultQuizArray}
         defaultQuizName={this.state.defaultQuizName}
+        vocabQuizArray={this.state.vocabQuizArray}
+        vocabQuizName={this.state.vocabQuizName}
       />
     );
   }

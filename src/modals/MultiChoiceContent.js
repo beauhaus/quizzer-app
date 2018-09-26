@@ -4,15 +4,15 @@ import Styled from "styled-components";
 const StyledQA = Styled.section`
   grid-row: 1/4;
   grid-column: 3;
+  font-family: "Montserrat", Verdana, sans-serif;
+  font-weight: 100;
   height: 100%;
   width: 100%;
   display: grid;
   grid-template-rows: 30vh 10vh 9vh 1vh;
   grid-template-columns: 10vw 50vw 10vw;
-  summary::-webkit-details-marker {
-    display: none
-  }
-  details {
+
+  & div.quiz-content-container {
     color: rgba(98, 77, 77, 0.5);
     font-size: 4rem;
     font-weight: 200;
@@ -22,18 +22,19 @@ const StyledQA = Styled.section`
     display: grid;
     grid-template-rows: 30vh 10vh;
     grid-template-columns: 1fr;
-    summary {
+    
+    h2.qPrompt {
       grid-row: 1;
       grid-column: 1;
-      height: 80%;
+      height: auto;
+      font-weight: 100;
     }
     p.qHint {
       color: #fff;
       font-size: 2rem;
       font-weight: 200;
       text-align: center;
-      background: linear-gradient(90deg, transparent 0%, #aaa 50%, transparent 100%);
-      height: 20%;
+      height: auto;
     }    
   }
 
@@ -72,13 +73,10 @@ const MultiChoiceFormat = props => {
   const { answer, options, qPrompt, hint } = props.quizArray;
   return (
     <StyledQA>
-      <details>
-        <summary className="qPrompt">{qPrompt}</summary>
+      <div className="quiz-content-container">
+        <h2 className="qPrompt">{qPrompt}</h2>
         <p className="qHint">{hint}</p>
-      </details>
-      {/*
-      <h2 className="qPrompt">{qPrompt}</h2>
-    */}
+      </div>
       <div className="multi-choice-container">
         {true &&
           options.map((item, idx) => {

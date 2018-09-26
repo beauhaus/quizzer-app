@@ -52,7 +52,7 @@ class AppContainer extends Component {
     this.handleShowDefaultQuizClick = this.handleShowDefaultQuizClick.bind(
       this
     );
-    this.handleshowVocabQuizClick = this.handleshowVocabQuizClick.bind(this);
+    this.handleShowVocabQuizClick = this.handleShowVocabQuizClick.bind(this);
     this.quizModalCloser = this.quizModalCloser.bind(this);
     this.qCompleteModalCall = this.qCompleteModalCall.bind(this);
     this.qCompleteModalCloser = this.qCompleteModalCloser.bind(this);
@@ -88,6 +88,7 @@ class AppContainer extends Component {
   //DISPLAYS Default Quiz Modal
   handleShowDefaultQuizClick() {
     const { defaultQuizArray, defaultQuizName } = this.props;
+    // console.log("handleShowDefQ", defaultQuizArray, defaultQuizName);
     this.setState({
       showQuizModal: true,
       quizArray: defaultQuizArray,
@@ -96,14 +97,15 @@ class AppContainer extends Component {
   }
 
   // handleShowCSVocabQuizClick
-  handleshowVocabQuizClick() {
-    console.log("handleShowVocabQ");
+  handleShowVocabQuizClick() {
+    const { vocabQuizArray, vocabQuizName } = this.props;
+    // console.log("handleShowVocabQ", vocabQuizArray, vocabQuizName);
     // const { defaultQuizArray, defaultQuizName } = this.props;
-    // this.setState({
-    //   showQuizModal: true,
-    //   quizArray: defaultQuizArray,
-    //   quizName: defaultQuizName
-    // });
+    this.setState({
+      showQuizModal: true,
+      quizArray: vocabQuizArray,
+      quizName: vocabQuizName
+    });
   }
 
   LSModalCloser() {
@@ -131,8 +133,8 @@ class AppContainer extends Component {
 
   render() {
     {
-      // console.log("p>quizArray: ", this.state.quizArray);
-      // // console.log("p>quizLength: ", this.state.quizLength);
+      console.log("p>quizArray: ", this.state.quizArray);
+
       // console.log("p>Name: ", this.state.quizName);
     }
     return (
@@ -144,7 +146,7 @@ class AppContainer extends Component {
         <h1>What do you want to learn?</h1>
         <QuizBtns
           showDefaultQuiz={this.handleShowDefaultQuizClick}
-          showVocabQuiz={this.handleshowVocabQuizClick}
+          showVocabQuiz={this.handleShowVocabQuizClick}
           customQ={this.handleCustomQ}
         />
         <div className="info-box">

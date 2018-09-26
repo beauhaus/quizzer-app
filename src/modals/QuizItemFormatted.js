@@ -30,13 +30,7 @@ summary {
       width: 18px;
       text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);  
     }
-    details[open] summary:after {
-      content: "-";
-      font-size: 1.5em;
-      margin: 0rem 0.5rem 0 0; 
-      line-height: 1.5rem;
-      padding: 0%; 
-    }
+   
 `;
 
 const QuizItem = props => {
