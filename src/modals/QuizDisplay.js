@@ -7,77 +7,55 @@ import { QRecordKeeper } from "../ArchiverUtil";
 //Contains wrapper for quizzes and quiz NAVIGATION
 
 const StyledQuizDisplay = Styled.div`
-  width: 100vw;
-  height: 100vh;
-  background: linear-gradient(45deg, #ECEAEA 0%, #DAD4D4 100%);
-  font-family: 'Montserrat', Tahoma, Geneva, Verdana, sans-serif;
-  .quiz-display-container {
-    padding: 0%;
+    width: 100vw;
     height: 100vh;
+    background: linear-gradient(45deg, #eceaea 0%, #dad4d4 100%);
+    font-family: "Montserrat", Tahoma, Geneva, Verdana, sans-serif;
+    padding: 0%;
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
     display: grid;
     grid-template-columns: 5vw 15vw 60vw 15vw 5vw;
-    grid-template-rows: 10vh 10vh 60vh;
+    grid-template-rows: 10vh 10vh 60vh 10vh 10vh;
     text-align: center;
-  }
-  
-  h2.quiz-topic-title {
-    color: #e9e9e9;
-    font-style: italic;
-    font-size: 4.5rem;
-    height: 5vh;
-    font-weight: 200;
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
-
-    grid-column: 3;
-    grid-row: 1;
-    
-    height: 100%;
-  }
- 
-  .qPrompt-number {
-    font-weight: 200;
-    font-size: 2rem;
-    grid-column: 2;
-    grid-row: 2;
-    color: #aa9494;
-    height: 100%;
-    bord
-
-  }
-
-  .qPrompt-container {
-    grid-column: 2/-2;
-    grid-row: 3;
-    color: #fff;
-    display: grid;
-    
-    grid-template-columns: 5vw 5vw 70vw 5vw 5vw;
-    grid-template-rows: 15vh 10vh 25vh 10vh;
-
-    font-family: "Montserrat", sans-serif;
-
+    & h2.quiz-topic-title {
+      color: #e9e9e9;
+      font-style: italic;
+      font-size: 4.5rem;
+      font-weight: 200;
+      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+      grid-column: 3;
+      grid-row: 1;
+    }
+    & .qPrompt-number {
+      font-weight: 200;
+      font-size: 2rem;
+      grid-column: 2;
+      grid-row: 2;
+      color: #aa9494;
+    }
     & button.home {
       background: #607570;
       color: #fff;
       grid-column: 3;
       grid-row: 4;
-      width: 12vw;
+      width: 16vw;
       display: flex;
       justify-content: space-around;
       font-size: 3.5vw;
       border-radius: 0.7rem;
-      box-shadow: 2px 2px 10px 0px rgba(0,0,0,0.2);
-
+      box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.2);
       font-weight: 100;
       margin: 0 auto;
       &:hover {
         background: #61c0c3;
-        filter: opacity(.7);
-        -webkit-filter: opacity(.7);
-        text-shadow: -1px -1px 0px #000;  
+        filter: opacity(0.7);
+        -webkit-filter: opacity(0.7);
+        text-shadow: -1px -1px 0px #000;
       }
     }
-  }
+
 `;
 
 class QuizDisplay extends Component {
@@ -138,31 +116,25 @@ class QuizDisplay extends Component {
     const { quizLen, questCounter, quizName } = this.state;
     const { quizArray } = this.props;
     return (
-      <StyledQuizDisplay>
-        <div className="quiz-display-container">
-          <h2 className="quiz-topic-title">{quizName}</h2>
-          <h3 className="qPrompt-number">
-            Question {`${questCounter + 1}`}/{quizLen}
-          </h3>
-          {/*
-            {console.log("quizArray ", quizArray[questCounter].hint)}
-          */}
+      <StyledQuizDisplay className="quiz-display-container">
+        <h2 className="quiz-topic-title">{quizName}</h2>
 
-          <div className="qPrompt-container">
-            {quizLen != questCounter && (
-              <MultiChoiceContent
-                quizArray={quizArray[questCounter]}
-                answerClickHandler={this.answerClickHandler}
-              />
-            )}
-            <button
-              className="home modal__btn--done"
-              onClick={this.props.quizModalClose}
-            >
-              home
-            </button>
-          </div>
-        </div>
+        <h3 className="qPrompt-number">
+          Question {`${questCounter + 1}`}/{quizLen}
+        </h3>
+
+        {quizLen != questCounter && (
+          <MultiChoiceContent
+            quizArray={quizArray[questCounter]}
+            answerClickHandler={this.answerClickHandler}
+          />
+        )}
+        <button
+          className="home modal__btn--done"
+          onClick={this.props.quizModalClose}
+        >
+          home
+        </button>
       </StyledQuizDisplay>
     );
   }
@@ -172,14 +144,5 @@ export default QuizDisplay;
 
 /*
 
-  // resultsRecord(qName, qPrompt, boolGrade) {
-  //   console.log("results Record run");
-  //   let obj = { qPrompt: qPrompt, grade: boolGrade };
-  //   this.setState(prevState => {
-  //     return {
-  //       currentQName: qName,
-  //       gradedArr: prevState.gradedArr.concat(obj)
-  //     };
-  //   }, QRecordKeeper(this.state.currentQName, this.state.gradedArr));
-  // }
+
 */

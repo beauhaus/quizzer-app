@@ -62,23 +62,15 @@ button:focus {
 /**********************************/
 
 /***********FOR TESTING (TO BE DELETED)**************/
-.test {
+/* .test {
   background: #61c0c3;
   background: #826692;
-  background: #607570;
-}
+  background: rgba(178, 182, 218, 0.726);
+} */
 
-.styled-LS-modal {
-}
 .styled-LS-modal .styled-LS-modal .styled-LS-modal ol {
   margin: 0 auto;
   width: 100%;
   text-align: left;
   font-size: 2rem;
 }
-/* .styled-LS-modal .styled-LS-modal .quiz-list {
-  grid-column: 2;
-  grid-row: 2;
-  border: 1px solid maroon;
-  color: purple;
-} */
