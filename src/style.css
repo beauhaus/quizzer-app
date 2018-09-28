@@ -68,9 +68,25 @@ button:focus {
   background: rgba(178, 182, 218, 0.726);
 } */
 
-.styled-LS-modal .styled-LS-modal .styled-LS-modal ol {
-  margin: 0 auto;
+.ls-modal {
+  padding: 0;
+  margin: 0;
+  background: linear-gradient(45deg, #ddd 0%, #fff 100%);
+  display: grid;
+  grid-template-columns: 10vw 80vw 10vw;
+  grid-template-rows: 10vh 80vh 10vh;
+}
+
+h1.storage-title {
+  font-weight: 100;
+  font-size: 4vw;
+  grid-column: 2;
+  grid-row: 1;
+  height: 100%;
   width: 100%;
-  text-align: left;
-  font-size: 2rem;
+  margin: 0 auto;
+  color: #a35;
+  text-align: center;
+  padding: 0%;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
 }

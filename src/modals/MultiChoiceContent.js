@@ -53,7 +53,7 @@ const StyledQA = Styled.section`
         border: 1px solid lightgreen;
         flex-grow: 1;     
         margin: 0 0.3vw;
-        color: white;
+        color: #ddd;
         text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
         box-shadow: 2px 2px 10px 0px rgba(0,0,0,0.2);
         &.option-lg {
@@ -64,7 +64,8 @@ const StyledQA = Styled.section`
           
         }
         &:hover {
-          background: #4fbb9b;
+          background: #999;
+          color: #fff;
           filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
         }
         animation: fadein 2s;

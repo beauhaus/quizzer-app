@@ -3,45 +3,51 @@ import Modal from "react-modal";
 import Styled from "styled-components";
 import GradedList from "./GradedList";
 
+const StyledLSBtn = Styled.button`
+  grid-column: 3;
+  grid-row: 1;
+  cursor: pointer;
+  font-size: 3rem;
+  border: 1px solid #bbb;
+  color: #bbb;
+  &:hover {
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+    box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.2);
+    background: #eeeeef;
+    color: #a35;
+    border: 1px solid #a35;
+  }
+`;
+
 const StyledLSModal = Styled.div`
-  background: wheat;
-  color: maroon;
+  background: linear-gradient(45deg, #ddd 0%, #fff 100%);
+  box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.2);
+  color: #a35;
   font-family: "Montserrat", sans-serif;
   font-weight: 100;
   text-align: center;
-  height: 100vh;
-  width: 100vw;
+  grid-row: 2;
+  grid-column: 2;
   display: grid;
-  grid-template-columns: 10vw repeat(2, 40vw) 10vw;
-  grid-template-rows: 10vh 80vh 10vh;
+  grid-template-columns: repeat(2, 40vw);
+  grid-template-rows: 80vh;
+  padding: 0;
 
-  h1 {
-    font-weight: 100;
-    grid-column: 2/4;
-    grid-row: 1;
-    height: 100%;
-    margin: 0;
-    padding: 0%;
-  }
-
-   .modal__btn--done {
-    grid-column: 4;
-    grid-row: 1;
-    background: red;
+.quiz-list {
+  grid-column: 1;
+  grid-row: 1;
+  border: 1px solid maroon;
+  color: #a35;
+  padding: 1rem;
+  margin: 0;
+  text-shadow: none;
+  font-size: 3rem;
+  &> li:hover {
     cursor: pointer;
-    background: wheat;
-    color: #000;
-    font-size: 3rem;
+    font-weight: 300;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
-    box-shadow: 2px 2px 10px 0px rgba(0,0,0,0.2);
   }
-  .quiz-list {
-    grid-column: 2;
-    grid-row: 2;
-    border: 1px solid maroon;
-    color: purple;
-    height: 100%;
-  }
+}
 `;
 class LSMODAL extends Component {
   constructor(props) {
@@ -62,9 +68,6 @@ class LSMODAL extends Component {
       allLSQuizNames,
       gradedLSQuizzes
     } = this.props;
-    {
-      console.log("p> LSModal: ", this.props);
-    }
     return (
       <Modal
         className="modal ls-modal"
@@ -73,11 +76,11 @@ class LSMODAL extends Component {
         contentLabel="LocalStorage Items"
         closeTimeoutMS={2000}
       >
+        <StyledLSBtn className="modal__btn--done" onClick={LSModalClose}>
+          X
+        </StyledLSBtn>
+        <h1 className="storage-title">Available Records</h1>
         <StyledLSModal className="styled-LS-modal">
-          <h1>Available Stored Items</h1>
-          <button className="modal__btn--done" onClick={LSModalClose}>
-            X
-          </button>
           <ol className="quiz-list">
             {typeof allLSQuizNames !== "undefined" &&
             allLSQuizNames.length > 0 ? (

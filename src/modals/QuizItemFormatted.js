@@ -2,6 +2,12 @@ import React, { Component } from "react";
 import Styled from "styled-components";
 
 const StyledQuizItem = Styled.li`
+&:hover {
+  cursor: pointer;
+  font-weight: 300;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+}
+
 summary::-webkit-details-marker {
   display: none
 }
@@ -10,27 +16,34 @@ summary::-webkit-details-marker {
   color: #777;
   font-weight: bold;
   text-align: left;
+  color: #a35;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 100;
+  font-size: 3rem;
+  
 }
 summary {
-  box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.5);
+  box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.1);
   margin-bottom: 0vh;
 }
     summary:after {
       text-align: left;
-      background: #777; 
       border-radius: 2px;
       content: "+"; 
       color: #fff; 
       float: left;
-      font-size: 1.5em;
+      font-size: 4rem;
       margin: 0rem 0.5rem 0 0; 
-      line-height: 2rem;
+      line-height: 4rem;
       padding: 0%; 
       height: 18px;
       width: 18px;
       text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);  
     }
-   
+    details[open] summary:after {
+      content: "–";
+      line-height: 3.3rem;
+    }
 `;
 
 const QuizItem = props => {

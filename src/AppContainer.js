@@ -35,7 +35,6 @@ const StyledAppContainer = Styled.div`
     h1 {
       font-weight: 100;
     }
-    
 `;
 
 class AppContainer extends Component {
@@ -61,7 +60,6 @@ class AppContainer extends Component {
 
   //THIS SHOWS LSMODAL and FEEDS CONTENTS TO LSMODAL
   handleGetAllLSClick() {
-    // console.log("APPC> handleGetAllLSClick");
     const allStoredItems = Object.keys(localStorage);
     var allLSQuizNames = allStoredItems.filter(item => item.startsWith("Quiz"));
     var gradedLSQuizzes = allStoredItems.filter(item =>
