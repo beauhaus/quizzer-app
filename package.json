@@ -30,7 +30,6 @@
     "prettier": "^1.14.2"
   },
   "dependencies": {
-    "inspector": "^0.5.0",
     "react": "^0.14.0 || ^15.0.0 || ^16",
     "react-dom": "^0.14.0 || ^15.0.0 || ^16",
     "react-modal": "^3.5.1",
