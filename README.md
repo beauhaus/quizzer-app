@@ -1,6 +1,6 @@
 # React Quizzer-App
 A Customizable CRUD quiz app using LocalStorage
-![Quizzr Screenshot](https://github.com/beauhaus/Quizzr/blob/master/readmeRefImg/quizzrscrn.jpg?raw=true "Quizzr Screenshot")
+![Quizzr Screenshot](https://github.com/beauhaus/Quizzr/blob/master/readmeRefImg/quizzr-scrn.jpg?raw=true "Quizzr Screenshot")
 
 
 ## Feature-set
