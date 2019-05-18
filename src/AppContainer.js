@@ -131,8 +131,7 @@ class AppContainer extends Component {
 
   render() {
     {
-      console.log("p>quizArray: ", this.state.quizArray);
-
+      // console.log("p>quizArray: ", this.state.quizArray);
       // console.log("p>Name: ", this.state.quizName);
     }
     return (

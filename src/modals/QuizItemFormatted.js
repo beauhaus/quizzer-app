@@ -47,6 +47,7 @@ summary {
 `;
 
 const QuizItem = props => {
+  // console.log("p> QuizItem: ", props);
   const { gradedItem } = props;
   const dStampAndName = gradedItem.replace("Graded:", "");
   const dStampNameArr = dStampAndName.split("|");
@@ -86,7 +87,7 @@ const QuizItem = props => {
       <details>
         <summary className="graded-quiz-title">{qName}</summary>
         <p className="quiz-date">
-          {weekday}, {monthName} {date} {timeFormat}
+          {weekday}, {monthName} {date} {timeFormat} <br />
         </p>
       </details>
     </StyledQuizItem>

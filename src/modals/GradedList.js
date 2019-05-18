@@ -16,6 +16,7 @@ const StyledList = Styled.ol`
 `;
 
 const GradedList = props => {
+  // console.log("p> GradedList: ", props)
   return (
     <StyledList className="graded-quiz-list">
       {typeof props.gradedList !== "undefined" &&
