@@ -20,7 +20,7 @@ const StyledQuizDisplay = Styled.div`
     grid-template-rows: 10vh 10vh 60vh 10vh 10vh;
     text-align: center;
     & h2.quiz-topic-title {
-      color: #e9e9e9;
+      color: #5347bb;
       font-style: italic;
       font-size: 4.5rem;
       font-weight: 200;
